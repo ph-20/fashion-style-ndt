@@ -57,7 +57,8 @@ class ProductsTableSeeder extends Seeder
                 'user_id' => '1',
                 'category_id' => '4',
                 'discount' => '150000'
-            ],
+            ]
+
 
         ]);
     }
