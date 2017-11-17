@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    public function orderDetails()
+    //
+    public function orderdetails()
     {
         $this->hasMany('Shop\OrderDetail', 'order_id', 'id');
     }

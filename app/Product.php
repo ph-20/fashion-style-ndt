@@ -6,17 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    public function category()
-    {
-        $this->belongsTo('Shop\Category', 'category_id', 'id');
-    }
-
+    //
     public function user()
     {
         $this->belongsTo('Shop\User', 'user_id', 'id');
     }
 
-    public function orderDetails()
+    public function category()
+    {
+        $this->belongsTo('Shop\Category', 'category_id', 'id');
+    }
+
+    public function orderdetails()
     {
         $this->hasMany('Shop\OrderDetail', 'product_id', 'id');
     }
