@@ -695,7 +695,127 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
-
+            [
+                'name' => 'Quần nữ quần jean lưng cao',
+                'image' => 'jean-nu-1.jpg',
+                'slug' => 'quan-jean-nu-lung-cao',
+                'price' => '500000',
+                'type' => '1',
+                'description' =>'quần jean lưng cao màu đen sử dụng cotton mảnh chải kỹ 95% thấm hút mồ',
+                'user_id' => '1',
+                'category_id' => '7',
+                'discount' => '0',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'name' => 'Quần jean nữ harem',
+                'image' => 'jean-nu-2.jpg',
+                'slug' => 'quan-jean-nu-harem',
+                'price' => '50000',
+                'type' => '1',
+                'description' =>'quần harem nữ sử dụng nguyên liệu sợi bông có nguồn gốc thiên nhiên mang đến cảm nhận Relax và dễ chịu cho làn da.
+                                 Thoát nhiệt tự nhiên của cơ thể qua quần harem nữ',
+                'user_id' => '1',
+                'category_id' => '7',
+                'discount' => '0',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'name' => 'Quần nữ quần jean nữ đẹp màu trắng ',
+                'image' => 'jean-nu-3.jpg',
+                'slug' => 'quan-nu-jean-dep-mau-trang',
+                'price' => '500000',
+                'type' => '1',
+                'description' =>'Khả năng thoát hơi nước và thấm hút mồ hôi qua quần jean nữ đẹp màu trắng:
+                                 quần jean nữ đẹp màu trắng với kết cấu cho không khí lưu thông qua vải nhanh để đem đi 18->1500ml nước mỗi giờ thoát ra theo bản năng của cơ thể dưới trạng thái hơi nước để làm giảm đi 10.8kcal-870kcal nhiệt lượng từ cơ thể mỗi giờ làm cơ thể mát mẻ, vật liệu sợi bông thiên nhiên của quần nữ thấm hút nhanh chóng mồ hôi đọng trên da không ngăn chặn việc thoát nhiệt khi cơ thể vã mồ hôi để da không bị kích ứng, mẩn ngứa hay viêm da do bít lỗ chân lông.',
+                'user_id' => '1',
+                'category_id' => '7',
+                'discount' => '0',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'name' => 'Quần Tây Kaki Nam Hàn Quốc',
+                'image' => 'quan-tay-1.jpg',
+                'slug' => 'quan-tay-nam-kaki-han-quoc',
+                'price' => '200000',
+                'type' => '0',
+                'description' =>' Loại sản phẩm: Quần tây kaki nam.
+                                  Chất liệu: kaki, nhẹ, mát, sợi dệt chéo.
+                                  Quần được thiết kế với kiểu dáng ống thẳng thanh lịch, phù hợp với mọi dáng người, dễ phối đồ, dễ đẹp.',
+                'user_id' => '1',
+                'category_id' => '8',
+                'discount' => '180000',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'name' => 'Quần Tây 0Ly Màu Trơn Đen',
+                'image' => 'quan-tay-2.jpg',
+                'slug' => 'quan-tay-oly-mau-den',
+                'price' => '300000',
+                'type' => '0',
+                'description' =>'Quần tây 0ly 425 được thiết kế theo form dáng chuẩn của hình thể người Việt Nam. Chất liệu quần thoáng mát phù hợp với thời tiết miền nhiệt đới. Cùng với đường cắt may tinh xảo tạo cho người mặc vẻ đẹp sang trọng và lịch lãm.',
+                'user_id' => '1',
+                'category_id' => '8',
+                'discount' => '250000',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'name' => 'Quần Tây Cotton',
+                'image' => 'quan-tay-3.jpg',
+                'slug' => 'quan-tay-cotton',
+                'price' => '100000',
+                'type' => '0',
+                'description' =>'Quần Tây Cotton Lụa Ống Côn Co Giãn MT01 Xanh Đen',
+                'user_id' => '1',
+                'category_id' => '8',
+                'discount' => '0',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'name' => 'Quần shorts váy nữ',
+                'image' => 'short-nu-1.jpg',
+                'slug' => 'short-nu-vay-nu',
+                'price' => '200000',
+                'type' => '1',
+                'description' =>'Quần short váy nữ thuộc BST Những con sóng màu xanh lấy cảm hứng từ biển. Chiếc quần trẻ trung với kiểu dáng cách điệu và được nhấn bằng đai nơ, túi ốp to. Quần được dệt từ 100% sợi polyester khiến quần đứng dáng, hạn chế được nhăn nhàu khi cử động và bền màu khi giặt.',
+                'user_id' => '1',
+                'category_id' => '9',
+                'discount' => '0',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'name' => 'Quần shorts lửng',
+                'image' => 'short-nu-2.jpg',
+                'slug' => 'short-lung',
+                'price' => '30000',
+                'type' => '1',
+                'description' =>'Quần short lửng thuộc dòng Casual Season. Quần có dáng ôm, ống côn trẻ trung với độ dài qua gối, lịch sự để đi làm. Chất liệu khaki từ sợi cotton và spandex tạo ra bề mặt vải dày dặn, có khả năng co giãn để bạn cử động thoải mái.',
+                'user_id' => '1',
+                'category_id' => '9',
+                'discount' => '0',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'name' => 'Quần shorts nữ vay xanh',
+                'image' => 'short-nu-3.jpg',
+                'slug' => 'short-nu-vay-xanh',
+                'price' => '120000',
+                'type' => '1',
+                'description' =>'Quần short nữ dáng A thuộc dòng Casual season. Bạn sẽ vô cùng thích thú khi diện chiếc quần đem tới cảm giác êm dịu trên da, có khả năng co giãn khiến mọi cử động của bạn thật dễ dàng. Cùng với các gam màu pastel nhẹ nhàng, tươi sáng bạn hoàn toàn có thể kết hợp cùng với mọi chiếc áo phông trong tủ đồ.',
+                'user_id' => '1',
+                'category_id' => '9',
+                'discount' => '0',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
 
         ]);
     }
