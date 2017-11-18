@@ -75,6 +75,4 @@ class ShopController extends Controller
         $user->save();
         return redirect()->route('login')->with('alert', 'Đăng kí thành công, vui lòng đăng nhập!');
     }
-
-
 }
