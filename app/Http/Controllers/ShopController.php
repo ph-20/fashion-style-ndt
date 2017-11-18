@@ -3,6 +3,8 @@
 namespace Shop\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Shop\Http\Requests\ShopRequest;
+use Shop\User;
 
 class ShopController extends Controller
 {
@@ -21,10 +23,6 @@ class ShopController extends Controller
         return view('front-end.pages.login');
     }
 
-    public function register()
-    {
-        return view('front-end.pages.register');
-    }
 
     public function about()
     {
@@ -55,4 +53,28 @@ class ShopController extends Controller
     {
         return view('front-end.pages.product');
     }
+
+    public function getRegister()
+    {
+        return view('front-end.pages.register');
+    }
+
+    public function postRegister(ShopRequest $request)
+    {
+        $user = new User();
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->avatar = 'avatar.jpg';
+        $user->fullname = $request->name;
+        $user->birthday = $request->birthday;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->role = '2';
+        $user->gender = $request->gender;
+        $user->status = '1';
+        $user->save();
+        return redirect()->route('login')->with('alert', 'Đăng kí thành công, vui lòng đăng nhập!');
+    }
+
+
 }
