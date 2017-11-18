@@ -21,6 +21,8 @@ class OrdersTableSeeder extends Seeder
                 'customer_phone' => '0123456789',
                 'customer_address' => 'Đà Nẵng',
                 'code' => '1234567892',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'status' => '1',
@@ -31,6 +33,8 @@ class OrdersTableSeeder extends Seeder
                 'customer_phone' => '0123456789',
                 'customer_address' => 'Đà Nẵng',
                 'code' => '1234564455',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
             ],
             [
                 'status' => '2',
@@ -41,6 +45,8 @@ class OrdersTableSeeder extends Seeder
                 'customer_phone' => '0123456789',
                 'customer_address' => 'Đà Nẵng',
                 'code' => '1234567789',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
             ]
         ]);
 
