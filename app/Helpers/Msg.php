@@ -5,7 +5,7 @@
  * @author DaiDV
  */
 
-namespace App\Helpers;
+namespace Shop\Helpers;
 
 class Msg
 {
