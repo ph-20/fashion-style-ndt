@@ -34,7 +34,3 @@ Route::get('/product', ['as' => 'product', 'uses' => 'ShopController@product']);
 Route::get('/admin/', ['as' => 'dashboard', 'uses' => 'AdminController@dashboard']);
 
 Route::get('/admin/login', ['as' => 'login-admin', 'uses' => 'AdminController@login']);
-
-
-
-
