@@ -17,7 +17,7 @@ class Product extends Model
         $this->belongsTo('Shop\Category', 'category_id', 'id');
     }
 
-    public function orderDetail()
+    public function orderDetails()
     {
         $this->hasMany('Shop\OrderDetail', 'product_id', 'id');
     }
