@@ -17,7 +17,14 @@ Route::get('/404', ['as' => 'error404', 'uses' => 'ShopController@error404']);
 
 Route::get('/login', ['as' => 'login', 'uses' => 'ShopController@login']);
 
-Route::get('/register', ['as' => 'register', 'uses' => 'ShopController@register']);
+//==================================
+//Register
+//===================================
+
+Route::get('/register', ['as' => 'getRegister', 'uses' => 'ShopController@getRegister']);
+Route::post('/register', ['as' => 'postRegister', 'uses' => 'ShopController@postRegister']);
+
+
 
 Route::get('/about', ['as' => 'about', 'uses' => 'ShopController@about']);
 

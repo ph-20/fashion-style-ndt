@@ -21,48 +21,75 @@
                     <div class="form-login">
                         <div class="col-sm-6 col-sm-offset-3">
                             <h3>Đăng kí thành viên</h3>
-                            <div class="alert alert-info">* Vui lòng điền đầy đủ thông tin</div>
-                            <form action="" class="form-horizontal">
+
+                            @if(count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li>{{$error}}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @else
+                                <div class="alert alert-info">* Vui lòng điền đầy đủ thông tin</div>
+                            @endif
+
+                            <form action="{{route('postRegister')}}" class="form-horizontal" method="post">
+                                {{csrf_field()}}
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Email</label>
                                     <div class="col-md-8">
-                                        <input type="email" class="form-control" name="email" placeholder="Nhập emai của bạn">
+                                        <input type="email" class="form-control" name="email"
+                                               placeholder="Nhập emai của bạn">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Mật khẩu</label>
                                     <div class="col-md-8">
-                                        <input type="password" name="password" placeholder="Nhập mật khẩu của bạn" class="form-control">
+                                        <input type="password" name="password" placeholder="Nhập mật khẩu của bạn"
+                                               class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Xác nhận mật khẩu</label>
                                     <div class="col-md-8">
-                                        <input type="password" name="re_password" placeholder="Nhập  lại mật khẩu của bạn" class="form-control">
+                                        <input type="password" name="re_password"
+                                               placeholder="Nhập  lại mật khẩu của bạn" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Họ tên</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="name" placeholder="Nhập họ tên của bạn" class="form-control">
+                                        <input type="text" name="name" placeholder="Nhập họ tên của bạn"
+                                               class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Ngày sinh</label>
                                     <div class="col-md-8">
-                                        <input type="date" name="birthday" placeholder="Nhập ngày sinh của bạn" class="form-control">
+                                        <input type="date" name="birthday" placeholder="Nhập ngày sinh của bạn"
+                                               class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Điện thoại</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="phone" placeholder="Nhập số điện thoại của bạn" class="form-control">
+                                        <input type="text" name="phone" placeholder="Nhập số điện thoại của bạn"
+                                               class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Địa chỉ</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="address" placeholder="Nhập địa chỉ của bạn" class="form-control">
+                                        <input type="text" name="address" placeholder="Nhập địa chỉ của bạn"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Gender</label>
+                                    <div class="radio-inline">
+                                        <input type="radio" name="gender" checked id="inlineRadio1" value="0">Nam
+                                        <input type="radio" name="gender" id="inlineRadio2" value="1">Nữ
                                     </div>
                                 </div>
                                 <div class="form-group text-center">
