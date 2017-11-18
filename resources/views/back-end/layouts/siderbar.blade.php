@@ -1,7 +1,7 @@
 <article class="siderbar">
     <ul class="nav nav-list">
         <li class="active">
-            <a href="#">
+            <a href="{{route('dashboard')}}">
                 <span class="fa fa-dashboard"></span> Trang chủ
             </a>
         </li>

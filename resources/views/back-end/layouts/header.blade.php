@@ -1,11 +1,11 @@
 <header>
     <div class="container-fluid">
         <div class="pull-left">
-            <div id="logo"><a href="#">Fashion Style NDT</a></div>
+            <div id="logo"><a href="{{route('dashboard')}}">Fashion Style NDT</a></div>
         </div>
         <div class="pull-right">
             <ul class="nav navbar-nav">
-                <li><a href="#">
+                <li><a href="{{route('index')}}">
                         <sapn class="fa fa-home"></sapn>
                         View Shop</a></li>
                 <li class="dropdown">
