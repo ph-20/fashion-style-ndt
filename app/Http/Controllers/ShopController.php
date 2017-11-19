@@ -12,17 +12,7 @@ class ShopController extends Controller
         return view('front-end.pages.index');
     }
 
-    public function error404()
-    {
-        return view('front-end.pages.404');
-    }
-
-    public function login()
-    {
-        return view('front-end.pages.login');
-    }
-
-//    Register Custommer
+    //  Register Custommer
     public function getRegister()
     {
         return view('front-end.pages.register');
@@ -32,10 +22,9 @@ class ShopController extends Controller
     {
         $user = new User();
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = bcrypt($request->password);
         $user->fullname = $request->name;
         $user->birthday = $request->birthday;
-        $user->avatar = 'avatar.jpg';
         $user->phone = $request->phone;
         $user->address = $request->address;
         $user->gender = $request->gender;
@@ -44,7 +33,23 @@ class ShopController extends Controller
         $user->status = '1';
         $user->save();
 
-        return redirect()->route('login')->with('alert', 'Đăng ký thành công! Vui lòng đăng nhập.');
+        return redirect()->route('getLogin')->with('alert', 'Đăng ký thành công! Vui lòng đăng nhập.');
+    }
+
+    //  Login Custommer
+    public function getLogin()
+    {
+        return view('front-end.pages.login');
+    }
+
+    public function postLogin()
+    {
+        return view('front-end.pages.login');
+    }
+
+    public function error404()
+    {
+        return view('front-end.pages.404');
     }
 
     public function about()

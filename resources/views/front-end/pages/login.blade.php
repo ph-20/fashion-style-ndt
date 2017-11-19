@@ -23,8 +23,9 @@
                             <h3>Đăng nhập</h3>
                             @if(Session::has('alert'))
                                 <div class="alert alert-success">{{Session::get('alert')}}</div>
+                            @else
+                                <div class="alert alert-info">* Vui lòng đăng nhập để tiếp tục</div>
                             @endif
-                            <div class="alert alert-info">* Vui lòng đăng nhập để tiếp tục</div>
                             <form action="" class="form-horizontal">
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">Email</label>
@@ -35,7 +36,8 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">Mật khẩu</label>
                                     <div class="col-md-10">
-                                        <input type="password" name="password" placeholder="Nhập mật khẩu của bạn" class="form-control">
+                                        <input type="password" name="password" placeholder="Nhập mật khẩu của bạn"
+                                               class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group text-center">
