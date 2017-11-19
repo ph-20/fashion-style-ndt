@@ -18,7 +18,6 @@ Route::get('/404', ['as' => 'error404', 'uses' => 'ShopController@error404']);
 Route::get('/login', ['as' => 'login', 'uses' => 'ShopController@login']);
 
 // Register Custommer
-
 Route::get('/register', ['as' => 'getRegister', 'uses' => 'ShopController@getRegister']);
 
 Route::post('/register', ['as' => 'postRegister', 'uses' => 'ShopController@postRegister']);
@@ -41,7 +40,6 @@ Route::get('/product', ['as' => 'product', 'uses' => 'ShopController@product']);
 Route::get('/admin/login', ['as' => 'login-admin', 'uses' => 'AdminController@login']);
 
 Route::group(['prefix' => 'admin'], function () {
-
     Route::get('/', ['as' => 'dashboard', 'uses' => 'AdminController@dashboard']);
 
     //  User Resource
