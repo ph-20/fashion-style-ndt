@@ -11,16 +11,19 @@
 |
 */
 
-Route::get('/', ['as' => 'index', 'uses' => 'ShopController@index']);
+//  Login Custommer
+Route::get('/login', ['as' => 'getLogin', 'uses' => 'ShopController@getLogin']);
 
-Route::get('/404', ['as' => 'error404', 'uses' => 'ShopController@error404']);
-
-Route::get('/login', ['as' => 'login', 'uses' => 'ShopController@login']);
+Route::post('/login', ['as' => 'postLogin', 'uses' => 'ShopController@postLogin']);
 
 // Register Custommer
 Route::get('/register', ['as' => 'getRegister', 'uses' => 'ShopController@getRegister']);
 
 Route::post('/register', ['as' => 'postRegister', 'uses' => 'ShopController@postRegister']);
+
+Route::get('/', ['as' => 'index', 'uses' => 'ShopController@index']);
+
+Route::get('/404', ['as' => 'error404', 'uses' => 'ShopController@error404']);
 
 Route::get('/about', ['as' => 'about', 'uses' => 'ShopController@about']);
 

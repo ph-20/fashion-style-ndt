@@ -139,8 +139,8 @@
                             <li><a href="#">Đăng xuất</a></li>
                         </ul>
                     </li>
-                    <li><a href="#" data-toggle="modal" data-target="#modalSignup">Đăng kí</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#modalLogin">Đăng nhập</a></li>
+                    <li><a href="{{route('getRegister')}}">Đăng kí</a></li>
+                    <li><a href="{{route('getLogin')}}">Đăng nhập</a></li>
                 </ul>
             </div>
         </div>
