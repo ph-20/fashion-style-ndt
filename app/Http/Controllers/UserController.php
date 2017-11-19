@@ -18,7 +18,6 @@ class UserController extends Controller
     {
         $users = User::paginate(5);
         return view('back-end.users.index')->with('users', $users);
-
     }
 
     /**
@@ -99,7 +98,6 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('users.edit', $id)->with('alert', 'Chỉnh sửa thành công');
-
     }
 
     /**
