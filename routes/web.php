@@ -47,6 +47,3 @@ Route::group(['prefix' => 'admin'], function () {
     //  User Resource
     Route::resource('/users', 'UserController');
 });
-
-
-
