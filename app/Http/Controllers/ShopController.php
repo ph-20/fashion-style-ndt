@@ -2,7 +2,8 @@
 
 namespace Shop\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Shop\Http\Requests\UserRequest;
+use Shop\User;
 
 class ShopController extends Controller
 {
@@ -21,9 +22,29 @@ class ShopController extends Controller
         return view('front-end.pages.login');
     }
 
-    public function register()
+//    Register Custommer
+    public function getRegister()
     {
         return view('front-end.pages.register');
+    }
+
+    public function postRegister(UserRequest $request)
+    {
+        $user = new User();
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->fullname = $request->name;
+        $user->birthday = $request->birthday;
+        $user->avatar = 'avatar.jpg';
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->gender = $request->gender;
+        $user->address = $request->address;
+        $user->role = '2';
+        $user->status = '1';
+        $user->save();
+
+        return redirect()->route('login')->with('alert', 'Đăng ký thành công! Vui lòng đăng nhập.');
     }
 
     public function about()

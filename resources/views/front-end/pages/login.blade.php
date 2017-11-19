@@ -21,6 +21,9 @@
                     <div class="form-login">
                         <div class="col-sm-6 col-sm-offset-3">
                             <h3>Đăng nhập</h3>
+                            @if(Session::has('alert'))
+                                <div class="alert alert-success">{{Session::get('alert')}}</div>
+                            @endif
                             <div class="alert alert-info">* Vui lòng đăng nhập để tiếp tục</div>
                             <form action="" class="form-horizontal">
                                 <div class="form-group">
