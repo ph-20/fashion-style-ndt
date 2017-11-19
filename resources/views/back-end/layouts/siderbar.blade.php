@@ -31,7 +31,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="{{route('users.index')}}">
                 <span class="fa fa-users"></span> Người dùng
             </a>
         </li>

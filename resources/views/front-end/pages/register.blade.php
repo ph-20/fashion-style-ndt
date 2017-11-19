@@ -21,12 +21,24 @@
                     <div class="form-login">
                         <div class="col-sm-6 col-sm-offset-3">
                             <h3>Đăng kí thành viên</h3>
-                            <div class="alert alert-info">* Vui lòng điền đầy đủ thông tin</div>
-                            <form action="" class="form-horizontal">
+                            @if(count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li>{{$error}}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @else
+                                <div class="alert alert-info">* Vui lòng điền đầy đủ thông tin</div>
+                            @endif
+
+                            <form action="{{route('postRegister')}}" class="form-horizontal" method="POST">
+                                {{csrf_field()}}
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Email</label>
                                     <div class="col-md-8">
-                                        <input type="email" class="form-control" name="email" placeholder="Nhập emai của bạn">
+                                        <input type="text" class="form-control" name="email" placeholder="Nhập emai của bạn">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -45,6 +57,13 @@
                                     <label class="col-md-4 control-label">Họ tên</label>
                                     <div class="col-md-8">
                                         <input type="text" name="name" placeholder="Nhập họ tên của bạn" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Giới tính</label>
+                                    <div class="col-md-8">
+                                        <label><input type="radio" name="gender" value="0" checked> Nam</label>
+                                        <label><input type="radio" name="gender" value="1"> Nữ</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
