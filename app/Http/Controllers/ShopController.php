@@ -2,8 +2,10 @@
 
 namespace Shop\Http\Controllers;
 
+use Shop\Http\Requests\LoginRequest;
 use Shop\Http\Requests\UserRequest;
 use Shop\User;
+use Auth;
 
 class ShopController extends Controller
 {
@@ -42,9 +44,17 @@ class ShopController extends Controller
         return view('front-end.pages.login');
     }
 
-    public function postLogin()
+    public function postLogin(LoginRequest $request)
     {
-        return view('front-end.pages.login');
+        $auth = array(
+            'email' => $request->email,
+            'password' => $request->password
+        );
+        if (Auth::attempt($auth)){
+            echo 'Đăng nhập thành công';
+        } else {
+            echo 'Đăng nhập thất bại';
+        }
     }
 
     public function error404()
