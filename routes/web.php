@@ -66,4 +66,3 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     //  User Resource
     Route::resource('/users', 'UserController');
 });
-

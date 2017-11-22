@@ -42,7 +42,8 @@ class ShopController extends Controller
         $user->status = '1';
         $user->save();
 
-        return redirect()->route('getLogin')->with(['message' => 'Đăng ký thành công! Vui lòng đăng nhập.', 'alert' => 'success']);
+        return redirect()->route('getLogin')
+            ->with(['message' => 'Đăng ký thành công! Vui lòng đăng nhập.', 'alert' => 'success']);
     }
 
     //  Login Custommer
@@ -60,7 +61,8 @@ class ShopController extends Controller
         if (Auth::attempt($auth, $remember = false)) {
             return redirect()->route('index');
         } else {
-            return redirect()->route('getLogin')->with(['message' => 'Email hoặc mật khẩu không đúng.', 'alert' => 'danger']);
+            return redirect()->route('getLogin')
+                ->with(['message' => 'Email hoặc mật khẩu không đúng.', 'alert' => 'danger']);
         }
     }
 

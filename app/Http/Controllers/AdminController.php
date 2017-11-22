@@ -55,6 +55,7 @@ class AdminController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        return redirect()->route('getChangePass')->with(['message' => 'Đổi mật khẩu thành công.', 'alert' => 'success']);
+        return redirect()->route('getChangePass')
+            ->with(['message' => 'Đổi mật khẩu thành công.', 'alert' => 'success']);
     }
 }
