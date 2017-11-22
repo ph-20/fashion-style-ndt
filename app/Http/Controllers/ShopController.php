@@ -10,6 +10,12 @@ use Auth;
 
 class ShopController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest', ['only' => 'getLogin', 'only' => 'getRegister']);
+        $this->middleware('admin', ['only' => 'getProfile']);
+    }
+
     public function index()
     {
         return view('front-end.pages.index');
@@ -36,7 +42,7 @@ class ShopController extends Controller
         $user->status = '1';
         $user->save();
 
-        return redirect()->route('getLogin')->with(['message'=> 'Đăng ký thành công! Vui lòng đăng nhập.', 'alert'=> 'success']);
+        return redirect()->route('getLogin')->with(['message' => 'Đăng ký thành công! Vui lòng đăng nhập.', 'alert' => 'success']);
     }
 
     //  Login Custommer
@@ -51,25 +57,28 @@ class ShopController extends Controller
             'email' => $request->email,
             'password' => $request->password
         );
-        if (Auth::attempt($auth, $remember = false)){
+        if (Auth::attempt($auth, $remember = false)) {
             return redirect()->route('index');
         } else {
-            return redirect()->route('getLogin')->with(['message'=> 'Email hoặc mật khẩu không đúng.', 'alert'=> 'danger']);
+            return redirect()->route('getLogin')->with(['message' => 'Email hoặc mật khẩu không đúng.', 'alert' => 'danger']);
         }
     }
 
     //  Logout Custommer
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         return redirect()->route('index');
     }
 
     //  Profile
-    public function getProfile(){
+    public function getProfile()
+    {
         return view('front-end.pages.profile');
     }
 
-    public function postProfile(ProfileRequest $request){
+    public function postProfile(ProfileRequest $request)
+    {
         $id = $request->id;
         $user = User::find($id);
         $user->email = $request->email;
@@ -84,7 +93,7 @@ class ShopController extends Controller
         $user->status = '1';
         $user->save();
 
-        return redirect()->route('getProfile')->with(['message'=> 'Chỉnh sửa thành công', 'alert'=> 'success']);
+        return redirect()->route('getProfile')->with(['message' => 'Chỉnh sửa thành công', 'alert' => 'success']);
     }
 
     public function error404()

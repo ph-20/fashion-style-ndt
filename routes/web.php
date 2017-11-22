@@ -58,6 +58,11 @@ Route::get('/admin/logout', ['as' => 'logoutAdmin', 'uses' => 'AdminController@l
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', ['as' => 'dashboard', 'uses' => 'AdminController@dashboard']);
 
+    //  Change Pass
+    Route::get('/change-pass', ['as' => 'getChangePass', 'uses' => 'AdminController@getChangePass']);
+
+    Route::post('/change-pass', ['as' => 'postChangePass', 'uses' => 'AdminController@postChangePass']);
+
     //  User Resource
     Route::resource('/users', 'UserController');
 });

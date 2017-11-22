@@ -20,7 +20,7 @@
 <body>
 
 <section class="login container-fluid">
-    <h3 class="text-center">Fashion Style NDT</h3>
+    <h3 class="text-center"><a href="{{route('index')}}" class="logo" style="color: #fff;">Fashion Style NDT</a></h3>
     <div class="col-md-4 col-md-offset-4">
         <div class="login-panel panel panel-primary">
             <div class="panel-heading">
