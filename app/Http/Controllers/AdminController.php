@@ -30,7 +30,7 @@ class AdminController extends Controller
             'email' => $request->email,
             'password' => $request->password
         );
-        if (Auth::attempt($auth, $remember = false)) {
+        if (Auth::attempt($auth)) {
             return redirect()->route('dashboard');
         } else {
             return redirect()->route('getLoginAdmin')->with(['message' => 'Email hoặc mật khẩu không đúng.']);

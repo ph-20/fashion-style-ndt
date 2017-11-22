@@ -58,7 +58,7 @@ class ShopController extends Controller
             'email' => $request->email,
             'password' => $request->password
         );
-        if (Auth::attempt($auth, $remember = false)) {
+        if (Auth::attempt($auth)) {
             return redirect()->route('index');
         } else {
             return redirect()->route('getLogin')
@@ -95,7 +95,8 @@ class ShopController extends Controller
         $user->status = '1';
         $user->save();
 
-        return redirect()->route('getProfile')->with(['message' => 'Chỉnh sửa thành công', 'alert' => 'success']);
+        return redirect()->route('getProfile')
+            ->with(['message' => 'Chỉnh sửa thành công', 'alert' => 'success']);
     }
 
     public function error404()
