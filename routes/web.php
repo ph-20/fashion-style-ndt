@@ -16,10 +16,18 @@ Route::get('/login', ['as' => 'getLogin', 'uses' => 'ShopController@getLogin']);
 
 Route::post('/login', ['as' => 'postLogin', 'uses' => 'ShopController@postLogin']);
 
+//  Logout Custommer
+Route::get('/logout', ['as' => 'logout', 'uses' => 'ShopController@logout']);
+
 // Register Custommer
 Route::get('/register', ['as' => 'getRegister', 'uses' => 'ShopController@getRegister']);
 
 Route::post('/register', ['as' => 'postRegister', 'uses' => 'ShopController@postRegister']);
+
+//  Edit Customer
+Route::get('/profile', ['as' => 'getProfile', 'uses' => 'ShopController@getProfile']);
+
+Route::post('/profile', ['as' => 'postProfile', 'uses' => 'ShopController@postProfile']);
 
 Route::get('/', ['as' => 'index', 'uses' => 'ShopController@index']);
 
@@ -40,10 +48,20 @@ Route::get('/product', ['as' => 'product', 'uses' => 'ShopController@product']);
 //=========================================
 //  Back End
 //=========================================
-Route::get('/admin/login', ['as' => 'login-admin', 'uses' => 'AdminController@login']);
+Route::get('/admin/login', ['as' => 'getLoginAdmin', 'uses' => 'AdminController@getLoginAdmin']);
 
-Route::group(['prefix' => 'admin'], function () {
+Route::post('/admin/login', ['as' => 'postLoginAdmin', 'uses' => 'AdminController@postLoginAdmin']);
+
+//  Logout Admin
+Route::get('/admin/logout', ['as' => 'logoutAdmin', 'uses' => 'AdminController@logoutAdmin']);
+
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', ['as' => 'dashboard', 'uses' => 'AdminController@dashboard']);
+
+    //  Change Pass
+    Route::get('/change-pass', ['as' => 'getChangePass', 'uses' => 'AdminController@getChangePass']);
+
+    Route::post('/change-pass', ['as' => 'postChangePass', 'uses' => 'AdminController@postChangePass']);
 
     //  User Resource
     Route::resource('/users', 'UserController');
