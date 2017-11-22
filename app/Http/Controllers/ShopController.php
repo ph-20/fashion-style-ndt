@@ -3,6 +3,7 @@
 namespace Shop\Http\Controllers;
 
 use Shop\Http\Requests\LoginRequest;
+use Shop\Http\Requests\ProfileRequest;
 use Shop\Http\Requests\UserRequest;
 use Shop\User;
 use Auth;
@@ -35,7 +36,7 @@ class ShopController extends Controller
         $user->status = '1';
         $user->save();
 
-        return redirect()->route('getLogin')->with('alert', 'Đăng ký thành công! Vui lòng đăng nhập.');
+        return redirect()->route('getLogin')->with(['message'=> 'Đăng ký thành công! Vui lòng đăng nhập.', 'alert'=> 'success']);
     }
 
     //  Login Custommer
@@ -50,11 +51,40 @@ class ShopController extends Controller
             'email' => $request->email,
             'password' => $request->password
         );
-        if (Auth::attempt($auth)){
-            echo 'Đăng nhập thành công';
+        if (Auth::attempt($auth, $remember = false)){
+            return redirect()->route('index');
         } else {
-            echo 'Đăng nhập thất bại';
+            return redirect()->route('getLogin')->with(['message'=> 'Email hoặc mật khẩu không đúng.', 'alert'=> 'danger']);
         }
+    }
+
+    //  Logout Custommer
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('index');
+    }
+
+    //  Profile
+    public function getProfile(){
+        return view('front-end.pages.profile');
+    }
+
+    public function postProfile(ProfileRequest $request){
+        $id = $request->id;
+        $user = User::find($id);
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->fullname = $request->name;
+        $user->birthday = $request->birthday;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->gender = $request->gender;
+        $user->address = $request->address;
+        $user->role = '2';
+        $user->status = '1';
+        $user->save();
+
+        return redirect()->route('getProfile')->with(['message'=> 'Chỉnh sửa thành công', 'alert'=> 'success']);
     }
 
     public function error404()

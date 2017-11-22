@@ -16,7 +16,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#"><span class="fa fa-user"></span> Thông tin tài khoản</a></li>
                         <li><a href="#"><span class="fa fa-lock"></span> Thay đổi mật khẩu</a></li>
-                        <li><a href="#"><span class="fa fa-power-off"></span> Đăng xuất</a></li>
+                        <li><a href="{{route('logoutAdmin')}}"><span class="fa fa-power-off"></span> Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>

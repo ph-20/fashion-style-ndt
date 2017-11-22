@@ -21,8 +21,8 @@
                     <div class="form-login">
                         <div class="col-sm-6 col-sm-offset-3">
                             <h3>Đăng nhập</h3>
-                            @if(Session::has('alert'))
-                                <div class="alert alert-success">{{Session::get('alert')}}</div>
+                            @if(Session::has('message'))
+                                <div class="alert alert-{{Session::get('alert')}}">{{Session::get('message')}}</div>
                             @else
                                 <div class="alert alert-info">* Vui lòng đăng nhập để tiếp tục</div>
                             @endif
@@ -50,7 +50,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
     <!--End content-->
