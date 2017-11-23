@@ -4,6 +4,15 @@ namespace Shop\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use Shop\Http\Requests\LoginRequest;
+use Shop\Http\Requests\ProfileRequest;
+use Shop\Http\Requests\UserRequest;
+use Shop\User;
+use Auth;
+use Shop\Category;
+use Shop\OrderDetail;
+use Shop\Product;
+use Symfony\Component\DependencyInjection\Tests\Compiler\C;
 class AppServiceProvider extends ServiceProvider
 {
     /**

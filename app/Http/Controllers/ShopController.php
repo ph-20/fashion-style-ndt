@@ -7,6 +7,8 @@ use Shop\Http\Requests\ProfileRequest;
 use Shop\Http\Requests\UserRequest;
 use Shop\User;
 use Auth;
+use Shop\Product;
+use Shop\OrderDetail;
 
 class ShopController extends Controller
 {
