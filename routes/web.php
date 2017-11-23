@@ -29,8 +29,11 @@ Route::get('/cart', ['as' => 'cart', 'uses' => 'ShopController@cart']);
 
 Route::get('/category', ['as' => 'category', 'uses' => 'ShopController@category']);
 
-Route::get('/product', ['as' => 'product', 'uses' => 'ShopController@product']);
+Route::get('/product/{id}', ['as' => 'product', 'uses' => 'ShopController@product']);
 
 Route::get('/admin/', ['as' => 'dashboard', 'uses' => 'AdminController@dashboard']);
 
 Route::get('/admin/login', ['as' => 'login-admin', 'uses' => 'AdminController@login']);
+
+//Route::get('danhmucsanpham','ShopController@getmenuproduct');
+//Route::get('loaisp/{type}','ShopController@getloaisp');

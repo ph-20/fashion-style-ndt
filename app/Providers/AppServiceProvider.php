@@ -3,6 +3,7 @@
 namespace Shop\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Shop\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+
     }
 
     /**
@@ -24,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+
     }
 }
