@@ -20,14 +20,20 @@
 <body>
 
 <section class="login container-fluid">
-    <h3 class="text-center">Fashion Style NDT</h3>
+    <h3 class="text-center"><a href="{{route('index')}}" class="logo" style="color: #fff;">Fashion Style NDT</a></h3>
     <div class="col-md-4 col-md-offset-4">
         <div class="login-panel panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">* Vui lòng đăng nhập</h3>
+                @if(Session::has('message'))
+                    <h3 class="panel-title">* {{Session::get('message')}}</h3>
+                @else
+                    <h3 class="panel-title">* Vui lòng đăng nhập</h3>
+                @endif
+
             </div>
             <div class="panel-body">
-                <form role="form">
+                <form action="{{route('postLoginAdmin')}}" method="POST">
+                    {{csrf_field()}}
                     <fieldset>
                         <div class="form-group">
                             <label>Email</label>

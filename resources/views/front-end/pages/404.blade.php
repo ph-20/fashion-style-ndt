@@ -18,9 +18,13 @@
 
             <div class="row">
                 <div class="container text-center">
-                    <h2>Rất tiếc! Không thể tìm thấy trang đó!</h2>
+                    @if(Session::has('message'))
+                        <h2>Rất tiếc! Bạn không có quyền vào trang này!</h2>
+                    @else
+                        <h2>Rất tiếc! Không thể tìm thấy trang đó!</h2>
+                    @endif
                     <p>Có vẻ như không có gì được tìm thấy tại trang này. Bạn có thể quay về Trang chủ?</p>
-                    <a href="#" class="btn btn-default">Quay lại trang chủ</a>
+                    <a href="{{route('index')}}" class="btn btn-default">Quay lại trang chủ</a>
                 </div>
             </div>
 
