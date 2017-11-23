@@ -12,7 +12,7 @@ class ShopController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest', ['only' => 'getLogin', 'only' => 'getRegister']);
+        $this->middleware('guest', ['only' => ['getLogin', 'getRegister']]);
         $this->middleware('admin', ['only' => 'getProfile']);
     }
 

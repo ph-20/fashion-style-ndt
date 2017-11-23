@@ -21,7 +21,7 @@ class IsAdministrator
             $userId = Auth::id();
             $user = User::find($userId);
 
-            if ($user->role == 2) {
+            if ($user->role != 0 && $user->role != 1) {
                 return redirect()->route('error404')->with('message', 'Bạn không có quyền vào trang này.');
             }
         } else {
