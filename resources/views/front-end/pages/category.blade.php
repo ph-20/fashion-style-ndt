@@ -72,8 +72,8 @@
                     <div class="panel-heading">Giới tính</div>
                     <div class="panel-body">
                         <ul class="sidebar-menu">
-                            <li><a href="#">Nam</a></li>
-                            <li><a href="#">Nữ</a></li>
+                            <li><a href="">Nam</a></li>
+                            <li><a href="">Nữ</a></li>
                         </ul>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
                                  aria-labelledby="headingTwo">
                                 <div class="panel-body">
                                     <ul class="sidebar-menu">
-                                        <li><a href="#">Quần Jean</a></li>
+                                        <li><a href="">Quần Jean</a></li>
                                         <li><a href="#">Quần Tây</a></li>
                                         <li><a href="#">Quần Sort</a></li>
                                     </ul>
@@ -148,176 +148,36 @@
             <article class="content-body new-product col-sm-8 col-md-9">
                 <h3 class="content-title">Sản phẩm mới</h3>
                 <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-md-4">
-                        <div class="single-item">
-                            <div class="ribbon-wrapper">
-                                <div class="ribbon sale">Sale</div>
-                            </div>
-                            <div class="single-item-header">
-                                <a href="#" data-toggle="modal" data-target="#modalProduct"><img
-                                            src="bootstrap/images/products/1.jpg" alt=""></a>
-                            </div>
-                            <div class="single-item-body">
-                                <p class="single-item-title">Sample Woman Top</p>
-                                <p class="single-item-price">
-                                    <span class="flash-del">$34.55</span>
-                                    <span class="flash-sale">$33.55</span>
-                                </p>
-                            </div>
-                            <div class="single-item-caption">
-                                <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                            class="fa fa-shopping-cart"></i></a>
-                                <a class="product-detail" href="product.html">Details <i
-                                            class="fa fa-chevron-right"></i></a>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-4">
-                        <div class="single-item">
-                            <div class="ribbon-wrapper">
-                                <div class="ribbon sale">Sale</div>
-                            </div>
-                            <div class="single-item-header">
-                                <a href="#" data-toggle="modal" data-target="#modalProduct"><img
-                                            src="bootstrap/images/products/1.jpg" alt=""></a>
-                            </div>
-                            <div class="single-item-body">
-                                <p class="single-item-title">Sample Woman Top</p>
-                                <p class="single-item-price">
-                                    <span class="flash-del">$34.55</span>
-                                    <span class="flash-sale">$33.55</span>
-                                </p>
-                            </div>
-                            <div class="single-item-caption">
-                                <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                            class="fa fa-shopping-cart"></i></a>
-                                <a class="product-detail" href="product.html">Details <i
-                                            class="fa fa-chevron-right"></i></a>
-                                <div class="clearfix"></div>
+                    @foreach($promotionProducts as $promotionProduct)
+                        <div class="col-xs-6 col-sm-6 col-md-4">
+                            <div class="single-item">
+                                <div class="ribbon-wrapper">
+                                    <div class="ribbon sale">Sale</div>
+                                </div>
+                                <div class="single-item-header">
+                                    <a href="#" data-toggle="modal" data-target="#modalProduct"><img
+                                                src="bootstrap/images/products/{{$promotionProduct->image}}" height="250px" alt=""></a>
+                                </div>
+                                <div class="single-item-body">
+                                    <p class="single-item-title">{{$promotionProduct->name}}</p>
+                                    <p class="single-item-price">
+                                        <span class="flash-del">{{$promotionProduct->price}}</span>
+                                        <span class="flash-sale">{{$promotionProduct->discount}}</span>
+                                    </p>
+                                </div>
+                                <div class="single-item-caption">
+                                    <a class="add-to-cart pull-left" href=""> <i
+                                                class="fa fa-shopping-cart"></i></a>
+                                    <a class="product-detail" href="{{route("product",$promotionProduct->id)}}">Details <i
+                                                class="fa fa-chevron-right"></i></a>
+                                    <div class="clearfix"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-4">
-                        <div class="single-item">
-                            <div class="ribbon-wrapper">
-                                <div class="ribbon sale">Sale</div>
-                            </div>
-                            <div class="single-item-header">
-                                <a href="#" data-toggle="modal" data-target="#modalProduct"><img
-                                            src="bootstrap/images/products/1.jpg" alt=""></a>
-                            </div>
-                            <div class="single-item-body">
-                                <p class="single-item-title">Sample Woman Top</p>
-                                <p class="single-item-price">
-                                    <span class="flash-del">$34.55</span>
-                                    <span class="flash-sale">$33.55</span>
-                                </p>
-                            </div>
-                            <div class="single-item-caption">
-                                <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                            class="fa fa-shopping-cart"></i></a>
-                                <a class="product-detail" href="product.html">Details <i
-                                            class="fa fa-chevron-right"></i></a>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-4">
-                        <div class="single-item">
-                            <div class="ribbon-wrapper">
-                                <div class="ribbon sale">Sale</div>
-                            </div>
-                            <div class="single-item-header">
-                                <a href="#" data-toggle="modal" data-target="#modalProduct"><img
-                                            src="bootstrap/images/products/1.jpg" alt=""></a>
-                            </div>
-                            <div class="single-item-body">
-                                <p class="single-item-title">Sample Woman Top</p>
-                                <p class="single-item-price">
-                                    <span class="flash-del">$34.55</span>
-                                    <span class="flash-sale">$33.55</span>
-                                </p>
-                            </div>
-                            <div class="single-item-caption">
-                                <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                            class="fa fa-shopping-cart"></i></a>
-                                <a class="product-detail" href="product.html">Details <i
-                                            class="fa fa-chevron-right"></i></a>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-4">
-                        <div class="single-item">
-                            <div class="ribbon-wrapper">
-                                <div class="ribbon sale">Sale</div>
-                            </div>
-                            <div class="single-item-header">
-                                <a href="#" data-toggle="modal" data-target="#modalProduct"><img
-                                            src="bootstrap/images/products/1.jpg" alt=""></a>
-                            </div>
-                            <div class="single-item-body">
-                                <p class="single-item-title">Sample Woman Top</p>
-                                <p class="single-item-price">
-                                    <span class="flash-del">$34.55</span>
-                                    <span class="flash-sale">$33.55</span>
-                                </p>
-                            </div>
-                            <div class="single-item-caption">
-                                <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                            class="fa fa-shopping-cart"></i></a>
-                                <a class="product-detail" href="product.html">Details <i
-                                            class="fa fa-chevron-right"></i></a>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-4">
-                        <div class="single-item">
-                            <div class="ribbon-wrapper">
-                                <div class="ribbon sale">Sale</div>
-                            </div>
-                            <div class="single-item-header">
-                                <a href="#" data-toggle="modal" data-target="#modalProduct"><img
-                                            src="bootstrap/images/products/1.jpg" alt=""></a>
-                            </div>
-                            <div class="single-item-body">
-                                <p class="single-item-title">Sample Woman Top</p>
-                                <p class="single-item-price">
-                                    <span class="flash-del">$34.55</span>
-                                    <span class="flash-sale">$33.55</span>
-                                </p>
-                            </div>
-                            <div class="single-item-caption">
-                                <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                            class="fa fa-shopping-cart"></i></a>
-                                <a class="product-detail" href="product.html">Details <i
-                                            class="fa fa-chevron-right"></i></a>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">«</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">»</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                {{$promotionProducts->links()}}
             </article>
             <!--End New Product-->
         </div>

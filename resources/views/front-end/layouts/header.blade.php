@@ -183,27 +183,27 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">Thời Trang Áo<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Áo Khoác</a></li>
-                                <li><a href="#">Áo Sơ Mi</a></li>
-                                <li><a href="#">Áo Thun</a></li>
+                                @foreach($categoty as $loai)
+                                    <li><a href="{{route('category')}}">{{$loai->name}}</a></li>
+                                @endforeach
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">Thời Trang Quần<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Quần Jean</a></li>
-                                <li><a href="#">Quần Tây</a></li>
-                                <li><a href="#">Quần Sort</a></li>
+                                @foreach($categoty1 as $loai)
+                                    <li><a href="{{route('category')}}">{{$loai->name}}</a></li>
+                                @endforeach
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">Phụ Kiện<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Thắt Lưng</a></li>
-                                <li><a href="#">Ví</a></li>
-                                <li><a href="#">Kính</a></li>
+                                @foreach($categoty2 as $loai)
+                                    <li><a href="{{route('category')}}">{{$loai->name}}</a></li>
+                                @endforeach
                             </ul>
                         </li>
                         <li><a href="{{route('about')}}">Giới thiệu</a>
