@@ -50,7 +50,8 @@ class UserController extends Controller
         $user->role = $request->role;
         $user->save();
 
-        return redirect()->route('users.create')->with('alert', 'Thêm mới thành công');
+        return redirect()->route('users.index')
+            ->with(['message' => 'Thêm mới thành công', 'alert'=>'success']);
     }
 
     /**
@@ -87,17 +88,12 @@ class UserController extends Controller
     public function update(UserRequest $request, $id)
     {
         $user = User::find($id);
-        $user->password = bcrypt($request->password);
-        $user->fullname = $request->name;
-        $user->birthday = $request->birthday;
-        $user->phone = $request->phone;
-        $user->address = $request->address;
-        $user->gender = $request->gender;
         $user->status = $request->status;
         $user->role = $request->role;
         $user->save();
 
-        return redirect()->route('users.edit', $id)->with('alert', 'Chỉnh sửa thành công');
+        return redirect()->route('users.index')
+            ->with(['message' => 'Chỉnh sửa thành công', 'alert'=>'success']);
     }
 
     /**
@@ -111,6 +107,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->delete();
 
-        return redirect()->back()->with('alert', 'Xóa thành công!');
+        return redirect()->route('users.index')
+            ->with(['message' => 'Xóa thành công', 'alert'=>'success']);
     }
 }

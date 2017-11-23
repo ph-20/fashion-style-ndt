@@ -43,6 +43,9 @@
                             <label>Password</label>
                             <input class="form-control" placeholder="Password" name="password" type="password" value="">
                         </div>
+                        <div class="form-group">
+                            <a href="#">Quên mật khẩu!</a>
+                        </div>
                         <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
                     </fieldset>
                 </form>

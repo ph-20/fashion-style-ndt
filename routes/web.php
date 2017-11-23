@@ -69,3 +69,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     //  Product Resource
     Route::resource('/products', 'ProductController');
 });
+Route::get('test', function() {
+    $file = \Shop\Product::find(1)->image;
+    dd(Storage::disk('local')->has("/storage/products/ao-khoac-nam-1.jpg"));
+    dd($file);
+    File::delete();
+});

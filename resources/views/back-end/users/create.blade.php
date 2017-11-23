@@ -33,15 +33,15 @@
                         <form action="{{route('users.store')}}" class="form-horizontal" method="POST">
                             {{csrf_field()}}
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Email</label>
+                                <label class="col-md-4 control-label">Email (<b style="color:red;">*</b>)</label>
                                 <div class="col-md-8">
                                     <input type="text" class="form-control" name="email"
-                                           placeholder="Nhập emai của bạn">
+                                           placeholder="Nhập emai của bạn" value="{{old('email')}}">
                                     <span class="label label-danger">{!! $errors->first('email') !!}</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Mật khẩu</label>
+                                <label class="col-md-4 control-label">Mật khẩu (<b style="color:red;">*</b>)</label>
                                 <div class="col-md-8">
                                     <input type="password" name="password" placeholder="Nhập mật khẩu của bạn"
                                            class="form-control">
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Xác nhận mật khẩu</label>
+                                <label class="col-md-4 control-label">Xác nhận mật khẩu (<b style="color:red;">*</b>)</label>
                                 <div class="col-md-8">
                                     <input type="password" name="re_password" placeholder="Nhập  lại mật khẩu của bạn"
                                            class="form-control">
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Quyền hạn</label>
+                                <label class="col-md-4 control-label">Quyền hạn (<b style="color:red;">*</b>)</label>
                                 <div class="col-md-8">
                                     <select name="role" id="" class="form-control">
                                         <option value="0" selected>Admin</option>
@@ -68,15 +68,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Họ tên</label>
+                                <label class="col-md-4 control-label">Họ tên (<b style="color:red;">*</b>)</label>
                                 <div class="col-md-8">
                                     <input type="text" name="name" placeholder="Nhập họ tên của bạn"
-                                           class="form-control">
+                                           class="form-control" value="{{old('name')}}">
                                     <span class="label label-danger">{!! $errors->first('name') !!}</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Giới tính</label>
+                                <label class="col-md-4 control-label">Giới tính (<b style="color:red;">*</b>)</label>
                                 <div class="col-md-8">
                                     <select name="gender" id="" class="form-control">
                                         <option value="0" selected>Nam</option>
@@ -86,26 +86,26 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Ngày sinh</label>
+                                <label class="col-md-4 control-label">Ngày sinh (<b style="color:red;">*</b>)</label>
                                 <div class="col-md-8">
                                     <input type="date" name="birthday" placeholder="Nhập ngày sinh của bạn"
-                                           class="form-control">
+                                           class="form-control" value="{{old('birthday')}}">
                                     <span class="label label-danger">{!! $errors->first('birthday') !!}</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Điện thoại</label>
+                                <label class="col-md-4 control-label">Điện thoại (<b style="color:red;">*</b>)</label>
                                 <div class="col-md-8">
                                     <input type="number" name="phone" placeholder="Nhập số điện thoại của bạn"
-                                           class="form-control">
+                                           class="form-control" value="{{old('phone')}}">
                                     <span class="label label-danger">{!! $errors->first('phone') !!}</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Địa chỉ</label>
+                                <label class="col-md-4 control-label">Địa chỉ (<b style="color:red;">*</b>)</label>
                                 <div class="col-md-8">
                                     <input type="text" name="address" placeholder="Nhập địa chỉ của bạn"
-                                           class="form-control">
+                                           class="form-control" value="{{old('address')}}">
                                     <span class="label label-danger">{!! $errors->first('address') !!}</span>
                                 </div>
                             </div>

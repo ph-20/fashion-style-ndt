@@ -121,6 +121,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+
+        return redirect()->back()
+            ->with(['message' => 'Xóa thành công.', 'alert' => 'success']);
     }
 }

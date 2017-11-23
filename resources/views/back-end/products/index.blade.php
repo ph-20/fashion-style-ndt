@@ -26,8 +26,8 @@
                     </h3>
                 </div>
                 <div class="panel-body">
-                    @if(Session::has('alert'))
-                        <div class="alert alert-success">{{Session::get('alert')}}</div>
+                    @if(Session::has('message'))
+                        <div class="alert alert-{{Session::get('alert')}}">{{Session::get('message')}}</div>
                     @endif
                     <div class="table-responsive">
                         <table class="table table-bordered">

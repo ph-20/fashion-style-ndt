@@ -42,6 +42,12 @@
                                         <span class="label label-danger">{!! $errors->first('password') !!}</span>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"></label>
+                                    <div class="col-md-10">
+                                        <a href="">Quên mật khẩu!</a>
+                                    </div>
+                                </div>
                                 <div class="form-group text-center">
                                     <input type="submit" value="Đăng nhập" class="btn btn-primary">
                                 </div>
