@@ -22,47 +22,72 @@
                         <div class="col-sm-6 col-sm-offset-3">
                             <h3>Đăng kí thành viên</h3>
                             <div class="alert alert-info">* Vui lòng điền đầy đủ thông tin</div>
-                            <form action="" class="form-horizontal">
+                            <form action="{{route('postRegister')}}" class="form-horizontal" method="POST">
+                                {{csrf_field()}}
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Email</label>
                                     <div class="col-md-8">
-                                        <input type="email" class="form-control" name="email" placeholder="Nhập emai của bạn">
+                                        <input type="text" class="form-control" name="email"
+                                               placeholder="Nhập emai của bạn">
+                                        <span class="label label-danger">{!! $errors->first('email') !!}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Mật khẩu</label>
                                     <div class="col-md-8">
-                                        <input type="password" name="password" placeholder="Nhập mật khẩu của bạn" class="form-control">
+                                        <input type="password" name="password" placeholder="Nhập mật khẩu của bạn"
+                                               class="form-control">
+                                        <span class="label label-danger">{!! $errors->first('password') !!}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Xác nhận mật khẩu</label>
                                     <div class="col-md-8">
-                                        <input type="password" name="re_password" placeholder="Nhập  lại mật khẩu của bạn" class="form-control">
+                                        <input type="password" name="re_password" placeholder="Nhập  lại mật khẩu của bạn"
+                                               class="form-control">
+                                        <span class="label label-danger">{!! $errors->first('re_password') !!}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Họ tên</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="name" placeholder="Nhập họ tên của bạn" class="form-control">
+                                        <input type="text" name="name" placeholder="Nhập họ tên của bạn"
+                                               class="form-control">
+                                        <span class="label label-danger">{!! $errors->first('name') !!}</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Giới tính</label>
+                                    <div class="col-md-8">
+                                        <select name="gender" id="" class="form-control">
+                                            <option value="0" selected>Nam</option>
+                                            <option value="1">Nữ</option>
+                                        </select>
+                                        <span class="label label-danger">{!! $errors->first('gender') !!}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Ngày sinh</label>
                                     <div class="col-md-8">
-                                        <input type="date" name="birthday" placeholder="Nhập ngày sinh của bạn" class="form-control">
+                                        <input type="date" name="birthday" placeholder="Nhập ngày sinh của bạn"
+                                               class="form-control">
+                                        <span class="label label-danger">{!! $errors->first('birthday') !!}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Điện thoại</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="phone" placeholder="Nhập số điện thoại của bạn" class="form-control">
+                                        <input type="number" name="phone" placeholder="Nhập số điện thoại của bạn"
+                                               class="form-control">
+                                        <span class="label label-danger">{!! $errors->first('phone') !!}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Địa chỉ</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="address" placeholder="Nhập địa chỉ của bạn" class="form-control">
+                                        <input type="text" name="address" placeholder="Nhập địa chỉ của bạn"
+                                               class="form-control">
+                                        <span class="label label-danger">{!! $errors->first('address') !!}</span>
                                     </div>
                                 </div>
                                 <div class="form-group text-center">

@@ -16,7 +16,6 @@ class UsersTableSeeder extends Seeder
             [
                 'email' => 'thanh@rikkeisoft.com',
                 'password' => bcrypt('123456'),
-                'avatar' => '1.jpg',
                 'fullname'=>'Tấn Thành',
                 'birthday'=>'2017-11-18',
                 'phone'=>'0966448783',
@@ -30,7 +29,6 @@ class UsersTableSeeder extends Seeder
             [
                 'email' => 'thanhnamdk2710@gmail.com',
                 'password' => bcrypt('nam123'),
-                'avatar' => '1.jpg',
                 'fullname'=>'Thành Nam',
                 'birthday'=>'2017-11-18',
                 'phone'=>'01634366133',
@@ -44,7 +42,6 @@ class UsersTableSeeder extends Seeder
             [
                 'email' => '15i3lethiduong97@gmail.com',
                 'password' => bcrypt('duong1997'),
-                'avatar' => '1.jpg',
                 'fullname'=>'Le Duong',
                 'birthday'=>'2017-11-18',
                 'phone'=>'01634366653',
@@ -58,7 +55,6 @@ class UsersTableSeeder extends Seeder
             [
                 'email' => 'saleman@gmail.com',
                 'password' => bcrypt('123456'),
-                'avatar' => '1.jpg',
                 'fullname'=>'Bán hàng',
                 'birthday'=>'2017-11-18',
                 'phone'=>'0163312433',
@@ -72,7 +68,6 @@ class UsersTableSeeder extends Seeder
             [
                 'email' => 'customer@gmail.com',
                 'password' => bcrypt('123456'),
-                'avatar' => '1.jpg',
                 'fullname'=>'Khách hàng',
                 'birthday'=>'2017-11-18',
                 'phone'=>'0163312433',
@@ -86,7 +81,6 @@ class UsersTableSeeder extends Seeder
             [
                 'email' => 'customer0@gmail.com',
                 'password' => bcrypt('123456'),
-                'avatar' => '1.jpg',
                 'fullname'=>'Khách hàng',
                 'birthday'=>'2017-11-18',
                 'phone'=>'01634366133',

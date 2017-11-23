@@ -1,86 +1,5 @@
 <div class="list-modal">
     <!-- Modal -->
-    <div class="modal fade" id="modalProfile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form action="">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title strong" id="modalProfileLabel">Hồ sơ cá nhân</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-sm-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5>Thông tin tài khoản</h5>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="form-group">
-                                        <label>Tài khoản</label>
-                                        <input type="text" class="form-control" name="username" value="NamDeve">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="text" class="form-control" name="email"
-                                               value="thanhnamdk2710@gmail.com">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Mật khẩu</label>
-                                        <input type="password" class="form-control" name="password"
-                                               placeholder="Mật khẩu">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Xác nhận mật khẩu</label>
-                                        <input type="password" class="form-control" name="password"
-                                               placeholder="Xác nhận mật khẩu">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--End col-sm-6-->
-                        <div class="col-sm-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h5>Thông tin chi tiết</h5>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="form-group">
-                                        <label>Họ và tên</label>
-                                        <input type="text" class="form-control" name="name" value="Nguyễn Thành Nam">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Ngày sinh</label>
-                                        <input type="text" class="form-control" name="date" value="27/10/1995">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Điện thoại</label>
-                                        <input type="text" class="form-control" name="phone" value="01634366133">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Địa chỉ</label>
-                                        <input type="text" class="form-control" name="address"
-                                               value="23 Phú Lộc 7 - Liên Chiểu">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Thành phố</label>
-                                        <input type="text" class="form-control" name="city" value="Đà Nẵng">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Lưu</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!--Modal Profile-->
-    <!-- Modal -->
     <div class="modal fade" id="modalProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -128,19 +47,25 @@
             </div>
             <div class="pull-right">
                 <ul class="nav nav-tabs top-menu">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                           aria-expanded="false">
-                            <b>Xin chào: </b>Admin <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" data-toggle="modal" data-target="#modalProfile">Hồ sơ cá nhân</a></li>
-                            <li><a href="#">Quản trị nội dung</a></li>
-                            <li><a href="#">Đăng xuất</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#" data-toggle="modal" data-target="#modalSignup">Đăng kí</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#modalLogin">Đăng nhập</a></li>
+                    @if(Auth::check())
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true"
+                               aria-expanded="false">
+                                <b>Xin chào: </b>{{Auth::user()->fullname}} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{route('getProfile')}}">Hồ sơ cá nhân</a></li>
+                                @if(Auth::user()->role != 2)
+                                    <li><a href="{{route('dashboard')}}">Quản trị nội dung</a></li>
+                                @endif
+                                <li><a href="{{route('logout')}}">Đăng xuất</a></li>
+                            </ul>
+                        </li>
+                    @else
+                        <li><a href="{{route('getRegister')}}">Đăng kí</a></li>
+                        <li><a href="{{route('getLogin')}}">Đăng nhập</a></li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -150,7 +75,7 @@
         <div class="container">
             <div class="pull-left logo">
                 <h1>
-                    <a href="index.html" id="logo">Fashion Style NDT
+                    <a href="{{route('index')}}" id="logo">Fashion Style NDT
                         <span>Sự lựa chọn tuyệt vời của bạn</span>
                     </a>
                 </h1>
@@ -253,34 +178,36 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="main-menu">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Trang chủ <span class="sr-only">(current)</span></a></li>
+                        <li><a href="{{route('index')}}">Trang chủ <span class="sr-only">(current)</span></a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">Thời Trang Áo<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Áo Thun</a></li>
+                                @foreach($categoty as $loai)
+                                <li><a href="{{route('category')}}">{{$loai->name}}</a></li>
+                                 @endforeach
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">Thời Trang Quần<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Quần Jean</a></li>
-                                <li><a href="#">Quần Tây</a></li>
-                                <li><a href="#">Quần Sort</a></li>
+                                @foreach($categoty1 as $loai)
+                                <li><a href="{{route('category')}}">{{$loai->name}}</a></li>
+                                @endforeach
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">Phụ Kiện<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Thắt Lưng</a></li>
-                                <li><a href="#">Ví</a></li>
-                                <li><a href="#">Kính</a></li>
+                                @foreach($categoty2 as $loai)
+                                <li><a href="{{route('category')}}">{{$loai->name}}</a></li>
+                                @endforeach
                             </ul>
                         </li>
-                        <li><a href="#">Giới thiệu</a>
-                        <li><a href="#">Liên hệ</a>
+                        <li><a href="{{route('about')}}">Giới thiệu</a>
+                        <li><a href="{{route('contact')}}">Liên hệ</a>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->

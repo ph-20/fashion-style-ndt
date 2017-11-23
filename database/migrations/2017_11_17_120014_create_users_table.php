@@ -17,7 +17,6 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('email')->unique();
             $table->string('password');
-            $table->text('avatar');
             $table->string('fullname');
             $table->date('birthday');
             $table->string('phone');
@@ -25,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->integer('role');
             $table->boolean('gender');
             $table->boolean('status');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

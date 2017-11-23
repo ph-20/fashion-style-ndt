@@ -146,35 +146,35 @@
             <!--End Sidebar-->
 
             <article class="content-body new-product col-sm-8 col-md-9">
-                <h3 class="content-title">Sản phẩm mới</h3>
+                <h3 class="content-title">Thời Trang Nam</h3>
                 <div class="row">
                     @foreach($promotionProducts as $product)
-                    <div class="col-xs-6 col-sm-6 col-md-4">
-                        <div class="single-item">
-                            <div class="ribbon-wrapper">
-                                <div class="ribbon sale">Sale</div>
-                            </div>
-                            <div class="single-item-header">
-                                <a href="#" data-toggle="modal" data-target="#modalProduct"><img
-                                            src="bootstrap/images/products/{{$product->image}}" height="" alt=""></a>
-                            </div>
-                            <div class="single-item-body">
-                                <p class="single-item-title">{{$product->name}}</p>
-                                <p class="single-item-price">
-                                    <span class="flash-del">{{$product->price}}</span>
-                                    <span class="flash-sale">{{$product->discount}}</span>
-                                </p>
-                            </div>
-                            <div class="single-item-caption">
-                                <a class="add-to-cart pull-left" href=""> <i
-                                            class="fa fa-shopping-cart"></i></a>
-                                <a class="product-detail" href="{{route("product",$product->id)}}">Details <i
-                                            class="fa fa-chevron-right"></i></a>
-                                <div class="clearfix"></div>
+                        <div class="col-xs-6 col-sm-6 col-md-4">
+                            <div class="single-item">
+                                <div class="ribbon-wrapper">
+                                    <div class="ribbon sale">Sale</div>
+                                </div>
+                                <div class="single-item-header">
+                                    <a href="#" data-toggle="modal" data-target="#modalProduct"><img
+                                                src="bootstrap/images/products/{{$product->image}}" height="" alt=""></a>
+                                </div>
+                                <div class="single-item-body">
+                                    <p class="single-item-title">{{$product->name}}</p>
+                                    <p class="single-item-price">
+                                        <span class="flash-del">{{$product->price}}</span>
+                                        <span class="flash-sale">{{$product->discount}}</span>
+                                    </p>
+                                </div>
+                                <div class="single-item-caption">
+                                    <a class="add-to-cart pull-left" href=""> <i
+                                                class="fa fa-shopping-cart"></i></a>
+                                    <a class="product-detail" href="{{route("product",$product->id)}}">Details <i
+                                                class="fa fa-chevron-right"></i></a>
+                                    <div class="clearfix"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
 
                 </div>
                 {{$promotionProducts->links()}}

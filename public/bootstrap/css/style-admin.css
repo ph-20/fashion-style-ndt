@@ -166,7 +166,7 @@ header .dropdown-menu {
     width: 100%;
     padding: 0;
     position: relative;
-    min-height: 100%;
+    min-height: 90%;
 }
 
 .siderbar {
@@ -272,7 +272,7 @@ header .dropdown-menu {
     margin-left: 190px;
     margin-right: 0;
     margin-top: 0;
-    min-height: 100%;
+    margin-bottom: 40px;
     padding: 0;
 }
 
@@ -295,6 +295,34 @@ header .dropdown-menu {
     font-size: 13px;
     color: #333;
     border-radius: 0;
+}
+
+.main-content .breadcrumb i.fa {
+    color: #438eb9;
+}
+
+.main-content .page-content {
+    padding: 0 20px;
+}
+
+.page-content .panel-heading > h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.page-content .title-page {
+    display: inline-block;
+    margin-top: 5px;
+    color: #438eb9;
+    font-size: 20px;
+}
+
+.page-content .panel-body tr td {
+    vertical-align: middle;
+}
+
+.page-content .panel-body .form-group {
+    margin-bottom: 10px;
 }
 
 /*==========================================
