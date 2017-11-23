@@ -36,6 +36,7 @@ class UserRequest extends FormRequest
                     'address' => 'required',
                 ];
             case 'PUT':
+
             case 'PATCH':
                 return [
                     //  Validate User

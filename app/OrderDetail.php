@@ -8,11 +8,11 @@ class OrderDetail extends Model
 {
     public function order()
     {
-        $this->belongsTo('Shop\Order', 'order_id', 'id');
+       return $this->belongsTo('Shop\Order', 'order_id', 'id');
     }
 
     public function product()
     {
-        $this->belongsTo('Shop\Product', 'product_id', 'id');
+       return $this->belongsTo('Shop\Product', 'product_id', 'id');
     }
 }
