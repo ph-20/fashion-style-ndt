@@ -19,7 +19,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3>
-                        <span class="title-page">Chỉnh sửa danh mục sản phẩm</span>
+                        <span class="title-page">Chỉnh sửa danh mục</span>
                         <a href="{{route('categories.index')}}" class="btn btn-default pull-right"><span
                                     class="fa fa-arrow-left"></span> Trở về</a>
                     </h3>
@@ -44,7 +44,7 @@
                                 <div class="col-md-8">
                                     <select name="role" id="" class="form-control">
                                         <option value="0"{{$category->type == 0 ? "selected" : ""}} >Nam</option>
-                                        <option value="1"{{$category->type == 1 ? "selected" : ""}}>Nu</option>
+                                        <option value="1"{{$category->type == 1 ? "selected" : ""}}>Nữ</option>
                                     </select>
                                     <span class="label label-danger">{!! $errors->first('type') !!}</span>
                                 </div>

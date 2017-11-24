@@ -20,7 +20,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3>
-                        <span class="title-page">Thêm mới danh mục sản phẩm</span>
+                        <span class="title-page">Thêm mới danh mục</span>
                         <a href="{{route('categories.index')}}" class="btn btn-default pull-right"><span
                                     class="fa fa-arrow-left"></span> Trở về</a>
                     </h3>
@@ -44,20 +44,19 @@
                                 <label class="col-md-4 control-label">Loại</label>
                                 <div class="col-md-8">
                                     <select name="type" id="" class="form-control">
-                                        <option value="0" selected>Nam</option>
-                                        <option value="1"> Nữ</option>
+                                        <option value="0" selected>Danh mục cha</option>
+                                        <option value="1"> Danh mục con</option>
                                     </select>
                                     <span class="label label-danger">{!! $errors->first('type') !!}</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">ParentId</label>
+                                <label class="col-md-4 control-label">Danh mục cha</label>
                                 <div class="col-md-8">
                                     <select name="parent_id" id="" class="form-control">
-                                        <option value="0" selected>0</option>
-                                        <option value="1">Thời Trang Áo</option>
-                                        <option value="2">Thời Trang Quần</option>
-                                        <option value="3">Phụ Kiện</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                        @endforeach
                                     </select>
                                     <span class="label label-danger">{!! $errors->first('parent_id') !!}</span>
                                 </div>

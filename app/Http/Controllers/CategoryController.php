@@ -15,8 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
-        return view('back-end.categories.index')->with('categories', $category);
+        $categories = Category::all();
+        return view('back-end.categories.index')->with('categories', $categories);
     }
 
     /**
@@ -26,7 +26,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('back-end.categories.create');
+        $categories = Category::where('type', 0)->get();
+        return view('back-end.categories.create')->with('categories', $categories);
 
     }
 
@@ -46,7 +47,8 @@ class CategoryController extends Controller
         $category->parent_id = $request->parent_id;
         $category->save();
 
-        return redirect()->route('categories.create')->with('alert', 'Thêm mới thành công');
+        return redirect()->route('categories.create')
+            ->with(['message' => 'Thêm mới thành công', 'alert'=>'danger']);
     }
 
     /**
