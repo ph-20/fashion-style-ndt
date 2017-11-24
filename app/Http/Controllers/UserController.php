@@ -51,7 +51,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('users.index')
-            ->with(['message' => 'Thêm mới thành công', 'alert'=>'success']);
+            ->with(['message' => 'Thêm mới thành công', 'alert' => 'success']);
     }
 
     /**
@@ -93,7 +93,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('users.index')
-            ->with(['message' => 'Chỉnh sửa thành công', 'alert'=>'success']);
+            ->with(['message' => 'Chỉnh sửa thành công', 'alert' => 'success']);
     }
 
     /**
@@ -108,11 +108,14 @@ class UserController extends Controller
         $products = $user->products;
         if (count($products) > 0) {
             return redirect()->route('users.index')
-                ->with(['message' => 'Không thể xóa tài khoản này! Tài khoản này đang có sản phẩm.', 'alert'=>'danger']);
+                ->with([
+                    'message' => 'Không thể xóa tài khoản này! Tài khoản này đang có sản phẩm.',
+                    'alert' => 'danger'
+                ]);
         }
         $user->delete();
 
         return redirect()->route('users.index')
-            ->with(['message' => 'Xóa thành công', 'alert'=>'success']);
+            ->with(['message' => 'Xóa thành công', 'alert' => 'success']);
     }
 }
