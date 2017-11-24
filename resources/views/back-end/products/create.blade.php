@@ -26,6 +26,11 @@
                     </h3>
                 </div>
                 <div class="panel-body">
+                    @if(count($errors) > 0)
+                        @foreach($errors as $error)
+                            {{$error}}
+                        @endforeach
+                    @endif
                     <div class="col-sm-offset-1 col-sm-8">
                         @if(Session::has('message'))
                             <div class="alert alert-{{Session::get('alert')}}">{{Session::get('message')}}</div>
@@ -47,14 +52,6 @@
                                     <input type="file" name="image" placeholder="Chọn hình ảnh sản phẩm"
                                            class="form-control">
                                     <span class="label label-danger">{!! $errors->first('image') !!}</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Slug</label>
-                                <div class="col-md-8">
-                                    <input type="text" name="slug" placeholder="Nhập slug sản phẩm"
-                                           class="form-control">
-                                    <span class="label label-danger">{!! $errors->first('slug') !!}</span>
                                 </div>
                             </div>
                             <div class="form-group">

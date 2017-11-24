@@ -105,6 +105,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+        $products = $user->products;
+        if (count($products) > 0) {
+            return redirect()->route('users.index')
+                ->with(['message' => 'Không thể xóa tài khoản này! Tài khoản này đang có sản phẩm.', 'alert'=>'danger']);
+        }
         $user->delete();
 
         return redirect()->route('users.index')

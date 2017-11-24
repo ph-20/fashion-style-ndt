@@ -55,6 +55,12 @@ Route::post('/admin/login', ['as' => 'postLoginAdmin', 'uses' => 'AdminControlle
 //  Logout Admin
 Route::get('/admin/logout', ['as' => 'logoutAdmin', 'uses' => 'AdminController@logoutAdmin']);
 
+////  Reset Password
+//Route::get('/admin/reset-password', ['as' => 'resetPass', 'uses' => 'Admin\ForgotPasswordController@resetPass']);
+//
+//Route::post('/admin/reset-password', ['as' => 'sendEmail', 'uses' => 'Admin\ForgotPasswordController@sendEmail']);
+
+
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', ['as' => 'dashboard', 'uses' => 'AdminController@dashboard']);
 
@@ -68,10 +74,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     //  Product Resource
     Route::resource('/products', 'ProductController');
-});
-Route::get('test', function() {
-    $file = \Shop\Product::find(1)->image;
-    dd(Storage::disk('local')->has("/storage/products/ao-khoac-nam-1.jpg"));
-    dd($file);
-    File::delete();
 });

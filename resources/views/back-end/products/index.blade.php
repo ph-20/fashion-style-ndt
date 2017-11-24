@@ -42,7 +42,7 @@
                                 <th class="text-center">Sửa</th>
                                 <th class="text-center">Xóa</th>
                             </tr>
-
+                            <?php $i = 1; ?>
                             @foreach($products as $product)
                                 <?php
                                 if ($product->type == 0) {
@@ -52,17 +52,17 @@
                                 }
                                 ?>
                                 <tr>
-                                    <td class="text-center">{{$product->id}}</td>
+                                    <td class="text-center">{{$i++}}</td>
                                     <td class="text-center">
                                         <img src="{{asset($product->image)}}" alt="" style="width: 50px; height: auto;">
                                     </td>
-                                    <td>{{$product->name}}</td>
+                                    <td><a href="{{route('products.show', $product->id)}}">{{$product->name}}</a></td>
                                     <td class="text-center">{{number_format($product->price)}}đ</td>
                                     <td class="text-center">
                                         @if($product->discount == 0)
                                             {{"Không"}}
                                         @else
-                                            {{number_format($product->discount)}}đ
+                                            <p style="color: #f90;">{{number_format($product->discount)}}đ</p>
                                         @endif
                                     </td>
                                     <td class="text-center">{!! $type !!}</td>

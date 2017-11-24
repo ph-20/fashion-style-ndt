@@ -11,7 +11,7 @@
                         <i class="fa fa-angle-double-right"></i>
                     </span>
                 </li>
-                <li class="active">Người dùng</li>
+                <li class="active">Sản phẩm</li>
             </ul><!--.breadcrumb-->
         </div>
         <!--End Breadcrumbs-->
@@ -20,66 +20,54 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3>
-                        <span class="title-page">Thông tin người dùng</span>
-                        <a href="{{route('users.index')}}" class="btn btn-default pull-right"><span
+                        <span class="title-page">Thông tin sản phẩm</span>
+                        <a href="{{route('products.index')}}" class="btn btn-default pull-right"><span
                                     class="fa fa-arrow-left"></span> Trở về</a>
                     </h3>
                 </div>
-                <?php
-                if ($user->role == 0) {
-                    $role = "<span class='label label-success'>Admin</span>";
-                } elseif ($user->role == 1) {
-                    $role = "<span class='label label-info'>Bán hàng</span>";
-                } elseif ($user->role == 2) {
-                    $role = "<span class='label label-warning'>Khách hàng</span>";
-                }
-
-                if ($user->status == 1) {
-                    $status = "<span class='label label-success'>Hoạt động</span>";
-                } else {
-                    $status = "<span class='label label-danger'>Khóa</span>";
-                }
-
-                if ($user->gender == 0) {
-                    $gender = "Nam";
-                } else {
-                    $gender = "Nữ";
-                }
-                ?>
                 <div class="panel-body">
-                    <div class="col-md-offset-2 col-md-6">
+                    <?php
+                    if ($product->type == 0) {
+                        $type = "Nam";
+                    } else {
+                        $type = "Nữ";
+                    }
+
+                    ?>
+                    <div class="col-md-3">
+                        <img src="{{asset($product->image)}}" alt="" style="width: 100%; height: auto;">
+                    </div>
+                    <div class="col-md-9">
                         <table class="table table-bordered">
                             <tr>
-                                <th>Ẹmail</th>
-                                <td>{{$user->email}}</td>
+                                <th class="col-sm-3">Tên</th>
+                                <td>{{$product->name}}</td>
                             </tr>
                             <tr>
-                                <th>Quyền</th>
-                                <td>{!! $role  !!}</td>
+                                <th>Danh mục</th>
+                                <td>{{$product->category->name}}</td>
                             </tr>
                             <tr>
-                                <th>Trạng thái</th>
-                                <td>{!! $status !!}</td>
+                                <th>Giá</th>
+                                <td>{{$product->price}}</td>
                             </tr>
                             <tr>
-                                <th class="col-md-4">Họ tên</th>
-                                <td>{{$user->fullname}}</td>
-                            </tr>
-                            <tr>
-                                <th>Ngày sinh</th>
-                                <td>{{$user->birthday}}</td>
+                                <th>Khuyến mãi</th>
+                                <td>
+                                    @if($product->discount == 0)
+                                        {{"Không"}}
+                                    @else
+                                        <p style="color: #f90;">{{number_format($product->discount)}}đ</p>
+                                    @endif
+                                </td>
                             </tr>
                             <tr>
                                 <th>Giới tính</th>
-                                <td>{{$gender}}</td>
+                                <td>{{$type}}</td>
                             </tr>
                             <tr>
-                                <th>Điện thoại</th>
-                                <td>{{$user->phone}}</td>
-                            </tr>
-                            <tr>
-                                <th>Địa chỉ</th>
-                                <td>{{$user->address}}</td>
+                                <th>Mô tả</th>
+                                <td>{{$product->description}}</td>
                             </tr>
                         </table>
                     </div>

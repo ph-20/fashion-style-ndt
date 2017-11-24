@@ -30,7 +30,8 @@
                         @if(Session::has('message'))
                             <div class="alert alert-{{Session::get('alert')}}">{{Session::get('message')}}</div>
                         @endif
-                        <form action="{{route('products.update', $product->id)}}" enctype="multipart/form-data" class="form-horizontal"
+                        <form action="{{route('products.update', $product->id)}}" enctype="multipart/form-data"
+                              class="form-horizontal"
                               method="POST">
                             {{method_field('PUT')}}
                             {{csrf_field()}}
@@ -57,14 +58,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Slug</label>
-                                <div class="col-md-8">
-                                    <input type="text" name="slug" placeholder="Nhập slug sản phẩm"
-                                           class="form-control" value="{{$product->slug}}">
-                                    <span class="label label-danger">{!! $errors->first('slug') !!}</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="col-md-4 control-label">Giá sản phẩm</label>
                                 <div class="col-md-8">
                                     <input type="number" name="price" placeholder="Nhập giá sản phẩm"
@@ -85,11 +78,13 @@
                                 <div class="col-md-8">
                                     <select name="type" id="" class="form-control">
                                         <option value="0"
-                                            @if($product->type == 0) {{"selected"}} @endif
-                                        >Nam</option>
+                                        @if($product->type == 0) {{"selected"}} @endif
+                                        >Nam
+                                        </option>
                                         <option value="1"
-                                            @if($product->type == 1) {{"selected"}} @endif
-                                        >Nữ</option>
+                                        @if($product->type == 1) {{"selected"}} @endif
+                                        >Nữ
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -99,7 +94,7 @@
                                     <select name="categoryID" id="" class="form-control">
                                         @foreach($categories as $category)
                                             <option value="{{$category->id}}"
-                                                @if($product->category_id == $category->id) {{"selected"}} @endif
+                                            @if($product->category_id == $category->id) {{"selected"}} @endif
                                             >{{$category->name}}</option>
                                         @endforeach
                                     </select>

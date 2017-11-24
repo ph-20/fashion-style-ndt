@@ -8,6 +8,7 @@ use Shop\Http\Requests\ProductRequest;
 use Shop\Product;
 use Shop\Category;
 use Auth;
+use File;
 
 class ProductController extends Controller
 {
@@ -47,7 +48,7 @@ class ProductController extends Controller
             $fileName = $request->image->store('public/products');
             $product->image = Storage::url($fileName);
         }
-        $product->slug = $request->slug;
+        $product->slug = str_slug($request->name);
         $product->price = $request->price;
         $product->discount = $request->discount;
         $product->type = $request->type;
@@ -56,7 +57,7 @@ class ProductController extends Controller
         $product->category_id = $request->categoryID;
         $product->save();
 
-        return redirect()->route('products.create')
+        return redirect()->route('products.index')
             ->with(['message' => 'Thêm mới thành công.', 'alert' => 'success']);
     }
 
@@ -68,7 +69,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+        return view('back-end.products.show')->with(['product' => $product]);
     }
 
     /**
@@ -97,10 +99,14 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->name = $request->name;
         if ($request->hasFile('image')) {
+            $fileProduct = substr($product->image, 1);
+            if (File::exists($fileProduct)) {
+                File::delete($fileProduct);
+            }
             $fileName = $request->image->store('public/products');
             $product->image = Storage::url($fileName);
         }
-        $product->slug = $request->slug;
+        $product->slug = str_slug($request->name);
         $product->price = $request->price;
         $product->discount = $request->discount;
         $product->type = $request->type;
@@ -109,7 +115,7 @@ class ProductController extends Controller
         $product->category_id = $request->categoryID;
         $product->save();
 
-        return redirect()->route('products.edit', $product->id)
+        return redirect()->route('products.index')
             ->with(['message' => 'Chỉnh sửa thành công.', 'alert' => 'success']);
     }
 
@@ -122,9 +128,18 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id);
+        $orderDetails = $product->orderDetails;
+        if (count($orderDetails) > 0) {
+            return redirect()->route('products.index')
+                ->with(['message' => 'Không thể xóa sản phẩm này!! Sản phẩm đang được đặt hàng.', 'alert' => 'danger']);
+        }
+        $fileProduct = substr($product->image, 1);
+        if (File::exists($fileProduct)) {
+            File::delete($fileProduct);
+        }
         $product->delete();
 
-        return redirect()->back()
+        return redirect()->route('products.index')
             ->with(['message' => 'Xóa thành công.', 'alert' => 'success']);
     }
 }
