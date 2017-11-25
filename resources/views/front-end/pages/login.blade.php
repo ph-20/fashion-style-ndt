@@ -29,16 +29,18 @@
                             <form action="{{route('postLogin')}}" class="form-horizontal" method="POST">
                                 {{csrf_field()}}
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label">Email</label>
+                                    <label class="col-md-2 control-label">Email(*)</label>
                                     <div class="col-md-10">
-                                        <input type="text" class="form-control" name="email" placeholder="Nhập emai của bạn">
+                                        <input type="text" class="form-control" name="email"
+                                               placeholder="Nhập emai của bạn" value="{{old('email')}}">
                                         <span class="label label-danger">{!! $errors->first('email') !!}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">Mật khẩu</label>
                                     <div class="col-md-10">
-                                        <input type="password" name="password" placeholder="Nhập mật khẩu của bạn" class="form-control">
+                                        <input type="password" name="password" placeholder="Nhập mật khẩu của bạn"
+                                               class="form-control">
                                         <span class="label label-danger">{!! $errors->first('password') !!}</span>
                                     </div>
                                 </div>

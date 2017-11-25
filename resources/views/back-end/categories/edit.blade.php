@@ -35,46 +35,35 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Tên Loại Sản Phẩm</label>
                                 <div class="col-md-8">
-                                    <input type="text" class="form-control" value="{{$category->name }}">
+                                    <input type="text" name="name" class="form-control" value="{{$category->name }}">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Loại</label>
                                 <div class="col-md-8">
-                                    <select name="role" id="" class="form-control">
-                                        <option value="0"{{$category->type == 0 ? "selected" : ""}} >Nam</option>
-                                        <option value="1"{{$category->type == 1 ? "selected" : ""}}>Nữ</option>
+                                    <select name="type" id="type_category" class="form-control">
+                                        <option value="0" {{$category->type == 0 ? "selected" : ""}}>Danh mục cha
+                                        </option>
+                                        <option value="1" {{$category->type == 1 ? "selected" : ""}}>Danh mục con
+                                        </option>
                                     </select>
-                                    <span class="label label-danger">{!! $errors->first('type') !!}</span>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">ParentId</label>
+                            <div class="form-group" id="parent_id">
+                                <label class="col-md-4 control-label">Danh mục cha</label>
                                 <div class="col-md-8">
                                     <select name="parent_id" id="" class="form-control">
-                                        <option value="0"
-                                                {{$category->parent_id == 0 ? "selected" : ""}}
-                                        >0
-                                        </option>
-                                        <option value="1"
-                                                {{$category->parent_id == 1 ? "selected" : ""}}
-                                        >Thời Trang Áo
-                                        </option>
-                                        <option value="2"
-                                                {{$category->parent_id ==2 ? "selected" : ""}}
-                                        >Thời Trang Quần
-                                        </option>
-                                        <option value="3"
-                                                {{$category->parent_id == 3 ? "selected" : ""}}
-                                        >Phụ Kiện
-                                        </option>
+                                        @foreach($parent_categories as $parent_category)
+                                            <option value="{{$parent_category->id}}" {{$parent_category->id == $category->parent_id ? "selected" : ""}}>
+                                                {{$parent_category->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group pull-right">
-                            <input type="submit" value="Chỉnh sửa" class="btn btn-primary">
+                            <div class="form-group text-center">
+                                <input type="submit" value="Chỉnh sửa" class="btn btn-primary">
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -83,3 +72,5 @@
     </article>
     <!--End Main Content-->
 @stop
+
+lm bài đi

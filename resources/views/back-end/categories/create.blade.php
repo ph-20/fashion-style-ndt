@@ -43,14 +43,13 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Loại</label>
                                 <div class="col-md-8">
-                                    <select name="type" id="" class="form-control">
-                                        <option value="0" selected>Danh mục cha</option>
-                                        <option value="1"> Danh mục con</option>
+                                    <select name="type" id="type_category" class="form-control">
+                                        <option  value="0" selected>Danh mục cha</option>
+                                        <option   value="1"> Danh mục con</option>
                                     </select>
-                                    <span class="label label-danger">{!! $errors->first('type') !!}</span>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="parent_id">
                                 <label class="col-md-4 control-label">Danh mục cha</label>
                                 <div class="col-md-8">
                                     <select name="parent_id" id="" class="form-control">
@@ -58,7 +57,6 @@
                                             <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach
                                     </select>
-                                    <span class="label label-danger">{!! $errors->first('parent_id') !!}</span>
                                 </div>
                             </div>
                             <div class="form-group text-center">

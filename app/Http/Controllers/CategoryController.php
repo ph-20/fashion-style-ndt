@@ -39,16 +39,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-
         $category = new Category();
         $category->name = $request->name;
         $category->slug = str_slug($request->name);
         $category->type = $request->type;
-        $category->parent_id = $request->parent_id;
+        if ($request->type == 0) {
+            $category->parent_id = 0;
+        } else {
+            $category->parent_id = $request->parent_id;
+        }
         $category->save();
 
-        return redirect()->route('categories.create')
-            ->with(['message' => 'Thêm mới thành công', 'alert'=>'danger']);
+        return redirect()->route('categories.index')
+            ->with(['message' => 'Thêm mới thành công', 'alert' => 'success']);
     }
 
     /**
@@ -72,7 +75,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
-        return view('back-end.categories.edit')->with('category', $category);
+        $parent_categories = Category::where('type', 0)->get();
+        return view('back-end.categories.edit')->with('category', $category)->with('parent_categories', $parent_categories);
     }
 
     /**
@@ -87,9 +91,13 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->name = $request->name;
         $category->type = $request->type;
-        $category->parent_id = $request->parent_id;
+        if ($request->type == 0) {
+            $category->parent_id = 0;
+        } else {
+            $category->parent_id = $request->parent_id;
+        }
         $category->save();
-        return redirect()->route('categories.edit', $id)->with('alert', 'Chỉnh sửa thành công');
+        return redirect()->route('categories.index')->with(['message' => 'Chỉnh sửa thành công!', 'alert' => 'success']);
     }
 
     /**
@@ -101,7 +109,12 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
+        $products = $category->products;
+        if ($category->type == 0 || count($products) > 0) {
+            return redirect()->route('categories.index')->with(['message' => 'Không thể xóa danh mục này!', 'alert' => 'danger']);
+        }
         $category->delete();
-        return redirect()->back()->with('alert', 'Xóa thành công!');
+
+        return redirect()->route('categories.index')->with(['message' => 'Xóa thành công.!', 'alert' => 'success']);
     }
 }

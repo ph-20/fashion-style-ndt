@@ -49,9 +49,9 @@ use Shop\Category;
                                 $parent_category = Category::where('id', $category->parent_id)->first();
 
                                 if ($category->type == 0) {
-                                    $type = "<span class='label label-warning'>Nam</span>";
+                                    $type = "<span class='label label-warning'>Danh mục cha</span>";
                                 } else {
-                                    $type = "<span class='label label-info'>Nữ</span>";
+                                    $type = "<span class='label label-info'>Danh mục con</span>";
                                 }
 
                                 ?>

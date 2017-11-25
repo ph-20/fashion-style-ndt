@@ -364,3 +364,10 @@ footer .pull-left {
     font-size: 30px;
     margin-bottom: 20px;
 }
+
+/*==========================================
+7. CATEGORY
+==========================================*/
+#parent_id {
+    display: none;
+}
