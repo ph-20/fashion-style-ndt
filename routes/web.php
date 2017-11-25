@@ -55,6 +55,12 @@ Route::post('/admin/login', ['as' => 'postLoginAdmin', 'uses' => 'AdminControlle
 //  Logout Admin
 Route::get('/admin/logout', ['as' => 'logoutAdmin', 'uses' => 'AdminController@logoutAdmin']);
 
+////  Reset Password
+//Route::get('/admin/reset-password', ['as' => 'resetPass', 'uses' => 'Admin\ForgotPasswordController@resetPass']);
+//
+//Route::post('/admin/reset-password', ['as' => 'sendEmail', 'uses' => 'Admin\ForgotPasswordController@sendEmail']);
+
+
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', ['as' => 'dashboard', 'uses' => 'AdminController@dashboard']);
 
@@ -65,4 +71,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     //  User Resource
     Route::resource('/users', 'UserController');
+
+    //  Product Resource
+    Route::resource('/products', 'ProductController');
 });

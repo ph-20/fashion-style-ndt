@@ -9,6 +9,6 @@ class Order extends Model
     //
     public function orderDetails()
     {
-        $this->hasMany('Shop\OrderDetail', 'order_id', 'id');
+        return $this->hasMany('Shop\OrderDetail', 'order_id', 'id');
     }
 }
