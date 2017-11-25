@@ -96,7 +96,6 @@ class UserController extends Controller
         $user->status = $request->status;
         $user->role = $request->role;
         $user->save();
-
         return redirect()->route('users.edit', $id)->with('alert', 'Chỉnh sửa thành công');
     }
 
@@ -110,7 +109,6 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-
         return redirect()->back()->with('alert', 'Xóa thành công!');
     }
 }

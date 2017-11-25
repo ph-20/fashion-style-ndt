@@ -2,7 +2,9 @@
 
 namespace Shop\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Shop\Http\Requests\UserRequest;
+use Shop\Product;
 use Shop\User;
 
 class ShopController extends Controller
@@ -80,5 +82,13 @@ class ShopController extends Controller
     public function product()
     {
         return view('front-end.pages.product');
+    }
+
+    public function getSearch(Request $request)
+    {
+        $product = Product::where('name', 'like', '%' . $request->key . '%')
+            ->orWhere('unit_price', $request->key)
+            ->get();
+        return view('front-end.page.search', compact('product'));
     }
 }

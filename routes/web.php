@@ -1,16 +1,4 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 //  Login Custommer
 Route::get('/login', ['as' => 'getLogin', 'uses' => 'ShopController@getLogin']);
 
@@ -37,6 +25,9 @@ Route::get('/category', ['as' => 'category', 'uses' => 'ShopController@category'
 
 Route::get('/product', ['as' => 'product', 'uses' => 'ShopController@product']);
 
+//Tìm kiem san pham
+Route::get('/search', ['as' => 'search', 'uses' => 'ShopController@getSearch']);
+
 //=========================================
 //  Back End
 //=========================================
@@ -47,4 +38,11 @@ Route::group(['prefix' => 'admin'], function () {
 
     //  User Resource
     Route::resource('/users', 'UserController');
+});
+
+Route::get('mail', function () {
+    Mail::send('email', ['data' => 'Noi dung'], function ($m) {
+        $m->from('15i3lethiduong97@gmail.com', 'Tên người gửi');
+        $m->to('thanhxuan82763@gmail.com', 'Tên người nhận')->subject('Tiêu đề mail!');
+    });
 });

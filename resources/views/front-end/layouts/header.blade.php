@@ -159,7 +159,7 @@
                 <div class="search">
                     <form action="">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Nhập từ khóa...">
+                            <input type="text" name="key" class="form-control" placeholder="Nhập từ khóa...">
                             <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit"><span
                                                 class="fa fa-search"></span></button>
