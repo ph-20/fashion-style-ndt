@@ -2,11 +2,13 @@
 
 namespace Shop\Http\Controllers;
 
+use Shop\Category;
 use Shop\Http\Requests\LoginRequest;
 use Shop\Http\Requests\ProfileRequest;
 use Shop\Http\Requests\UserRequest;
 use Shop\User;
 use Auth;
+use View;
 
 class ShopController extends Controller
 {
@@ -14,6 +16,10 @@ class ShopController extends Controller
     {
         $this->middleware('guest', ['only' => ['getLogin', 'getRegister']]);
         $this->middleware('admin', ['only' => 'getProfile']);
+        $parentCategories = Category::where('type', 0)->get();
+        $childCategories = Category::where('type', 1)->get();
+
+        view::share(['parentCategories' => $parentCategories, 'childCategories' => $childCategories]);
     }
 
     public function index()
@@ -124,9 +130,12 @@ class ShopController extends Controller
         return view('front-end.pages.cart');
     }
 
-    public function category()
+    public function category($id)
     {
-        return view('front-end.pages.category');
+        $category = Category::find($id);
+        $sidebars = Category::where('type', 0)->get();
+        return view('front-end.pages.category')
+            ->with(['category' => $category, 'sidebars' => $sidebars]);
     }
 
     public function product()

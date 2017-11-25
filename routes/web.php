@@ -41,7 +41,7 @@ Route::get('/checkout', ['as' => 'checkout', 'uses' => 'ShopController@checkout'
 
 Route::get('/cart', ['as' => 'cart', 'uses' => 'ShopController@cart']);
 
-Route::get('/category', ['as' => 'category', 'uses' => 'ShopController@category']);
+Route::get('/{id}-{slug}', ['as' => 'category', 'uses' => 'ShopController@category']);
 
 Route::get('/product', ['as' => 'product', 'uses' => 'ShopController@product']);
 

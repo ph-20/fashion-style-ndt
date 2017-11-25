@@ -1,3 +1,6 @@
+<?php
+  use Shop\Category;
+?>
 <div class="list-modal">
     <!-- Modal -->
     <div class="modal fade" id="modalProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -179,33 +182,20 @@
                 <div class="collapse navbar-collapse" id="main-menu">
                     <ul class="nav navbar-nav">
                         <li><a href="{{route('index')}}">Trang chủ <span class="sr-only">(current)</span></a></li>
+                        @foreach($parentCategories as $parentCategory)
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">Thời Trang Áo<span class="caret"></span></a>
+                               aria-haspopup="true" aria-expanded="false">{{$parentCategory->name}}<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Áo Khoác</a></li>
-                                <li><a href="#">Áo Sơ Mi</a></li>
-                                <li><a href="#">Áo Thun</a></li>
+                                <?php
+                                $childCategories = Category::where('parent_id', $parentCategory->id)->get();
+                                ?>
+                                @foreach($childCategories as $childCategory)
+                                <li><a href="{{route('category', [$childCategory->id,$childCategory->slug])}}">{{$childCategory->name}}</a></li>
+                                @endforeach
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">Thời Trang Quần<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Quần Jean</a></li>
-                                <li><a href="#">Quần Tây</a></li>
-                                <li><a href="#">Quần Sort</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">Phụ Kiện<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Thắt Lưng</a></li>
-                                <li><a href="#">Ví</a></li>
-                                <li><a href="#">Kính</a></li>
-                            </ul>
-                        </li>
+                        @endforeach
                         <li><a href="{{route('about')}}">Giới thiệu</a>
                         <li><a href="{{route('contact')}}">Liên hệ</a>
                     </ul>
