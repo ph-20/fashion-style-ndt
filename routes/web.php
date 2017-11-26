@@ -29,7 +29,7 @@ Route::get('/profile', ['as' => 'getProfile', 'uses' => 'ShopController@getProfi
 
 Route::post('/profile', ['as' => 'postProfile', 'uses' => 'ShopController@postProfile']);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'ShopController@index')->name('home');
 
 Route::get('/', ['as' => 'index', 'uses' => 'ShopController@index']);
 
@@ -45,7 +45,7 @@ Route::get('/cart', ['as' => 'cart', 'uses' => 'ShopController@cart']);
 
 Route::get('/category/{slug}', ['as' => 'category', 'uses' => 'ShopController@category']);
 
-Route::get('/product', ['as' => 'product', 'uses' => 'ShopController@product']);
+Route::get('/product/{slug}', ['as' => 'product', 'uses' => 'ShopController@product']);
 
 //=========================================
 //  Back End

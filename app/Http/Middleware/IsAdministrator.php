@@ -25,7 +25,7 @@ class IsAdministrator
                 return redirect()->route('error404')->with('message', 'Bạn không có quyền vào trang này.');
             }
         } else {
-            return redirect()->route('getLoginAdmin');
+            return redirect()->route('getLogin');
         }
         return $next($request);
     }

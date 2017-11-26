@@ -336,6 +336,18 @@ h6 {
     margin-top: 20px;
 }
 
+.content .img-product {
+    display: block;
+    height: 260px;
+    overflow: hidden;
+}
+
+.content .img-product-small {
+    display: block;
+    height: 190px;
+    overflow: hidden;
+}
+
 .content .content-body {
     margin-bottom: 30px;
 }
@@ -391,6 +403,7 @@ h6 {
     font-size: 18px;
     margin-bottom: 5px;
     font-weight: 500;
+    min-height: 40px;
 }
 
 .single-item-body .single-item-price {
