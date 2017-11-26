@@ -29,6 +29,8 @@ Route::get('/profile', ['as' => 'getProfile', 'uses' => 'ShopController@getProfi
 
 Route::post('/profile', ['as' => 'postProfile', 'uses' => 'ShopController@postProfile']);
 
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/', ['as' => 'index', 'uses' => 'ShopController@index']);
 
 Route::get('/404', ['as' => 'error404', 'uses' => 'ShopController@error404']);
@@ -72,7 +74,3 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     //  Product Resource
     Route::resource('/products', 'ProductController');
 });
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
