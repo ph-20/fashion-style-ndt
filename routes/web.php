@@ -29,6 +29,8 @@ Route::get('/profile', ['as' => 'getProfile', 'uses' => 'ShopController@getProfi
 
 Route::post('/profile', ['as' => 'postProfile', 'uses' => 'ShopController@postProfile']);
 
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/', ['as' => 'index', 'uses' => 'ShopController@index']);
 
 Route::get('/404', ['as' => 'error404', 'uses' => 'ShopController@error404']);
@@ -41,19 +43,31 @@ Route::get('/checkout', ['as' => 'checkout', 'uses' => 'ShopController@checkout'
 
 Route::get('/cart', ['as' => 'cart', 'uses' => 'ShopController@cart']);
 
-Route::get('/category', ['as' => 'category', 'uses' => 'ShopController@category']);
+Route::get('/category/{slug}', ['as' => 'category', 'uses' => 'ShopController@category']);
 
 Route::get('/product', ['as' => 'product', 'uses' => 'ShopController@product']);
 
 //=========================================
 //  Back End
 //=========================================
-Route::get('/admin/login', ['as' => 'getLoginAdmin', 'uses' => 'AdminController@getLoginAdmin']);
 
-Route::post('/admin/login', ['as' => 'postLoginAdmin', 'uses' => 'AdminController@postLoginAdmin']);
+//  Reset Password
+Route::get(
+    '/password/reset',
+    ['as' => 'password.request', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']
+);
 
-//  Logout Admin
-Route::get('/admin/logout', ['as' => 'logoutAdmin', 'uses' => 'AdminController@logoutAdmin']);
+Route::post('/password/reset', ['uses' => 'Auth\ResetPasswordController@reset']);
+
+Route::post(
+    '/password/email',
+    ['as' => 'password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']
+);
+
+Route::get(
+    '/password/reset/{token}',
+    ['as' => 'password.reset', 'uses' => 'Auth\ResetPasswordController@showResetForm']
+);
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', ['as' => 'dashboard', 'uses' => 'AdminController@dashboard']);
@@ -66,7 +80,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     //  User Resource
     Route::resource('/users', 'UserController');
 
-    //Category Resource
+    //  Category Resource
     Route::resource('/categories', 'CategoryController');
 
+    //  Product Resource
+    Route::resource('/products', 'ProductController');
 });

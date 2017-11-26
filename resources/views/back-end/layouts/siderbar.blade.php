@@ -26,7 +26,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="{{route('products.index')}}">
                 <span class="fa fa-edit"></span> Sản phẩm
             </a>
         </li>

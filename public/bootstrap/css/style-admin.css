@@ -335,6 +335,7 @@ footer {
     right: 0;
     background: #cacaca;
     border-top: 1px solid #ebccd1;
+    z-index: 999;
 }
 
 footer .pull-left {

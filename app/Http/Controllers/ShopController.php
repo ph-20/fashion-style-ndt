@@ -2,18 +2,19 @@
 
 namespace Shop\Http\Controllers;
 
+use Shop\Category;
 use Shop\Http\Requests\LoginRequest;
 use Shop\Http\Requests\ProfileRequest;
 use Shop\Http\Requests\UserRequest;
 use Shop\User;
 use Auth;
-//use App\Jobs\SendVerificationEmail;
+use View;
 
 class ShopController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest', ['only' => 'getLogin', 'only' => 'getRegister']);
+        $this->middleware('guest', ['only' => ['getLogin', 'getRegister']]);
         $this->middleware('admin', ['only' => 'getProfile']);
     }
 
@@ -137,9 +138,12 @@ class ShopController extends Controller
         return view('front-end.pages.cart');
     }
 
-    public function category()
+    public function category($slug)
     {
-        return view('front-end.pages.category');
+        $category = Category::where('slug', $slug)->get();
+        $sidebars = Category::where('type', 0)->get();
+        return view('front-end.pages.category')
+            ->with(['category' => $category, 'sidebars' => $sidebars]);
     }
 
     public function product()

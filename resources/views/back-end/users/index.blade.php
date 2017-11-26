@@ -40,7 +40,7 @@
                                 <th class="text-center">Sửa</th>
                                 <th class="text-center">Xóa</th>
                             </tr>
-
+                            <?php $i = 1 ?>
                             @foreach($users as $user)
                                 <?php
                                 if ($user->role == 0) {
@@ -58,7 +58,7 @@
                                 }
                                 ?>
                                 <tr>
-                                    <td class="text-center">{{$user->id}}</td>
+                                    <td class="text-center">{{$i++}}</td>
                                     <td><a href="{{route('users.show', $user->id)}}">{{$user->fullname}}</a></td>
                                     <td>{{$user->email}}</td>
                                     <td class="text-center">{!! $role !!}</td>
