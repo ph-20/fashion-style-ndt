@@ -16,10 +16,6 @@ class ShopController extends Controller
     {
         $this->middleware('guest', ['only' => ['getLogin', 'getRegister']]);
         $this->middleware('admin', ['only' => 'getProfile']);
-        $parentCategories = Category::where('type', 0)->get();
-        $childCategories = Category::where('type', 1)->get();
-
-        view::share(['parentCategories' => $parentCategories, 'childCategories' => $childCategories]);
     }
 
     public function index()
@@ -130,9 +126,9 @@ class ShopController extends Controller
         return view('front-end.pages.cart');
     }
 
-    public function category($id)
+    public function category($slug)
     {
-        $category = Category::find($id);
+        $category = Category::where('slug', $slug)->get();
         $sidebars = Category::where('type', 0)->get();
         return view('front-end.pages.category')
             ->with(['category' => $category, 'sidebars' => $sidebars]);

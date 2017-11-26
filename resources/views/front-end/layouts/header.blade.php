@@ -89,9 +89,10 @@
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Nhập từ khóa...">
                             <span class="input-group-btn">
-                                    <button class="btn btn-default" type="submit"><span
-                                                class="fa fa-search"></span></button>
-                                </span>
+                                <button class="btn btn-default" type="submit">
+                                    <span class="fa fa-search"></span>
+                                </button>
+                            </span>
                         </div>
                     </form>
                 </div>
@@ -191,7 +192,7 @@
                                 $childCategories = Category::where('parent_id', $parentCategory->id)->get();
                                 ?>
                                 @foreach($childCategories as $childCategory)
-                                <li><a href="{{route('category', [$childCategory->id,$childCategory->slug])}}">{{$childCategory->name}}</a></li>
+                                <li><a href="{{route('category', $childCategory->slug)}}">{{$childCategory->name}}</a></li>
                                 @endforeach
                             </ul>
                         </li>
