@@ -38,29 +38,32 @@
                                     <input type="text" name="name" class="form-control" value="{{$category->name }}">
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Loại</label>
-                                <div class="col-md-8">
-                                    <select name="type" id="type_category" class="form-control">
-                                        <option value="0" {{$category->type == 0 ? "selected" : ""}}>Danh mục cha
-                                        </option>
-                                        <option value="1" {{$category->type == 1 ? "selected" : ""}}>Danh mục con
-                                        </option>
-                                    </select>
+                            @if(!count($childCategory) > 0)
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Loại</label>
+                                    <div class="col-md-8">
+                                        <select name="type" id="type_category" class="form-control">
+                                            <option value="0" {{$category->type == 0 ? "selected" : ""}}>Danh mục cha
+                                            </option>
+                                            <option value="1" {{$category->type == 1 ? "selected" : ""}}>Danh mục con
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group" id="parent_id">
-                                <label class="col-md-4 control-label">Danh mục cha</label>
-                                <div class="col-md-8">
-                                    <select name="parent_id" id="" class="form-control">
-                                        @foreach($parent_categories as $parent_category)
-                                            <option value="{{$parent_category->id}}" {{$parent_category->id == $category->parent_id ? "selected" : ""}}>
-                                                {{$parent_category->name}}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="form-group" id="parent_id">
+                                    <label class="col-md-4 control-label">Danh mục cha</label>
+                                    <div class="col-md-8">
+                                        <select name="parent_id" id="" class="form-control">
+                                            @foreach($parentCategories as $parentCategory)
+                                                <option value="{{$parentCategory->id}}"
+                                                        {{$parentCategory->id == $category->parent_id ? "selected" : ""}}>
+                                                    {{$parentCategory->name}}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                             <div class="form-group text-center">
                                 <input type="submit" value="Chỉnh sửa" class="btn btn-primary">
                             </div>
