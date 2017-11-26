@@ -53,24 +53,15 @@ Route::get('/product', ['as' => 'product', 'uses' => 'ShopController@product']);
 
 //  Reset Password
 Route::get('/password/reset',
-    [
-        'as' => 'password.request',
-        'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm'
-    ]);
+    ['as' => 'password.request', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']);
 
 Route::post('/password/reset', ['uses' => 'Auth\ResetPasswordController@reset']);
 
 Route::post('/password/email',
-    [
-        'as' => 'password.email',
-        'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail'
-    ]);
+    ['as' => 'password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
 
 Route::get('/password/reset/{token}',
-    [
-        'as' => 'password.reset',
-        'uses' => 'Auth\ResetPasswordController@showResetForm'
-    ]);
+    ['as' => 'password.reset', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', ['as' => 'dashboard', 'uses' => 'AdminController@dashboard']);
