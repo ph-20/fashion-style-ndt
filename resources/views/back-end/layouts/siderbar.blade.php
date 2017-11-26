@@ -21,7 +21,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="{{route('categories.index')}}">
                 <span class="fa fa-text-width"></span> Danh mục
             </a>
         </li>

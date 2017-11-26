@@ -42,10 +42,20 @@ class ShopController extends Controller
         $user->address = $request->address;
         $user->role = '2';
         $user->status = '1';
+
         $user->save();
 
-        return redirect()->route('getLogin')
-            ->with(['message' => 'Đăng ký thành công! Vui lòng đăng nhập.', 'alert' => 'success']);
+        $auth = array(
+            'email' => $request->email,
+            'password' => $request->password
+        );
+
+        if (Auth::attempt($auth)) {
+            return redirect()->route('index');
+        }
+
+//        return redirect()->route('getLogin')
+//            ->with(['message' => 'Đăng ký thành công! Vui lòng đăng nhập.', 'alert' => 'success']);
     }
 
     //  Login Custommer
@@ -60,6 +70,7 @@ class ShopController extends Controller
             'email' => $request->email,
             'password' => $request->password
         );
+
         if (Auth::attempt($auth)) {
             return redirect()->route('index');
         } else {
@@ -100,6 +111,7 @@ class ShopController extends Controller
         return redirect()->route('getProfile')
             ->with(['message' => 'Chỉnh sửa thành công', 'alert' => 'success']);
     }
+
 
     public function error404()
     {

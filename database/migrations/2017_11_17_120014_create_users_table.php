@@ -24,6 +24,8 @@ class CreateUsersTable extends Migration
             $table->integer('role');
             $table->boolean('gender');
             $table->boolean('status');
+            $table->tinyInteger('verified')->default(0);
+            $table->string('email_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
+    protected $fillable = [
+        'email', 'password','email_token'
+    ];
 
     public function products()
     {
