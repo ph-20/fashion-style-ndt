@@ -52,7 +52,10 @@ Route::get('/product', ['as' => 'product', 'uses' => 'ShopController@product']);
 //=========================================
 
 //  Reset Password
-Route::get('/password/reset', ['as' => 'password.request', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']);
+Route::get(
+    '/password/reset',
+    ['as' => 'password.request', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']
+);
 
 Route::post('/password/reset', ['uses' => 'Auth\ResetPasswordController@reset']);
 
