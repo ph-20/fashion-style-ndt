@@ -53,17 +53,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int $id
@@ -74,6 +63,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $parentCategories = Category::where('type', 0)->where('id', '<>', $id)->get();
         $childCategory = Category::where('type', 1)->where('parent_id', $id)->get();
+
         return view('back-end.categories.edit')
             ->with('category', $category)
             ->with('parentCategories', $parentCategories)
