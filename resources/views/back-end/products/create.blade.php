@@ -39,15 +39,15 @@
                               method="POST">
                             {{csrf_field()}}
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Tên sản phẩm</label>
+                                <label class="col-md-4 control-label">Tên sản phẩm (<b style="color:red;">*</b>)</label>
                                 <div class="col-md-8">
                                     <input type="text" class="form-control" name="name"
-                                           placeholder="Nhập tên sản phẩm">
+                                           placeholder="Nhập tên sản phẩm" value="{{old('name')}}">
                                     <span class="label label-danger">{!! $errors->first('name') !!}</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Hình ảnh</label>
+                                <label class="col-md-4 control-label">Hình ảnh (<b style="color:red;">*</b>)</label>
                                 <div class="col-md-8">
                                     <input type="file" name="image" placeholder="Chọn hình ảnh sản phẩm"
                                            class="form-control">
@@ -55,23 +55,24 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Giá sản phẩm</label>
+                                <label class="col-md-4 control-label">Giá sản phẩm [Đồng] (<b
+                                            style="color:red;">*</b>)</label>
                                 <div class="col-md-8">
                                     <input type="number" name="price" placeholder="Nhập giá sản phẩm"
-                                           class="form-control">
+                                           class="form-control" value="{{old('price')}}">
                                     <span class="label label-danger">{!! $errors->first('price') !!}</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Giá khuyến mãi</label>
+                                <label class="col-md-4 control-label">Giá khuyến mãi [Đồng] (<b style="color:red;">*</b>)</label>
                                 <div class="col-md-8">
                                     <input type="number" name="discount" placeholder="Nhập giá khuyến mãi"
-                                           class="form-control">
+                                           class="form-control" value="{{old('discount')}}">
                                     <span class="label label-danger">{!! $errors->first('discount') !!}</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Giới tính</label>
+                                <label class="col-md-4 control-label">Giới tính (<b style="color:red;">*</b>)</label>
                                 <div class="col-md-8">
                                     <select name="type" id="" class="form-control">
                                         <option value="0" selected>Nam</option>
@@ -80,7 +81,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Loại sản phẩm</label>
+                                <label class="col-md-4 control-label">Loại sản phẩm (<b
+                                            style="color:red;">*</b>)</label>
                                 <div class="col-md-8">
                                     <select name="categoryID" id="" class="form-control">
                                         @foreach($categories as $category)
@@ -90,10 +92,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Mô tả</label>
+                                <label class="col-md-4 control-label">Mô tả (<b style="color:red;">*</b>)</label>
                                 <div class="col-md-8">
                                     <textarea name="description" rows="10" class="form-control"
-                                              placeholder="Nhập mô tả sản phẩm"></textarea>
+                                              placeholder="Nhập mô tả sản phẩm">{{old('description')}}</textarea>
                                     <span class="label label-danger">{!! $errors->first('description') !!}</span>
                                 </div>
                             </div>
