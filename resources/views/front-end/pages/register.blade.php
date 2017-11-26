@@ -36,15 +36,16 @@
                                     <label class="col-md-4 control-label">Mật khẩu</label>
                                     <div class="col-md-8">
                                         <input type="password" name="password" placeholder="Nhập mật khẩu của bạn"
-                                               class="form-control" >
+                                               class="form-control">
                                         <span class="label label-danger">{!! $errors->first('password') !!}</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Xác nhận mật khẩu</label>
                                     <div class="col-md-8">
-                                        <input type="password" name="re_password" placeholder="Nhập  lại mật khẩu của bạn"
-                                               class="form-control" >
+                                        <input type="password" name="re_password"
+                                               placeholder="Nhập  lại mật khẩu của bạn"
+                                               class="form-control">
                                         <span class="label label-danger">{!! $errors->first('re_password') !!}</span>
                                     </div>
                                 </div>
@@ -52,7 +53,7 @@
                                     <label class="col-md-4 control-label">Họ tên</label>
                                     <div class="col-md-8">
                                         <input type="text" name="name" placeholder="Nhập họ tên của bạn"
-                                               class="form-control" value="{{old('name')}}" >
+                                               class="form-control" value="{{old('name')}}">
                                         <span class="label label-danger">{!! $errors->first('name') !!}</span>
                                     </div>
                                 </div>
@@ -78,7 +79,7 @@
                                     <label class="col-md-4 control-label">Điện thoại</label>
                                     <div class="col-md-8">
                                         <input type="number" name="phone" placeholder="Nhập số điện thoại của bạn"
-                                               class="form-control"  value="{{old('phone')}}">
+                                               class="form-control" value="{{old('phone')}}">
                                         <span class="label label-danger">{!! $errors->first('phone') !!}</span>
                                     </div>
                                 </div>

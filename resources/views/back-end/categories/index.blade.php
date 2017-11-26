@@ -37,7 +37,7 @@ use Shop\Category;
                             <tr>
                                 <th class="text-center">#</th>
                                 <th class="text-center">Tên</th>
-                                <th class="text-center">Đường dẫn</th>
+                               {{-- <th class="text-center">Đường dẫn</th>--}}
                                 <th class="text-center">Danh mục cha</th>
                                 <th class="text-center">Loại</th>
                                 <th class="text-center">Sửa</th>
@@ -58,7 +58,7 @@ use Shop\Category;
                                 <tr>
                                     <td class="text-center">{{$category->id}}</td>
                                     <td>{{$category->name}}</td>
-                                    <td>{{$category->name = str_slug($category->name)}}</td>
+                                  {{--  <td>{{$category->name = str_slug($category->name)}}</td>--}}
                                     <td class="text-center">
                                         {!! ($category->parent_id) ? $parent_category['name'] : "<span class='label label-danger'>Không có</span>" !!}
                                         {{--{{$parent_category['name']}}--}}

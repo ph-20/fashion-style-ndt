@@ -37,11 +37,11 @@
                     <fieldset>
                         <div class="form-group">
                             <label>Email</label>
-                            <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus="">
+                            <input class="form-control" placeholder="E-mail" name="email" type="email"  value="{{old('email')}}">
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                            <input class="form-control" placeholder="Password" name="password" type="password"  value="{{old('password')}}">
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
                     </fieldset>
