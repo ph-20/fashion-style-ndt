@@ -27,7 +27,6 @@ class CategoryController extends Controller
     {
         $categories = Category::where('type', 0)->get();
         return view('back-end.categories.create')->with('categories', $categories);
-
     }
 
     /**
@@ -61,8 +60,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-//        $user = User::find($id);
-//        return view('back-end.users.show')->with('user', $user);
+        //
     }
 
     /**
@@ -102,7 +100,8 @@ class CategoryController extends Controller
             }
         }
         $category->save();
-        return redirect()->route('categories.index')->with(['message' => 'Chỉnh sửa thành công!', 'alert' => 'success']);
+        return redirect()->route('categories.index')
+            ->with(['message' => 'Chỉnh sửa thành công!', 'alert' => 'success']);
     }
 
     /**
@@ -117,7 +116,8 @@ class CategoryController extends Controller
         $childCategory = Category::where('type', 1)->where('parent_id', $id)->get();
         $products = $category->products;
         if ($category->type == 0 && count($childCategory) > 0 || count($products) > 0) {
-            return redirect()->route('categories.index')->with(['message' => 'Không thể xóa danh mục này!', 'alert' => 'danger']);
+            return redirect()->route('categories.index')
+                ->with(['message' => 'Không thể xóa danh mục này!', 'alert' => 'danger']);
         }
         $category->delete();
 

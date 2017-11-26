@@ -35,8 +35,8 @@ class UserRequest extends FormRequest
                     'phone' => 'required|min:10|max:12',
                     'address' => 'required',
                 ];
-            case 'PUT':
 
+            case 'PUT':
             case 'PATCH':
             default:
                 return [];
