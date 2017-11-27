@@ -80,9 +80,9 @@
                             <p class="single-item-title">{{$product->name}}</p>
                             <p class="single-item-price">
                                 @if($product->discount > 0)
-                                <span><b>Giá:</b> {{number_format($product->discount)}}đ</span>
+                                    <span><b>Giá:</b> {{number_format($product->discount)}}đ</span>
                                 @else
-                                <span><b>Giá:</b> 3{{number_format($product->price)}}đ</span>
+                                    <span><b>Giá:</b> 3{{number_format($product->price)}}đ</span>
                                 @endif
                             </p>
                         </div>
@@ -107,38 +107,40 @@
                     <h3 class="content-title">Sản phẩm tương tự</h3>
                     <div class="row">
                         @foreach($sameProducts as $sameProduct)
-                        <div class="col-xs-6 col-md-3">
-                            <div class="single-item">
-                                @if($sameProduct->discount > 0)
-                                <div class="ribbon-wrapper">
-                                    <div class="ribbon sale">Sale</div>
-                                </div>
-                                @endif
-                                <div class="single-item-header">
-                                    <a href="{{route('product', $sameProduct->slug)}}" class="img-product-small">
-                                        <img src="{{$sameProduct->image}}" alt="">
-                                    </a>
-                                </div>
-                                <div class="single-item-body">
-                                    <p class="single-item-title">{{$sameProduct->name}}</p>
-                                    <p class="single-item-price">
-                                        @if($sameProduct->discount > 0)
-                                            <span class="flash-del">{{number_format($sameProduct->price)}}đ</span>
-                                            <span class="flash-sale">{{number_format($sameProduct->discount)}}đ</span>
-                                        @else
-                                            <span class="flash-sale">{{number_format($sameProduct->price)}}đ</span>
-                                        @endif
-                                    </p>
-                                </div>
-                                <div class="single-item-caption">
-                                    <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    <a class="product-detail" href="{{route('product', $sameProduct->slug)}}">Chi tiết <i
-                                                class="fa fa-chevron-right"></i></a>
-                                    <div class="clearfix"></div>
+                            <div class="col-xs-6 col-md-3">
+                                <div class="single-item">
+                                    @if($sameProduct->discount > 0)
+                                        <div class="ribbon-wrapper">
+                                            <div class="ribbon sale">Sale</div>
+                                        </div>
+                                    @endif
+                                    <div class="single-item-header">
+                                        <a href="{{route('product', $sameProduct->slug)}}" class="img-product-small">
+                                            <img src="{{$sameProduct->image}}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="single-item-body">
+                                        <p class="single-item-title">{{$sameProduct->name}}</p>
+                                        <p class="single-item-price">
+                                            @if($sameProduct->discount > 0)
+                                                <span class="flash-del">{{number_format($sameProduct->price)}}đ</span>
+                                                <span class="flash-sale">{{number_format($sameProduct->discount)}}
+                                                    đ</span>
+                                            @else
+                                                <span class="flash-sale">{{number_format($sameProduct->price)}}đ</span>
+                                            @endif
+                                        </p>
+                                    </div>
+                                    <div class="single-item-caption">
+                                        <a class="add-to-cart pull-left" href="shopping_cart.html"><i
+                                                    class="fa fa-shopping-cart"></i></a>
+                                        <a class="product-detail" href="{{route('product', $sameProduct->slug)}}">Chi
+                                            tiết <i
+                                                    class="fa fa-chevron-right"></i></a>
+                                        <div class="clearfix"></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>
@@ -150,19 +152,19 @@
                     <div class="panel-heading">Sản phẩm bán chạy</div>
                     <div class="panel-body">
                         @foreach($hotProducts as $hotProduct)
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="{{$hotProduct->image}}" alt="">
-                            </a>
-                            <div class="media-body">
-                                <span class="title">{{$hotProducts->name}}</span>
-                                @if($hotProducts->discount > 0)
-                                    <span class="price">{{number_format($hotProducts->discount)}}đ</span>
-                                @else
-                                    <span class="price">{{number_format($hotProducts->price)}}đ</span>
-                                @endif
+                            <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img src="{{$hotProduct->image}}" alt="">
+                                </a>
+                                <div class="media-body">
+                                    <span class="title">{{$hotProduct->name}}</span>
+                                    @if($hotProduct->discount > 0)
+                                        <span class="price">{{number_format($hotProduct->discount)}}đ</span>
+                                    @else
+                                        <span class="price">{{number_format($hotProduct->price)}}đ</span>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>
@@ -170,19 +172,19 @@
                     <div class="panel-heading">Sản phẩm mới</div>
                     <div class="panel-body">
                         @foreach($newProducts as $newProduct)
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="{{$newProduct->image}}" alt="">
-                            </a>
-                            <div class="media-body">
-                                <span class="title">{{$newProduct->name}}</span>
-                                @if($newProduct->discount > 0)
-                                <span class="price">{{number_format($newProduct->discount)}}đ</span>
-                                @else
-                                <span class="price">{{number_format($newProduct->price)}}đ</span>
-                                @endif
+                            <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img src="{{$newProduct->image}}" alt="">
+                                </a>
+                                <div class="media-body">
+                                    <span class="title">{{$newProduct->name}}</span>
+                                    @if($newProduct->discount > 0)
+                                        <span class="price">{{number_format($newProduct->discount)}}đ</span>
+                                    @else
+                                        <span class="price">{{number_format($newProduct->price)}}đ</span>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>

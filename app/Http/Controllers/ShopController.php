@@ -158,10 +158,28 @@ class ShopController extends Controller
         $sameProducts = Product::where('category_id', $product->category_id)
             ->where('id', '<>', $product->id)->paginate(4);
         $newProducts = Product::orderBy('id', 'DESC')->paginate(4);
-
+        $sql = 'SELECT  products.name,
+                        products.price,
+                        products.discount,
+                        products.image,
+                        SUM(order_details.quantity) AS quantity
+                FROM products
+                INNER JOIN order_details ON products.id = order_details.product_id
+                INNER JOIN orders ON order_details.order_id = orders.id
+                GROUP BY products.id
+                ORDER BY order_details.quantity DESC
+                LIMIT 4';
+        $hotProducts = DB::select(DB::raw($sql));
+//        echo $hotProducts[0]['n
+//        dd($hotProducts[0]->name);
         return view('front-end.pages.product')
             ->with(
-                ['product' => $product, 'sameProducts' => $sameProducts, 'newProducts' => $newProducts]
+                [
+                    'product' => $product,
+                    'sameProducts' => $sameProducts,
+                    'newProducts' => $newProducts,
+                    'hotProducts' => $hotProducts
+                ]
             );
     }
 }
