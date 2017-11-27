@@ -57,7 +57,7 @@
             <div class="row">
                 <div class="pull-left">
                     <h3>Sản phẩm
-                        <small>Áo Khoác</small>
+                        <small>{{$product->category->name}}</small>
                     </h3>
                 </div>
                 <div class="pull-right">
@@ -73,20 +73,21 @@
             <article class="content-body col-sm-8 col-md-9">
                 <div class="row product">
                     <div class="col-sm-4">
-                        <img src="bootstrap/images/products/1.jpg" alt="">
+                        <img src="{{$product->image}}" alt="">
                     </div>
                     <div class="col-sm-8">
                         <div class="single-item-body">
-                            <p class="single-item-title">Sample Woman Top</p>
+                            <p class="single-item-title">{{$product->name}}</p>
                             <p class="single-item-price">
-                                <span><b>Giá:</b> 300.000đ</span>
+                                @if($product->discount > 0)
+                                    <span><b>Giá:</b> {{number_format($product->discount)}}đ</span>
+                                @else
+                                    <span><b>Giá:</b> 3{{number_format($product->price)}}đ</span>
+                                @endif
                             </p>
                         </div>
                         <div class="single-item-desc">
-                            <p><b>Mô tả:</b> Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit
-                                quo ms id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor
-                                repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus
-                                saepe.</p>
+                            <p><b>Mô tả:</b> {{$product->description}}</p>
                         </div>
                         <div class="single-item-quantity">
                             <label>Số lượng:</label>
@@ -105,106 +106,42 @@
                 <div class="row new-product ">
                     <h3 class="content-title">Sản phẩm tương tự</h3>
                     <div class="row">
-                        <div class="col-xs-6 col-md-3">
-                            <div class="single-item">
-                                <div class="ribbon-wrapper">
-                                    <div class="ribbon sale">Sale</div>
-                                </div>
-                                <div class="single-item-header">
-                                    <a href="#" data-toggle="modal" data-target="#modalProduct"><img
-                                                src="bootstrap/images/products/1.jpg" alt=""></a>
-                                </div>
-                                <div class="single-item-body">
-                                    <p class="single-item-title">Sample Woman Top</p>
-                                    <p class="single-item-price">
-                                        <span class="flash-del">$34.55</span>
-                                        <span class="flash-sale">$33.55</span>
-                                    </p>
-                                </div>
-                                <div class="single-item-caption">
-                                    <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    <a class="product-detail" href="product.html">Details <i
-                                                class="fa fa-chevron-right"></i></a>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-md-3">
-                            <div class="single-item">
-                                <div class="ribbon-wrapper">
-                                    <div class="ribbon sale">Sale</div>
-                                </div>
-                                <div class="single-item-header">
-                                    <a href="#" data-toggle="modal" data-target="#modalProduct"><img
-                                                src="bootstrap/images/products/1.jpg" alt=""></a>
-                                </div>
-                                <div class="single-item-body">
-                                    <p class="single-item-title">Sample Woman Top</p>
-                                    <p class="single-item-price">
-                                        <span class="flash-del">$34.55</span>
-                                        <span class="flash-sale">$33.55</span>
-                                    </p>
-                                </div>
-                                <div class="single-item-caption">
-                                    <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    <a class="product-detail" href="product.html">Details <i
-                                                class="fa fa-chevron-right"></i></a>
-                                    <div class="clearfix"></div>
+                        @foreach($sameProducts as $sameProduct)
+                            <div class="col-xs-6 col-md-3">
+                                <div class="single-item">
+                                    @if($sameProduct->discount > 0)
+                                        <div class="ribbon-wrapper">
+                                            <div class="ribbon sale">Sale</div>
+                                        </div>
+                                    @endif
+                                    <div class="single-item-header">
+                                        <a href="{{route('product', $sameProduct->slug)}}" class="img-product-small">
+                                            <img src="{{$sameProduct->image}}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="single-item-body">
+                                        <p class="single-item-title">{{$sameProduct->name}}</p>
+                                        <p class="single-item-price">
+                                            @if($sameProduct->discount > 0)
+                                                <span class="flash-del">{{number_format($sameProduct->price)}}đ</span>
+                                                <span class="flash-sale">{{number_format($sameProduct->discount)}}
+                                                    đ</span>
+                                            @else
+                                                <span class="flash-sale">{{number_format($sameProduct->price)}}đ</span>
+                                            @endif
+                                        </p>
+                                    </div>
+                                    <div class="single-item-caption">
+                                        <a class="add-to-cart pull-left" href="shopping_cart.html"><i
+                                                    class="fa fa-shopping-cart"></i></a>
+                                        <a class="product-detail" href="{{route('product', $sameProduct->slug)}}">Chi
+                                            tiết <i
+                                                    class="fa fa-chevron-right"></i></a>
+                                        <div class="clearfix"></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xs-6 col-md-3">
-                            <div class="single-item">
-                                <div class="ribbon-wrapper">
-                                    <div class="ribbon sale">Sale</div>
-                                </div>
-                                <div class="single-item-header">
-                                    <a href="#" data-toggle="modal" data-target="#modalProduct"><img
-                                                src="bootstrap/images/products/1.jpg" alt=""></a>
-                                </div>
-                                <div class="single-item-body">
-                                    <p class="single-item-title">Sample Woman Top</p>
-                                    <p class="single-item-price">
-                                        <span class="flash-del">$34.55</span>
-                                        <span class="flash-sale">$33.55</span>
-                                    </p>
-                                </div>
-                                <div class="single-item-caption">
-                                    <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    <a class="product-detail" href="product.html">Details <i
-                                                class="fa fa-chevron-right"></i></a>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-md-3">
-                            <div class="single-item">
-                                <div class="ribbon-wrapper">
-                                    <div class="ribbon sale">Sale</div>
-                                </div>
-                                <div class="single-item-header">
-                                    <a href="#" data-toggle="modal" data-target="#modalProduct"><img
-                                                src="bootstrap/images/products/1.jpg" alt=""></a>
-                                </div>
-                                <div class="single-item-body">
-                                    <p class="single-item-title">Sample Woman Top</p>
-                                    <p class="single-item-price">
-                                        <span class="flash-del">$34.55</span>
-                                        <span class="flash-sale">$33.55</span>
-                                    </p>
-                                </div>
-                                <div class="single-item-caption">
-                                    <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    <a class="product-detail" href="product.html">Details <i
-                                                class="fa fa-chevron-right"></i></a>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </article>
@@ -214,83 +151,41 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Sản phẩm bán chạy</div>
                     <div class="panel-body">
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="bootstrap/images/products/1.jpg" alt="">
-                            </a>
-                            <div class="media-body">
-                                <span class="title">Sample Woman Top</span>
-                                <span class="price">300.000đ</span>
+                        @foreach($hotProducts as $hotProduct)
+                            <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img src="{{$hotProduct->image}}" alt="">
+                                </a>
+                                <div class="media-body">
+                                    <span class="title">{{$hotProduct->name}}</span>
+                                    @if($hotProduct->discount > 0)
+                                        <span class="price">{{number_format($hotProduct->discount)}}đ</span>
+                                    @else
+                                        <span class="price">{{number_format($hotProduct->price)}}đ</span>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="bootstrap/images/products/1.jpg" alt="">
-                            </a>
-                            <div class="media-body">
-                                <span class="title">Sample Woman Top</span>
-                                <span class="price">300.000đ</span>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="bootstrap/images/products/1.jpg" alt="">
-                            </a>
-                            <div class="media-body">
-                                <span class="title">Sample Woman Top</span>
-                                <span class="price">300.000đ</span>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="bootstrap/images/products/1.jpg" alt="">
-                            </a>
-                            <div class="media-body">
-                                <span class="title">Sample Woman Top</span>
-                                <span class="price">300.000đ</span>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">Sản phẩm mới</div>
                     <div class="panel-body">
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="bootstrap/images/products/1.jpg" alt="">
-                            </a>
-                            <div class="media-body">
-                                <span class="title">Sample Woman Top</span>
-                                <span class="price">300.000đ</span>
+                        @foreach($newProducts as $newProduct)
+                            <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img src="{{$newProduct->image}}" alt="">
+                                </a>
+                                <div class="media-body">
+                                    <span class="title">{{$newProduct->name}}</span>
+                                    @if($newProduct->discount > 0)
+                                        <span class="price">{{number_format($newProduct->discount)}}đ</span>
+                                    @else
+                                        <span class="price">{{number_format($newProduct->price)}}đ</span>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="bootstrap/images/products/1.jpg" alt="">
-                            </a>
-                            <div class="media-body">
-                                <span class="title">Sample Woman Top</span>
-                                <span class="price">300.000đ</span>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="bootstrap/images/products/1.jpg" alt="">
-                            </a>
-                            <div class="media-body">
-                                <span class="title">Sample Woman Top</span>
-                                <span class="price">300.000đ</span>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="bootstrap/images/products/1.jpg" alt="">
-                            </a>
-                            <div class="media-body">
-                                <span class="title">Sample Woman Top</span>
-                                <span class="price">300.000đ</span>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </article>
