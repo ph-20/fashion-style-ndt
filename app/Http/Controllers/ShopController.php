@@ -1,6 +1,8 @@
 <?php
 
 namespace Shop\Http\Controllers;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 use Shop\Category;
 use Shop\Http\Requests\LoginRequest;
@@ -8,7 +10,10 @@ use Shop\Http\Requests\ProfileRequest;
 use Shop\Http\Requests\UserRequest;
 use Shop\User;
 use Auth;
-use View;
+use Shop\Product;
+
+use Shop\OrderDetail;
+
 
 class ShopController extends Controller
 {
@@ -20,7 +25,10 @@ class ShopController extends Controller
 
     public function index()
     {
-        return view('front-end.pages.index');
+        $newProducts = Product::orderBy('id', 'decs')->paginate(8);
+        $promotionProducts = Product::where('discount', '>', 0)->orderBy('id', 'decs')->paginate(8);
+        return view('front-end.pages.index')->with(['newProducts' => $newProducts, 'promotionProducts' => $promotionProducts]);
+
     }
 
     //  Register Custommer
@@ -140,14 +148,28 @@ class ShopController extends Controller
 
     public function category($slug)
     {
-        $category = Category::where('slug', $slug)->get();
-        $sidebars = Category::where('type', 0)->get();
-        return view('front-end.pages.category')
-            ->with(['category' => $category, 'sidebars' => $sidebars]);
+
+        $category = Category::where('slug', $slug)->first();
+        $products = Product::where('category_id', $category->id)->paginate(PAGE_SIZE_DEFAULT);
+        $type = Product::where('type', $category->id);
+        return view('front-end.pages.category')->with(['category' => $category, 'products' => $products, 'type' => $type]);
+
     }
 
-    public function product()
+    public function product($slug)
     {
-        return view('front-end.pages.product');
+        $product = Product::where('slug', $slug)->first();
+        $new = Product::orderBy('slug', 'decs')->paginate(4);
+        $categoryID = $product->category_id;
+        $id = $product->slug;
+
+        $quantity = OrderDetail::all();
+        $quantitys = OrderDetail::orderBy('quantity', 'max', $quantity)->orderBy('quantity', 'decs')->orderBy('id', 'decs')->paginate(4);
+        $productNew = Product::where('category_id', $categoryID)->where('id', '<>', $id)->orderBy('id', 'decs')->orderBy('id', 'decs')->paginate(4);
+        return view('front-end.pages.product')->with(['product' => $product, 'new' => $new, 'productNew' => $productNew, 'quantitys' => $quantitys]);
+    }
+    public function search(Request $req){
+        $product = Product::where('name','like','%'.$req->key.'%')->orwhere('price',$req->key)->paginate(PAGE_SIZE_DEFAULT);
+        return view('front-end.pages.search',compact('product'));
     }
 }
