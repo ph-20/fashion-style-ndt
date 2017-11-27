@@ -1,3 +1,6 @@
+<?php
+    use Shop\Category;
+?>
 @extends('front-end.layouts.master')
 
 @section('content')
@@ -55,8 +58,8 @@
     <section class="content">
         <div class="container">
             <div class="pull-left">
-                <h3>Loại sản phẩm
-                    <small>Thời Trang Áo</small>
+                <h3>Danh mục
+                    <small>{{$category->name}}</small>
                 </h3>
             </div>
             <div class="pull-right">
@@ -80,66 +83,32 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">Danh mục</div>
                     <div class="panel-body">
+                        <?php $i = 1 ?>
+                        @foreach($sidebars as $sidebar)
+                            <?php
+                                $childSidebars = Category::where('parent_id', $sidebar->id)->get();
+                            ?>
                         <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingOne">
+                            <div class="panel-heading" role="tab" id="heading{{$i}}">
                                 <div class="panel-title">
-                                    <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true"
+                                    <a role="button" data-toggle="collapse" href="#collapse{{$i}}" aria-expanded="true"
                                        aria-controls="collapseOne">
-                                        Thời Trang Áo
+                                        {{$sidebar->name}}
                                     </a>
                                 </div>
                             </div>
-                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
-                                 aria-labelledby="headingOne">
+                            <div id="collapse{{$i}}" class="panel-collapse collapse {{($i == 1) ? 'in' : ''}}" role="tabpanel"
+                                 aria-labelledby="heading{{$i++}}">
                                 <div class="panel-body">
                                     <ul class="sidebar-menu">
-                                        <li><a href="#">Áo Khoác</a></li>
-                                        <li><a href="#">Áo Sơ Mi</a></li>
-                                        <li><a href="#">Áo Thun</a></li>
+                                        @foreach($childSidebars as $childSidebar)
+                                        <li><a href="{{route('category', [$childSidebar->id, $childSidebar->slug])}}">{{$childSidebar->name}}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingTwo">
-                                <div class="panel-title">
-                                    <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false"
-                                       aria-controls="collapseTwo">
-                                        Thời Trang Quần
-                                    </a>
-                                </div>
-                            </div>
-                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
-                                 aria-labelledby="headingTwo">
-                                <div class="panel-body">
-                                    <ul class="sidebar-menu">
-                                        <li><a href="">Quần Jean</a></li>
-                                        <li><a href="#">Quần Tây</a></li>
-                                        <li><a href="#">Quần Sort</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingThree">
-                                <div class="panel-title">
-                                    <a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="false"
-                                       aria-controls="collapseThree">
-                                        Phụ Kiện
-                                    </a>
-                                </div>
-                            </div>
-                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
-                                 aria-labelledby="headingThree">
-                                <div class="panel-body">
-                                    <ul class="sidebar-menu">
-                                        <li><a href="#">Thắt Lưng</a></li>
-                                        <li><a href="#">Ví Da</a></li>
-                                        <li><a href="#">Kính Mắt</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </article>

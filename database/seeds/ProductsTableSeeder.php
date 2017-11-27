@@ -15,7 +15,7 @@ class ProductsTableSeeder extends Seeder
         DB::table('products')->insert([
             [
                 'name' => 'Áo khoác da thời trang cao cấp KRAKN93',
-                'image' => 'ac-khoac-nam-1.jpg',
+                'image' => '/storage/products/ao-khoac-nam-1.jpg',
                 'slug' => 'ao-khoac-da-thoi-trang-cao-cap-KRAKN93',
                 'price' => '200000',
                 'type' => '0',
@@ -32,7 +32,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Áo khoác da nam cổ trụ classical KRAKN184',
-                'image' => 'ac-khoac-nam-2.jpg',
+                'image' => '/storage/products/ao-khoac-nam-2.jpg',
                 'slug' => 'Ao khoac da nam co tru classical KRAKN184',
                 'price' => '200000',
                 'type' => '0',
@@ -45,7 +45,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Áo Khoác Da Lót Lông Cao Cấp Mới Nhất 2015 KRAKN118',
-                'image' => 'ac-khoac-nam-3.jpg',
+                'image' => '/storage/products/ao-khoac-nam-3.jpg',
                 'slug' => 'ao-khoac-da-lot-long',
                 'price' => '250000',
                 'type' => '0',
@@ -58,7 +58,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Áo khoác da nữ cổ bẻ style Hàn Quốc KRNU13',
-                'image' => 'ao-khoac-da-nu-1.jpg',
+                'image' => '/storage/products/ao-khoac-nu-1.jpg',
                 'slug' => 'ao-khoac-da-nu-co-be-style',
                 'price' => '300000',
                 'type' => '1',
@@ -76,7 +76,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Áo khoác da nữ cao cấp túi ngang KRNU09',
-                'image' => 'ao-khoac-da-nu-2.jpg',
+                'image' => '/storage/products/ao-khoac-nu-2.jpg',
                 'slug' => 'ao-khoac-da-nu-cao-cap',
                 'price' => '400000',
                 'type' => '1',
@@ -93,8 +93,8 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Áo khoác da nữ cao cấp KRNU07',
-                'image' => 'ao-khoac-da-nu-3.jpg',
-                'slug' => 'a0-khoac-da-nu-cao-cap',
+                'image' => '/storage/products/ao-khoac-nu-3.png',
+                'slug' => 'ao-khoac-da-nu-cao-cap',
                 'price' => '100000',
                 'type' => '1',
                 'description' => 'Áo khoác da nữ cao cấp được thiết kế với kiểu dáng trẻ trung, năng động, tạo vẻ ngoài sành điệu và cá tính
@@ -108,7 +108,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Áo sơ mi nam tay ngắn họa tiết viền vuông KRASM83',
-                'image' => 'ao-so-mi-nam-1.jpg',
+                'image' => '/storage/products/ao-so-mi-nam-1.jpg',
                 'slug' => 'ao-so-mi-nam-ngan-tay-hoa-tiet-vien-vuong',
                 'price' => '300000',
                 'type' => '0',
@@ -121,7 +121,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Áo sơ mi nam họa tiết thổ cẩm KRASM81',
-                'image' => 'ao-so-mi-nam-2.jpg',
+                'image' => '/storage/products/ao-so-mi-nam-2.jpg',
                 'slug' => 'ao-so-mi-nam-hoa-tiet-tho-cam',
                 'price' => '500000',
                 'type' => '0',
@@ -134,7 +134,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Áo sơ mi họa tiết ánh sao KRASM80',
-                'image' => 'ao-so-mi-nam-3.jpg',
+                'image' => '/storage/products/ao-so-mi-nam-3.jpg',
                 'slug' => 'ao-so-mi-hoa-tiet-anh-sao',
                 'price' => '200000',
                 'type' => '0',
@@ -147,7 +147,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'ÁO SƠ MI BASIC TAY CÁNH DƠI',
-                'image' => 'ao-so-mi-nu-1.jpg',
+                'image' => '/storage/products/ao-so-mi-nu-1.jpg',
                 'slug' => 'ao-so-mi-nu-basic-tay-canh-doi',
                 'price' => '400000',
                 'type' => '1',
@@ -162,7 +162,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Áo sơ mi nữ thời trang, kiểu dáng dài tay, phong cách thanh lịch',
-                'image' => 'ao-so-mi-nu-2.jpg',
+                'image' => '/storage/products/ao-so-mi-nu-2.jpg',
                 'slug' => 'ao-so-mi-nu-thoi-trang-kieu-dai-tay-phong-cach',
                 'price' => '200000',
                 'type' => '1',
@@ -175,7 +175,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Áo sơ mi voan nữ thời trang, kiểu dáng tay loe, họa tiết xinh xắn',
-                'image' => 'ao-so-mi-nu-3.jpg',
+                'image' => '/storage/products/ao-so-mi-nu-3.jpg',
                 'slug' => 'ao-so-mi-nu-kieu-dang-tay-loe-hoa-tiet-xinh',
                 'price' => '500000',
                 'type' => '1',
@@ -194,7 +194,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Áo Thun Nam Tay Ngắn In Họa Tiết Adidas #Store4Men',
-                'image' => 'thuan-nam-1.jpg',
+                'image' => '/storage/products/ao-thun-nam-1.jpg',
                 'slug' => 'ao-thun-nam-tay-ngan-in-hoa-tiet',
                 'price' => '300000',
                 'type' => '0',
@@ -208,7 +208,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Áo ngắn tay adidas thể thao',
-                'image' => 'thuan-nam-2.jpg',
+                'image' => '/storage/products/ao-thun-nam-2.jpg',
                 'slug' => 'ao-tay-ngan-adidas-the-thao',
                 'price' => '50000',
                 'type' => '0',
@@ -223,7 +223,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Áo thun ngắn tay Gu nổi',
-                'image' => 'thuan-nam-3.jpg',
+                'image' => '/storage/products/ao-thun-nam-3.jpg',
                 'slug' => 'ao-thun-ngan-tay-gu-noi',
                 'price' => '300000',
                 'type' => '0',
@@ -247,7 +247,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Áo thun nam nữ tay dài phối màu SID35957',
-                'image' => 'thun-nu-1.jpg',
+                'image' => '/storage/products/ao-thun-nu-1.jpg',
                 'slug' => 'ao-thun-nu-tay-dai-phoi-mau',
                 'price' => '150000',
                 'type' => '1',
@@ -263,7 +263,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Áo thun nam nữ Green họa tiết',
-                'image' => 'thun-nu-2.jpg',
+                'image' => '/storage/products/ao-thun-nu-2.jpg',
                 'slug' => 'ao-thun-nu-green-hoa-tiet',
                 'price' => '200000',
                 'type' => '1',
@@ -279,7 +279,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Áo thun nữ họa tiết năng động ',
-                'image' => 'thun-nu-3.jpg',
+                'image' => '/storage/products/ao-thun-nu-3.jpg',
                 'slug' => 'ao-thun-nu-hoa-tiet-nang-dong',
                 'price' => '400000',
                 'type' => '1',
@@ -294,7 +294,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Dây lưng nam da bò cách điệu DJLA133-NDO',
-                'image' => 'that-lung-nam-1.jpg',
+                'image' => '/storage/products/that-lung-nam-1.jpg',
                 'slug' => 'day-lung-nam-da-bo-cach-dieu',
                 'price' => '500000',
                 'type' => '0',
@@ -310,7 +310,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Dây lưng nam da bò trơn DJLA314-N',
-                'image' => 'that-lung-nam-2.jpg',
+                'image' => '/storage/products/that-lung-nam-2.jpg',
                 'slug' => 'day-lung-nam-da-bo-tron',
                 'price' => '400000',
                 'type' => '0',
@@ -327,7 +327,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Thắt lưng nam da bò siêu bền DJLA1017-N',
-                'image' => 'that-lung-nam-3.jpg',
+                'image' => '/storage/products/that-lung-nam-3.jpg',
                 'slug' => 'day-lung-nam-da-bo-sieu-ben',
                 'price' => '400000',
                 'type' => '0',
@@ -344,7 +344,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Thắt lưng nữ Huy Hoàng da bò màu đỏ - HS5116',
-                'image' => 'that-lung-nu-1.jpg',
+                'image' => '/storage/products/that-lung-nu-1.jpg',
                 'slug' => 'that-lung-nu-huy-hoang-da-bo-mau-do',
                 'price' => '1000000',
                 'type' => '1',
@@ -365,7 +365,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Dây nịt nữ da cá sấu cao cấp',
-                'image' => 'that-lung-nu-2.jpg',
+                'image' => '/storage/products/that-lung-nu-2.jpg',
                 'slug' => 'day-nit-nu-da-ca-sau-cao-cap',
                 'price' => '400000',
                 'type' => '1',
@@ -381,7 +381,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Thắt lưng nữ khóa cài bản to Hàn Quốc SID44500',
-                'image' => 'that-lung-nu-3.jpg',
+                'image' => '/storage/products/that-lung-nu-3.jpg',
                 'slug' => 'that-lung-nu-khoa-cai-ban-to-han-quoc',
                 'price' => '100000',
                 'type' => '1',
@@ -394,7 +394,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'VÍ GẤP MÀU BÒ',
-                'image' => 'vi-nam-1.jpg',
+                'image' => '/storage/products/vi-nam-1.jpg',
                 'slug' => 'vi-nam-gap-mau-bo',
                 'price' => '200000',
                 'type' => '0',
@@ -410,7 +410,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'VÍ GẤP MÀU NÂU',
-                'image' => 'vi-nam-2.jpg',
+                'image' => '/storage/products/vi-nam-2.jpg',
                 'slug' => 'vi-nam-mau-nau',
                 'price' => '100000',
                 'type' => '0',
@@ -425,7 +425,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'VÍ BOCA MÀU NÂU ÁNH TÍM',
-                'image' => 'vi-nam-3.jpg',
+                'image' => '/storage/products/vi-nam-3.jpg',
                 'slug' => 'vi-nam-boca-mau-nau-tim',
                 'price' => '300000',
                 'type' => '0',
@@ -441,7 +441,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'CLUTCH MK MÀU NÂU',
-                'image' => 'vi-nu-1.jpg',
+                'image' => '/storage/products/vi-nu-1.jpg',
                 'slug' => 'vi-nu-clutch-mk-mau-nau',
                 'price' => '100000',
                 'type' => '1',
@@ -454,7 +454,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'VÍ TEMA MÀU BÒ',
-                'image' => 'vi-nu-2.jpg',
+                'image' => '/storage/products/vi-nu-2.jpg',
                 'slug' => 'vi-nu-tema-mau-bo',
                 'price' => '500000',
                 'type' => '1',
@@ -467,7 +467,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'VÍ CẦM TAY THEMIS MÀU NÂU',
-                'image' => 'vi-nu-3.jpg',
+                'image' => '/storage/products/vi-nu-3.jpg',
                 'slug' => 'vi-nu-cam-tay-themis-mau-nau',
                 'price' => '300000',
                 'type' => '1',
@@ -480,7 +480,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Gọng Kính Unisex Jubilant J 30008 BLK (52/17/140) - Đen',
-                'image' => 'kinh-nam-1.jpg',
+                'image' => '/storage/products/kinh-nam-1.jpg',
                 'slug' => 'gong-kinh-nam-Jubilant-j',
                 'price' => '20000',
                 'type' => '0',
@@ -496,7 +496,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Kính Mát Sun Glass Brio Đỏ',
-                'image' => 'kinh-nam-2.jpg',
+                'image' => '/storage/products/kinh-nam-2.jpg',
                 'slug' => 'kinh-mat-sun-glass-brio',
                 'price' => '300000',
                 'type' => '0',
@@ -511,7 +511,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Kính Mát Phân Cực Unisex Veithdia',
-                'image' => 'kinh-nam-3.jpg',
+                'image' => '/storage/products/kinh-nam-3.jpg',
                 'slug' => 'kinh-mat-phan-cuc-unisex',
                 'price' => '100000',
                 'type' => '0',
@@ -524,7 +524,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Kính Mát Nữ Carrera',
-                'image' => 'kinh-nu-1.jpg',
+                'image' => '/storage/products/kinh-nu-1.jpg',
                 'slug' => 'kinh-mat-nu-carrera',
                 'price' => '40000',
                 'type' => '1',
@@ -541,7 +541,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Kính Mát Unisex Exfash',
-                'image' => 'kinh-nu-2.jpg',
+                'image' => '/storage/products/kinh-nu-2.jpg',
                 'slug' => 'kinh-mat-unisex-exfash',
                 'price' => '50000',
                 'type' => '1',
@@ -557,7 +557,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Kính Mát Unisex PAN',
-                'image' => 'kinh-nu-3.jpg',
+                'image' => '/storage/products/kinh-nu-3.jpg',
                 'slug' => 'kinh-mat-unisex-pan',
                 'price' => '80000',
                 'type' => '1',
@@ -574,7 +574,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Quần Bò Jean Jeans Nam',
-                'image' => 'jean-nam-1.jpg',
+                'image' => '/storage/products/quan-jean-nam-1.jpg',
                 'slug' => 'quan-no-jean-jeans-nam',
                 'price' => '400000',
                 'type' => '0',
@@ -591,7 +591,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Quần jean nam Kojiba siêu bền',
-                'image' => 'jean-nam-2.jpg',
+                'image' => '/storage/products/quan-jean-nam-2.jpg',
                 'slug' => 'quan-jean-nam-kojiba-sieu-ben',
                 'price' => '1000000',
                 'type' => '0',
@@ -606,7 +606,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Quần jean Titishop',
-                'image' => 'jean-nam-3.jpg',
+                'image' => '/storage/products/quan-jean-nam-3.jpg',
                 'slug' => 'quan-jean-nam-titishop',
                 'price' => '100000',
                 'type' => '0',
@@ -619,7 +619,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Quần short thể thao',
-                'image' => 'short-nam-1.jpg',
+                'image' => '/storage/products/quan-short-nam-1.jpg',
                 'slug' => 'quan-nam-short-the-thao',
                 'price' => '90000',
                 'type' => '0',
@@ -632,7 +632,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Quần short jean cao cấp',
-                'image' => 'short-nam-2.jpg',
+                'image' => '/storage/products/quan-short-nam-2.jpg',
                 'slug' => 'quan-short-jean-cao-cap',
                 'price' => '30000',
                 'type' => '0',
@@ -645,7 +645,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'QUẦN SHORT NAM BESTBUY',
-                'image' => 'short-nam-3.jpg',
+                'image' => '/storage/products/quan-short-nam-3.jpg',
                 'slug' => 'quan-short-nam-bestbuy',
                 'price' => '150000',
                 'type' => '0',
@@ -657,34 +657,8 @@ class ProductsTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'name' => 'Quần tây Âu Titishop',
-                'image' => 'quan-tay-1.jpg',
-                'slug' => 'quan-tay-au',
-                'price' => '100000',
-                'type' => '0',
-                'description' => 'Quần tây Titishop QTN64 cài nút lệch màu đen được may từ chất liệu vải cao cấp, bền đẹp và có form dáng chuẩn mang đến phong cách thời trang lịch lãm cho phái mạnh. Quần có màu sắc hiện đại, cho phái mạnh dễ dàng mix với các loại áo, phụ kiện để thể hiện phong cách riêng.',
-                'user_id' => '1',
-                'category_id' => '8',
-                'discount' => '0',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],
-            [
-                'name' => 'Quần Tây Khaki Kaki Nam Hàn Quốc',
-                'image' => 'quan-tay-nam-2.jpg',
-                'slug' => 'quan-tay-nam-kaki',
-                'price' => '200000',
-                'type' => '0',
-                'description' => 'Quần được thiết kế với kiểu dáng ống thẳng thanh lịch, phù hợp với mọi dáng người, dễ phối đồ, dễ đẹp.  ',
-                'user_id' => '1',
-                'category_id' => '8',
-                'discount' => '180000',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],
-            [
                 'name' => 'Quần tây công sở nữ',
-                'image' => 'quan-tay-nu-1.jpg',
+                'image' => '/storage/products/quan-tay-nu-1.jpg',
                 'slug' => 'quau-tay-nu',
                 'price' => '200000',
                 'type' => '1',
@@ -697,7 +671,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Quần nữ quần jean lưng cao',
-                'image' => 'jean-nu-1.jpg',
+                'image' => '/storage/products/quan-jean-nu-1.jpg',
                 'slug' => 'quan-jean-nu-lung-cao',
                 'price' => '500000',
                 'type' => '1',
@@ -710,7 +684,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Quần jean nữ harem',
-                'image' => 'jean-nu-2.jpg',
+                'image' => '/storage/products/quan-jean-nu-2.jpg',
                 'slug' => 'quan-jean-nu-harem',
                 'price' => '50000',
                 'type' => '1',
@@ -724,7 +698,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Quần nữ quần jean nữ đẹp màu trắng ',
-                'image' => 'jean-nu-3.jpg',
+                'image' => '/storage/products/quan-jean-nu-3.jpg',
                 'slug' => 'quan-nu-jean-dep-mau-trang',
                 'price' => '500000',
                 'type' => '1',
@@ -738,7 +712,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Quần Tây Kaki Nam Hàn Quốc',
-                'image' => 'quan-tay-1.jpg',
+                'image' => '/storage/products/quan-tay-nam-1.jpg',
                 'slug' => 'quan-tay-nam-kaki-han-quoc',
                 'price' => '200000',
                 'type' => '0',
@@ -753,7 +727,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Quần Tây 0Ly Màu Trơn Đen',
-                'image' => 'quan-tay-2.jpg',
+                'image' => '/storage/products/quan-tay-nam-2.jpg',
                 'slug' => 'quan-tay-oly-mau-den',
                 'price' => '300000',
                 'type' => '0',
@@ -766,7 +740,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Quần Tây Cotton',
-                'image' => 'quan-tay-3.jpg',
+                'image' => '/storage/products/quan-tay-nam-3.jpg',
                 'slug' => 'quan-tay-cotton',
                 'price' => '100000',
                 'type' => '0',
@@ -779,7 +753,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Quần shorts váy nữ',
-                'image' => 'short-nu-1.jpg',
+                'image' => '/storage/products/quan-short-nu-1.jpg',
                 'slug' => 'short-nu-vay-nu',
                 'price' => '200000',
                 'type' => '1',
@@ -792,7 +766,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Quần shorts lửng',
-                'image' => 'short-nu-2.jpg',
+                'image' => '/storage/products/quan-short-nu-2.jpg',
                 'slug' => 'short-lung',
                 'price' => '30000',
                 'type' => '1',
@@ -805,7 +779,7 @@ class ProductsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Quần shorts nữ vay xanh',
-                'image' => 'short-nu-3.jpg',
+                'image' => '/storage/products/quan-short-nu-3.jpg',
                 'slug' => 'short-nu-vay-xanh',
                 'price' => '120000',
                 'type' => '1',
@@ -816,7 +790,6 @@ class ProductsTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]
-
         ]);
     }
 }

@@ -1,3 +1,6 @@
+<?php
+  use Shop\Category;
+?>
 <div class="list-modal">
     <!-- Modal -->
     <div class="modal fade" id="modalProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -86,9 +89,10 @@
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Nhập từ khóa...">
                             <span class="input-group-btn">
-                                    <button class="btn btn-default" type="submit"><span
-                                                class="fa fa-search"></span></button>
-                                </span>
+                                <button class="btn btn-default" type="submit">
+                                    <span class="fa fa-search"></span>
+                                </button>
+                            </span>
                         </div>
                     </form>
                 </div>
@@ -179,33 +183,20 @@
                 <div class="collapse navbar-collapse" id="main-menu">
                     <ul class="nav navbar-nav">
                         <li><a href="{{route('index')}}">Trang chủ <span class="sr-only">(current)</span></a></li>
+                        @foreach($parentCategories as $parentCategory)
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">Thời Trang Áo<span class="caret"></span></a>
+                               aria-haspopup="true" aria-expanded="false">{{$parentCategory->name}}<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                @foreach($categoty as $loai)
-                                    <li><a href="{{route('category')}}">{{$loai->name}}</a></li>
+                                <?php
+                                $childCategories = Category::where('parent_id', $parentCategory->id)->get();
+                                ?>
+                                @foreach($childCategories as $childCategory)
+                                <li><a href="{{route('category', $childCategory->slug)}}">{{$childCategory->name}}</a></li>
                                 @endforeach
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">Thời Trang Quần<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                @foreach($categoty1 as $loai)
-                                    <li><a href="{{route('category')}}">{{$loai->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">Phụ Kiện<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                @foreach($categoty2 as $loai)
-                                    <li><a href="{{route('category')}}">{{$loai->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </li>
+                        @endforeach
                         <li><a href="{{route('about')}}">Giới thiệu</a>
                         <li><a href="{{route('contact')}}">Liên hệ</a>
                     </ul>

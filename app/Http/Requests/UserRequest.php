@@ -35,17 +35,9 @@ class UserRequest extends FormRequest
                     'phone' => 'required|min:10|max:12',
                     'address' => 'required',
                 ];
+
             case 'PUT':
             case 'PATCH':
-                return [
-                    //  Validate User
-                    'password' => 'required|min:6|max:30',
-                    're_password' => 'required|same:password',
-                    'name' => 'required|min:6|max:50',
-                    'birthday' => 'required|date',
-                    'phone' => 'required|min:10|max:12',
-                    'address' => 'required',
-                ];
             default:
                 return [];
         }

@@ -40,22 +40,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Mật khẩu</label>
-                                <div class="col-md-8">
-                                    <input type="password" name="password" placeholder="Nhập mật khẩu của bạn"
-                                           class="form-control">
-                                    <span class="label label-danger">{!! $errors->first('password') !!}</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Xác nhận mật khẩu</label>
-                                <div class="col-md-8">
-                                    <input type="password" name="re_password" placeholder="Nhập  lại mật khẩu của bạn"
-                                           class="form-control">
-                                    <span class="label label-danger">{!! $errors->first('re_password') !!}</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="col-md-4 control-label">Quyền hạn</label>
                                 <div class="col-md-8">
                                     <select name="role" id="" class="form-control">
@@ -72,7 +56,6 @@
                                         >Khách hàng
                                         </option>
                                     </select>
-                                    <span class="label label-danger">{!! $errors->first('role') !!}</span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -90,59 +73,10 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Họ tên</label>
-                                <div class="col-md-8">
-                                    <input type="text" name="name" value="{{$user->fullname}}"
-                                           placeholder="Nhập họ tên của bạn" class="form-control">
-                                    <span class="label label-danger">{!! $errors->first('name') !!}</span>
-                                </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group text-center">
+                                <input type="submit" value="Chỉnh sửa" class="btn btn-primary">
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Giới tính</label>
-                                <div class="col-md-8">
-                                    <select name="gender" id="" class="form-control">
-                                        <option value="0"
-                                                {{$user->gender == 0 ? "selected" : ""}}
-                                        >Nam
-                                        </option>
-                                        <option value="1"
-                                                {{$user->gender == 1 ? "selected" : ""}}
-                                        >Nữ
-                                        </option>
-                                    </select>
-                                    <span class="label label-danger">{!! $errors->first('gender') !!}</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Ngày sinh</label>
-                                <div class="col-md-8">
-                                    <input type="date" name="birthday" value="{{$user->birthday}}"
-                                           placeholder="Nhập ngày sinh của bạn" class="form-control">
-                                    <span class="label label-danger">{!! $errors->first('birthday') !!}</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Điện thoại</label>
-                                <div class="col-md-8">
-                                    <input type="number" name="phone" value="{{$user->phone}}"
-                                           placeholder="Nhập số điện thoại của bạn" class="form-control">
-                                    <span class="label label-danger">{!! $errors->first('phone') !!}</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Địa chỉ</label>
-                                <div class="col-md-8">
-                                    <input type="text" name="address" value="{{$user->address}}"
-                                           placeholder="Nhập địa chỉ của bạn" class="form-control">
-                                    <span class="label label-danger">{!! $errors->first('address') !!}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group pull-right">
-                            <input type="submit" value="Chỉnh sửa" class="btn btn-primary">
                         </div>
                     </form>
                 </div>

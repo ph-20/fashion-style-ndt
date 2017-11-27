@@ -1,3 +1,6 @@
+<?php
+use Shop\Category;
+?>
 @extends('back-end.layouts.master')
 
 @section('content')
@@ -11,7 +14,7 @@
                         <i class="fa fa-angle-double-right"></i>
                     </span>
                 </li>
-                <li class="active">Người dùng</li>
+                <li class="active">Danh mục</li>
             </ul><!--.breadcrumb-->
         </div>
         <!--End Breadcrumbs-->
@@ -20,8 +23,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3>
-                        <span class="title-page">Danh sách người dùng</span>
-                        <a href="{{route('users.create')}}" class="btn btn-success pull-right"><span
+                        <span class="title-page">Danh sách danh mục</span>
+                        <a href="{{route('categories.create')}}" class="btn btn-success pull-right"><span
                                     class="fa fa-plus"></span> Thêm mới</a>
                     </h3>
                 </div>
@@ -34,49 +37,48 @@
                             <tr>
                                 <th class="text-center">#</th>
                                 <th class="text-center">Tên</th>
-                                <th class="text-center">Email</th>
-                                <th class="text-center">Quyền</th>
-                                <th class="text-center">Trạng thái</th>
+                               {{-- <th class="text-center">Đường dẫn</th>--}}
+                                <th class="text-center">Danh mục cha</th>
+                                <th class="text-center">Loại</th>
                                 <th class="text-center">Sửa</th>
                                 <th class="text-center">Xóa</th>
                             </tr>
-                            <?php $i = 1 ?>
-                            @foreach($users as $user)
+
+                            @foreach($categories as $category)
                                 <?php
-                                if ($user->role == 0) {
-                                    $role = "<span class='label label-success'>Admin</span>";
-                                } elseif ($user->role == 1) {
-                                    $role = "<span class='label label-info'>Bán hàng</span>";
-                                } elseif ($user->role == 2) {
-                                    $role = "<span class='label label-warning'>Khách hàng</span>";
+                                $parent_category = Category::where('id', $category->parent_id)->first();
+
+                                if ($category->type == 0) {
+                                    $type = "<span class='label label-warning'>Danh mục cha</span>";
+                                } else {
+                                    $type = "<span class='label label-info'>Danh mục con</span>";
                                 }
 
-                                if ($user->status == 1) {
-                                    $status = "<span class='label label-success'>Hoạt động</span>";
-                                } else {
-                                    $status = "<span class='label label-danger'>Khóa</span>";
-                                }
                                 ?>
                                 <tr>
-                                    <td class="text-center">{{$i++}}</td>
-                                    <td><a href="{{route('users.show', $user->id)}}">{{$user->fullname}}</a></td>
-                                    <td>{{$user->email}}</td>
-                                    <td class="text-center">{!! $role !!}</td>
-                                    <td class="text-center">{!! $status !!}</td>
-                                    <td class="text-center"><a href="{{route('users.edit', $user->id)}}"
+                                    <td class="text-center">{{$category->id}}</td>
+                                    <td>{{$category->name}}</td>
+                                  {{--  <td>{{$category->name = str_slug($category->name)}}</td>--}}
+                                    <td class="text-center">
+                                        {!! ($category->parent_id) ? $parent_category['name'] : "<span class='label label-danger'>Không có</span>" !!}
+                                        {{--{{$parent_category['name']}}--}}
+                                    </td>
+                                    <td class="text-center">{!!$type !!}</td>
+                                    <td class="text-center"><a href="{{route('categories.edit', $category->id)}}"
                                                                class="btn btn-warning"><span
                                                     class="fa fa-pencil"></span></a></td>
                                     <td class="text-center">
-                                        <form action="{{route('users.destroy', $user->id)}}" method="POST">
+                                        <form action="{{route('categories.destroy', $category->id)}}" method="POST">
                                             {{method_field('DELETE')}}
                                             {{csrf_field()}}
                                             <button class="btn btn-danger"><span class="fa fa-trash"></span></button>
                                         </form>
                                     </td>
+
                                 </tr>
                             @endforeach
                         </table>
-                        {{ $users->links() }}
+
                     </div>
                 </div>
             </div>

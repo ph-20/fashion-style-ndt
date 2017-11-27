@@ -335,6 +335,7 @@ footer {
     right: 0;
     background: #cacaca;
     border-top: 1px solid #ebccd1;
+    z-index: 999;
 }
 
 footer .pull-left {
@@ -363,4 +364,11 @@ footer .pull-left {
     font-weight: bold;
     font-size: 30px;
     margin-bottom: 20px;
+}
+
+/*==========================================
+7. CATEGORY
+==========================================*/
+#parent_id {
+    display: none;
 }

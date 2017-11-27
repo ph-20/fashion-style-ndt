@@ -28,7 +28,7 @@
                                     <label class="col-md-4 control-label">Email</label>
                                     <div class="col-md-8">
                                         <input type="text" class="form-control" name="email"
-                                               placeholder="Nhập emai của bạn">
+                                               placeholder="Nhập emai của bạn" value="{{old('email')}}">
                                         <span class="label label-danger">{!! $errors->first('email') !!}</span>
                                     </div>
                                 </div>
@@ -43,7 +43,8 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Xác nhận mật khẩu</label>
                                     <div class="col-md-8">
-                                        <input type="password" name="re_password" placeholder="Nhập  lại mật khẩu của bạn"
+                                        <input type="password" name="re_password"
+                                               placeholder="Nhập  lại mật khẩu của bạn"
                                                class="form-control">
                                         <span class="label label-danger">{!! $errors->first('re_password') !!}</span>
                                     </div>
@@ -52,7 +53,7 @@
                                     <label class="col-md-4 control-label">Họ tên</label>
                                     <div class="col-md-8">
                                         <input type="text" name="name" placeholder="Nhập họ tên của bạn"
-                                               class="form-control">
+                                               class="form-control" value="{{old('name')}}">
                                         <span class="label label-danger">{!! $errors->first('name') !!}</span>
                                     </div>
                                 </div>
@@ -70,7 +71,7 @@
                                     <label class="col-md-4 control-label">Ngày sinh</label>
                                     <div class="col-md-8">
                                         <input type="date" name="birthday" placeholder="Nhập ngày sinh của bạn"
-                                               class="form-control">
+                                               class="form-control" value="{{old('birthday')}}">
                                         <span class="label label-danger">{!! $errors->first('birthday') !!}</span>
                                     </div>
                                 </div>
@@ -78,7 +79,7 @@
                                     <label class="col-md-4 control-label">Điện thoại</label>
                                     <div class="col-md-8">
                                         <input type="number" name="phone" placeholder="Nhập số điện thoại của bạn"
-                                               class="form-control">
+                                               class="form-control" value="{{old('phone')}}">
                                         <span class="label label-danger">{!! $errors->first('phone') !!}</span>
                                     </div>
                                 </div>
@@ -86,8 +87,8 @@
                                     <label class="col-md-4 control-label">Địa chỉ</label>
                                     <div class="col-md-8">
                                         <input type="text" name="address" placeholder="Nhập địa chỉ của bạn"
-                                               class="form-control">
-                                        <span class="label label-danger">{!! $errors->first('address') !!}</span>
+                                               class="form-control" value="{{old('address')}}">
+                                        <span class="label label-danger"></span>{!! $errors->first('address') !!}</span>
                                     </div>
                                 </div>
                                 <div class="form-group text-center">

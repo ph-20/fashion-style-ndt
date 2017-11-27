@@ -2,6 +2,7 @@
 
 namespace Shop\Http\Controllers;
 
+use Shop\Category;
 use Shop\Http\Requests\LoginRequest;
 use Shop\Http\Requests\ProfileRequest;
 use Shop\Http\Requests\UserRequest;
@@ -9,12 +10,13 @@ use Shop\User;
 use Auth;
 use Shop\Product;
 use Shop\OrderDetail;
+use View;
 
 class ShopController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest', ['only' => 'getLogin', 'only' => 'getRegister']);
+        $this->middleware('guest', ['only' => ['getLogin', 'getRegister']]);
         $this->middleware('admin', ['only' => 'getProfile']);
     }
 
@@ -44,10 +46,20 @@ class ShopController extends Controller
         $user->address = $request->address;
         $user->role = '2';
         $user->status = '1';
+
         $user->save();
 
-        return redirect()->route('getLogin')
-            ->with(['message' => 'Đăng ký thành công! Vui lòng đăng nhập.', 'alert' => 'success']);
+        $auth = array(
+            'email' => $request->email,
+            'password' => $request->password
+        );
+
+        if (Auth::attempt($auth)) {
+            return redirect()->route('index');
+        }
+
+//        return redirect()->route('getLogin')
+//            ->with(['message' => 'Đăng ký thành công! Vui lòng đăng nhập.', 'alert' => 'success']);
     }
 
     //  Login Custommer
@@ -62,6 +74,7 @@ class ShopController extends Controller
             'email' => $request->email,
             'password' => $request->password
         );
+
         if (Auth::attempt($auth)) {
             return redirect()->route('index');
         } else {
@@ -103,6 +116,7 @@ class ShopController extends Controller
             ->with(['message' => 'Chỉnh sửa thành công', 'alert' => 'success']);
     }
 
+
     public function error404()
     {
         return view('front-end.pages.404');
@@ -128,13 +142,12 @@ class ShopController extends Controller
         return view('front-end.pages.cart');
     }
 
-    public function category()
+    public function category($slug)
     {
-
-        $promotionProducts = Product::paginate(12);
-        return view('front-end.pages.category')->with('promotionProducts', $promotionProducts);
-
-
+        $category = Category::where('slug', $slug)->get();
+        $sidebars = Category::where('type', 0)->get();
+        return view('front-end.pages.category')
+            ->with(['category' => $category, 'sidebars' => $sidebars]);
     }
 
     public function product($id)

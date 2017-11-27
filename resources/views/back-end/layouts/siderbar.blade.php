@@ -21,12 +21,12 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="{{route('categories.index')}}">
                 <span class="fa fa-text-width"></span> Danh mục
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="{{route('products.index')}}">
                 <span class="fa fa-edit"></span> Sản phẩm
             </a>
         </li>
