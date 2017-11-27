@@ -10,6 +10,7 @@ use Shop\Product;
 use Shop\User;
 use Auth;
 use View;
+use DB;
 
 class ShopController extends Controller
 {
@@ -156,7 +157,10 @@ class ShopController extends Controller
         $product = Product::whereSlug($slug)->first();
         $sameProducts = Product::where('category_id', $product->category_id)->where('id', '<>', $product->id)->paginate(4);
         $newProducts = Product::orderBy('id', 'DESC')->paginate(4);
+
         return view('front-end.pages.product')
-            ->with(['product' => $product, 'sameProducts' => $sameProducts, 'newProducts' => $newProducts]);
+            ->with(
+                ['product' => $product, 'sameProducts' => $sameProducts, 'newProducts' => $newProducts]
+            );
     }
 }

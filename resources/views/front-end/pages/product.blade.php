@@ -149,42 +149,21 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Sản phẩm bán chạy</div>
                     <div class="panel-body">
+                        @foreach($hotProducts as $hotProduct)
                         <div class="media">
                             <a class="pull-left" href="#">
-                                <img src="bootstrap/images/products/1.jpg" alt="">
+                                <img src="{{$hotProduct->image}}" alt="">
                             </a>
                             <div class="media-body">
-                                <span class="title">Sample Woman Top</span>
-                                <span class="price">300.000đ</span>
+                                <span class="title">{{$hotProducts->name}}</span>
+                                @if($hotProducts->discount > 0)
+                                    <span class="price">{{number_format($hotProducts->discount)}}đ</span>
+                                @else
+                                    <span class="price">{{number_format($hotProducts->price)}}đ</span>
+                                @endif
                             </div>
                         </div>
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="bootstrap/images/products/1.jpg" alt="">
-                            </a>
-                            <div class="media-body">
-                                <span class="title">Sample Woman Top</span>
-                                <span class="price">300.000đ</span>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="bootstrap/images/products/1.jpg" alt="">
-                            </a>
-                            <div class="media-body">
-                                <span class="title">Sample Woman Top</span>
-                                <span class="price">300.000đ</span>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <a class="pull-left" href="#">
-                                <img src="bootstrap/images/products/1.jpg" alt="">
-                            </a>
-                            <div class="media-body">
-                                <span class="title">Sample Woman Top</span>
-                                <span class="price">300.000đ</span>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="panel panel-default">
