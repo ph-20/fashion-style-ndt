@@ -155,7 +155,8 @@ class ShopController extends Controller
     public function product($slug)
     {
         $product = Product::whereSlug($slug)->first();
-        $sameProducts = Product::where('category_id', $product->category_id)->where('id', '<>', $product->id)->paginate(4);
+        $sameProducts = Product::where('category_id', $product->category_id)
+            ->where('id', '<>', $product->id)->paginate(4);
         $newProducts = Product::orderBy('id', 'DESC')->paginate(4);
 
         return view('front-end.pages.product')
