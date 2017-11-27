@@ -8,6 +8,8 @@ use Shop\Http\Requests\ProfileRequest;
 use Shop\Http\Requests\UserRequest;
 use Shop\User;
 use Auth;
+use Shop\Product;
+use Shop\OrderDetail;
 use View;
 
 class ShopController extends Controller
@@ -20,7 +22,9 @@ class ShopController extends Controller
 
     public function index()
     {
-        return view('front-end.pages.index');
+        $newProducts = Product::orderBy('id', 'decs')->paginate(8);
+        $promotionProducts = Product::where('discount', '>', 0)->orderBy('id', 'decs')->paginate(8);
+        return view('front-end.pages.index')->with(['newProducts' => $newProducts, 'promotionProducts' => $promotionProducts]);
     }
 
     //  Register Custommer
@@ -146,8 +150,19 @@ class ShopController extends Controller
             ->with(['category' => $category, 'sidebars' => $sidebars]);
     }
 
-    public function product()
+    public function product($id)
     {
-        return view('front-end.pages.product');
+        $product = Product::find($id);
+        $new = Product::orderBy('id', 'decs')->paginate(4);
+
+        $categoryID = $product->category_id;
+        $price = $product->price;
+
+        $id = $product->id;
+
+        $quantity = OrderDetail::all();
+        $quantitys = OrderDetail::orderBy('quantity', 'max', $quantity)->orderBy('quantity', 'decs')->orderBy('id', 'decs')->paginate(4);
+        $productNew = Product::where('category_id', $categoryID)->where('id', '<>', $id)->orderBy('id', 'decs')->orderBy('id', 'decs')->paginate(4);
+        return view('front-end.pages.product')->with(['product' => $product, 'new' => $new, 'productNew' => $productNew, 'quantitys' => $quantitys]);
     }
 }
