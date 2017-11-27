@@ -469,6 +469,11 @@ h6 {
 .sidebar-menu li:last-child a {
     border-bottom: none;
 }
+.content .image-product {
+    height: 230px;
+    display: block;
+    overflow: hidden;
+}
 
 /*============================================
 5.3 CONTENT - PRODUCTS

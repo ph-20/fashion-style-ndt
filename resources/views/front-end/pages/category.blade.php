@@ -1,7 +1,7 @@
-<?php
-    use Shop\Category;
-?>
 @extends('front-end.layouts.master')
+<?php
+use Shop\Category;
+?>
 
 @section('content')
     <div class="slider">
@@ -64,8 +64,8 @@
             </div>
             <div class="pull-right">
                 <ol class="breadcrumb">
-                    <li><a href="#">Trang chủ</a></li>
-                    <li class="active">Thời Trang Áo</li>
+                    <li><a href="{{route('index')}}">Trang chủ</a></li>
+                    <li class="active">{{$category->name}}</li>
                 </ol>
             </div>
             <div class="clearfix"></div>
@@ -75,8 +75,8 @@
                     <div class="panel-heading">Giới tính</div>
                     <div class="panel-body">
                         <ul class="sidebar-menu">
-                            <li><a href="#">Nam</a></li>
-                            <li><a href="#">Nữ</a></li>
+                            <li><a href="">Nam</a></li>
+                            <li><a href="">Nữ</a></li>
                         </ul>
                     </div>
                 </div>
@@ -84,30 +84,34 @@
                     <div class="panel-heading">Danh mục</div>
                     <div class="panel-body">
                         <?php $i = 1 ?>
-                        @foreach($sidebars as $sidebar)
+                        @foreach($categories as $category)
                             <?php
-                                $childSidebars = Category::where('parent_id', $sidebar->id)->get();
+                            $childSidebars = Category::where('parent_id', $category->id)->get();
                             ?>
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="heading{{$i}}">
-                                <div class="panel-title">
-                                    <a role="button" data-toggle="collapse" href="#collapse{{$i}}" aria-expanded="true"
-                                       aria-controls="collapseOne">
-                                        {{$sidebar->name}}
-                                    </a>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="heading{{$i}}">
+                                    <div class="panel-title">
+                                        <a role="button" data-toggle="collapse" href="#collapse{{$i}}" aria-expanded="true"
+                                           aria-controls="collapseOne">
+                                            {{$category->name}}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="collapse{{$i}}" class="panel-collapse collapse {{($i == 1) ? 'in' : ''}}" role="tabpanel"
+                                     aria-labelledby="heading{{$i++}}">
+                                    <div class="panel-body">
+                                        <ul class="sidebar-menu">
+                                            @foreach($childSidebars as $childSidebar)
+                                                <li>
+                                                    <a href="{{route('category', $childSidebar->slug)}}">
+                                                        {{$childSidebar->name}}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                            <div id="collapse{{$i}}" class="panel-collapse collapse {{($i == 1) ? 'in' : ''}}" role="tabpanel"
-                                 aria-labelledby="heading{{$i++}}">
-                                <div class="panel-body">
-                                    <ul class="sidebar-menu">
-                                        @foreach($childSidebars as $childSidebar)
-                                        <li><a href="{{route('category', [$childSidebar->id, $childSidebar->slug])}}">{{$childSidebar->name}}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>
@@ -117,176 +121,42 @@
             <article class="content-body new-product col-sm-8 col-md-9">
                 <h3 class="content-title">Sản phẩm mới</h3>
                 <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-md-4">
-                        <div class="single-item">
-                            <div class="ribbon-wrapper">
-                                <div class="ribbon sale">Sale</div>
-                            </div>
-                            <div class="single-item-header">
-                                <a href="#" data-toggle="modal" data-target="#modalProduct"><img
-                                            src="bootstrap/images/products/1.jpg" alt=""></a>
-                            </div>
-                            <div class="single-item-body">
-                                <p class="single-item-title">Sample Woman Top</p>
-                                <p class="single-item-price">
-                                    <span class="flash-del">$34.55</span>
-                                    <span class="flash-sale">$33.55</span>
-                                </p>
-                            </div>
-                            <div class="single-item-caption">
-                                <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                            class="fa fa-shopping-cart"></i></a>
-                                <a class="product-detail" href="product.html">Details <i
-                                            class="fa fa-chevron-right"></i></a>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-4">
-                        <div class="single-item">
-                            <div class="ribbon-wrapper">
-                                <div class="ribbon sale">Sale</div>
-                            </div>
-                            <div class="single-item-header">
-                                <a href="#" data-toggle="modal" data-target="#modalProduct"><img
-                                            src="bootstrap/images/products/1.jpg" alt=""></a>
-                            </div>
-                            <div class="single-item-body">
-                                <p class="single-item-title">Sample Woman Top</p>
-                                <p class="single-item-price">
-                                    <span class="flash-del">$34.55</span>
-                                    <span class="flash-sale">$33.55</span>
-                                </p>
-                            </div>
-                            <div class="single-item-caption">
-                                <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                            class="fa fa-shopping-cart"></i></a>
-                                <a class="product-detail" href="product.html">Details <i
-                                            class="fa fa-chevron-right"></i></a>
-                                <div class="clearfix"></div>
+                    @foreach($products as $product)
+                        <div class="col-xs-6 col-sm-6 col-md-4">
+                            <div class="single-item">
+                                <div class="ribbon-wrapper">
+                                    @if($product->discount > 0)
+                                        <div class="ribbon sale">Sale</div>
+                                    @endif
+                                </div>
+                                <div class="single-item-header">
+                                    <a href="#" class="image-product">
+                                        <img src="{{asset($product->image)}}" alt="">
+                                    </a>
+                                </div>
+                                <div class="single-item-body">
+                                    <p class="single-item-title">{{$product->name}}</p>
+                                    <p class="single-item-price">
+                                        @if($product->discount > 0)
+                                            <span class="flash-del">{{number_format($product->price)}}đ</span>
+                                            <span class="flash-sale">{{number_format($product->discount)}}đ</span>
+                                        @else
+                                            <span class="flash-sale">{{number_format($product->price)}}đ</span>
+                                        @endif
+                                    </p>
+                                </div>
+                                <div class="single-item-caption">
+                                    <a class="add-to-cart pull-left" href=""> <i
+                                                class="fa fa-shopping-cart"></i></a>
+                                    <a class="product-detail" href="{{route("product",$product->slug)}}">Chi tiết <i
+                                                class="fa fa-chevron-right"></i></a>
+                                    <div class="clearfix"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-4">
-                        <div class="single-item">
-                            <div class="ribbon-wrapper">
-                                <div class="ribbon sale">Sale</div>
-                            </div>
-                            <div class="single-item-header">
-                                <a href="#" data-toggle="modal" data-target="#modalProduct"><img
-                                            src="bootstrap/images/products/1.jpg" alt=""></a>
-                            </div>
-                            <div class="single-item-body">
-                                <p class="single-item-title">Sample Woman Top</p>
-                                <p class="single-item-price">
-                                    <span class="flash-del">$34.55</span>
-                                    <span class="flash-sale">$33.55</span>
-                                </p>
-                            </div>
-                            <div class="single-item-caption">
-                                <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                            class="fa fa-shopping-cart"></i></a>
-                                <a class="product-detail" href="product.html">Details <i
-                                            class="fa fa-chevron-right"></i></a>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-4">
-                        <div class="single-item">
-                            <div class="ribbon-wrapper">
-                                <div class="ribbon sale">Sale</div>
-                            </div>
-                            <div class="single-item-header">
-                                <a href="#" data-toggle="modal" data-target="#modalProduct"><img
-                                            src="bootstrap/images/products/1.jpg" alt=""></a>
-                            </div>
-                            <div class="single-item-body">
-                                <p class="single-item-title">Sample Woman Top</p>
-                                <p class="single-item-price">
-                                    <span class="flash-del">$34.55</span>
-                                    <span class="flash-sale">$33.55</span>
-                                </p>
-                            </div>
-                            <div class="single-item-caption">
-                                <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                            class="fa fa-shopping-cart"></i></a>
-                                <a class="product-detail" href="product.html">Details <i
-                                            class="fa fa-chevron-right"></i></a>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-4">
-                        <div class="single-item">
-                            <div class="ribbon-wrapper">
-                                <div class="ribbon sale">Sale</div>
-                            </div>
-                            <div class="single-item-header">
-                                <a href="#" data-toggle="modal" data-target="#modalProduct"><img
-                                            src="bootstrap/images/products/1.jpg" alt=""></a>
-                            </div>
-                            <div class="single-item-body">
-                                <p class="single-item-title">Sample Woman Top</p>
-                                <p class="single-item-price">
-                                    <span class="flash-del">$34.55</span>
-                                    <span class="flash-sale">$33.55</span>
-                                </p>
-                            </div>
-                            <div class="single-item-caption">
-                                <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                            class="fa fa-shopping-cart"></i></a>
-                                <a class="product-detail" href="product.html">Details <i
-                                            class="fa fa-chevron-right"></i></a>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-4">
-                        <div class="single-item">
-                            <div class="ribbon-wrapper">
-                                <div class="ribbon sale">Sale</div>
-                            </div>
-                            <div class="single-item-header">
-                                <a href="#" data-toggle="modal" data-target="#modalProduct"><img
-                                            src="bootstrap/images/products/1.jpg" alt=""></a>
-                            </div>
-                            <div class="single-item-body">
-                                <p class="single-item-title">Sample Woman Top</p>
-                                <p class="single-item-price">
-                                    <span class="flash-del">$34.55</span>
-                                    <span class="flash-sale">$33.55</span>
-                                </p>
-                            </div>
-                            <div class="single-item-caption">
-                                <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                            class="fa fa-shopping-cart"></i></a>
-                                <a class="product-detail" href="product.html">Details <i
-                                            class="fa fa-chevron-right"></i></a>
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">«</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">»</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                {{$products->links()}}
             </article>
             <!--End New Product-->
         </div>
