@@ -75,5 +75,3 @@
     </article>
     <!--End Main Content-->
 @stop
-
-lm bài đi

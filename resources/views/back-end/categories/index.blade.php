@@ -37,13 +37,13 @@ use Shop\Category;
                             <tr>
                                 <th class="text-center">#</th>
                                 <th class="text-center">Tên</th>
-                               {{-- <th class="text-center">Đường dẫn</th>--}}
                                 <th class="text-center">Danh mục cha</th>
                                 <th class="text-center">Loại</th>
                                 <th class="text-center">Sửa</th>
                                 <th class="text-center">Xóa</th>
                             </tr>
 
+                            <?php $i = 1; ?>
                             @foreach($categories as $category)
                                 <?php
                                 $parent_category = Category::where('id', $category->parent_id)->first();
@@ -56,12 +56,10 @@ use Shop\Category;
 
                                 ?>
                                 <tr>
-                                    <td class="text-center">{{$category->id}}</td>
+                                    <td class="text-center">{{$i++}}</td>
                                     <td>{{$category->name}}</td>
-                                  {{--  <td>{{$category->name = str_slug($category->name)}}</td>--}}
                                     <td class="text-center">
                                         {!! ($category->parent_id) ? $parent_category['name'] : "<span class='label label-danger'>Không có</span>" !!}
-                                        {{--{{$parent_category['name']}}--}}
                                     </td>
                                     <td class="text-center">{!!$type !!}</td>
                                     <td class="text-center"><a href="{{route('categories.edit', $category->id)}}"
@@ -74,11 +72,10 @@ use Shop\Category;
                                             <button class="btn btn-danger"><span class="fa fa-trash"></span></button>
                                         </form>
                                     </td>
-
                                 </tr>
                             @endforeach
                         </table>
-
+                        {{$categories->links()}}
                     </div>
                 </div>
             </div>
