@@ -16,7 +16,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="{{route('orders.index')}}">
                 <span class="fa fa-shopping-bag"></span> Đặt hàng
             </a>
         </li>

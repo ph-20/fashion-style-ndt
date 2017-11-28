@@ -85,4 +85,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     //  Product Resource
     Route::resource('/products', 'ProductController');
+
+    //  Order Resource
+    Route::resource('/orders', 'OrderController');
 });
