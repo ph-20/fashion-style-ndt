@@ -46,6 +46,7 @@ Route::get('/cart', ['as' => 'cart', 'uses' => 'ShopController@cart']);
 Route::get('/category/{slug}', ['as' => 'category', 'uses' => 'ShopController@category']);
 
 Route::get('/product/{slug}', ['as' => 'product', 'uses' => 'ShopController@product']);
+Route::get('search', ['as' => 'search', 'uses' => 'ShopController@search']);
 
 //=========================================
 //  Back End

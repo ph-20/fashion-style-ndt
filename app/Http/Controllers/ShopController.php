@@ -11,6 +11,7 @@ use Shop\User;
 use Auth;
 use View;
 use DB;
+use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
@@ -170,8 +171,6 @@ class ShopController extends Controller
                 ORDER BY order_details.quantity DESC
                 LIMIT 4';
         $hotProducts = DB::select(DB::raw($sql));
-//        echo $hotProducts[0]['n
-//        dd($hotProducts[0]->name);
         return view('front-end.pages.product')
             ->with(
                 [
@@ -181,5 +180,9 @@ class ShopController extends Controller
                     'hotProducts' => $hotProducts
                 ]
             );
+    }
+    public function search(Request $req){
+        $product = Product::where('name','like','%'.$req->key.'%')->orwhere('price',$req->key)->paginate(PAGE_SIZE_DEFAULT);
+        return view('front-end.pages.search',compact('product'));
     }
 }
