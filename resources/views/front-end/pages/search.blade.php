@@ -41,7 +41,7 @@
                         </div>
                     @endforeach
                 </div>
-                {{$products->links()}}
+                {{$products->appends(['keyword' => Request::get('keyword')])->links()}}
             </article>
             <!--End New Product-->
         </div>

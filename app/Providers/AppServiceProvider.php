@@ -18,9 +18,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('front-end.layouts.header', function () {
-            $parentCategories = Category::where('type', 0)->get();
+            $parentCategories = Category::where('type', TYPE_CATEGORY_NAM)->get();
 
-            $childCategories = Category::where('type', 1)->get();
+            $childCategories = Category::where('type', TYPE_CATEGORY_NU)->get();
             view::share(
                 [
                     'parentCategories' => $parentCategories,

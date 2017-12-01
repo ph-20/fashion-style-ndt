@@ -178,11 +178,9 @@ class ShopController extends Controller
             );
     }
 
-    public function search(Request $req)
+    public function search(Request $request)
     {
-        $products = Product::where('name', 'like', '%' . $req->key . '%')
-            ->orwhere('price', $req->key)->paginate(PAGE_SIZE_DEFAULT);
-
+        $products = Product::where('name', 'like', '%' . $request->keyword . '%')->paginate(LINKS);
         return view('front-end.pages.search', compact('products'));
     }
 
