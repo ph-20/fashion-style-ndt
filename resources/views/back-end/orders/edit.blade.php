@@ -28,6 +28,9 @@
                                 <span class="fa fa-cog"></span> Xử lý
                             </button>
                         </form>
+                        <a href="{{route('orders.index')}}" class="btn btn-default pull-right" style="margin-right: 10px;">
+                            <i class="fa fa-arrow-left"></i> Trở lại
+                        </a>
                     </h3>
                 </div>
                 <div class="panel-body">

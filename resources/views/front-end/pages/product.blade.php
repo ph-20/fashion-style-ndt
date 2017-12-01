@@ -89,17 +89,7 @@
                         <div class="single-item-desc">
                             <p><b>Mô tả:</b> {{$product->description}}</p>
                         </div>
-                        <div class="single-item-quantity">
-                            <label>Số lượng:</label>
-                            <select name="quantity" id="" class="">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="3">4</option>
-                                <option value="3">5</option>
-                            </select>
-                        </div>
-                        <div class="btn btn-default">Thêm vào giỏ</div>
+                        <a href="" class="btn btn-default">Thêm vào giỏ</a>
                     </div>
                 </div>
 
@@ -132,7 +122,7 @@
                                         </p>
                                     </div>
                                     <div class="single-item-caption">
-                                        <a class="add-to-cart pull-left" href="shopping_cart.html"><i
+                                        <a class="add-to-cart pull-left" href="{{route('add-to-cart', $sameProduct->id)}}"><i
                                                     class="fa fa-shopping-cart"></i></a>
                                         <a class="product-detail" href="{{route('product', $sameProduct->slug)}}">Chi
                                             tiết <i
