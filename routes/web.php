@@ -39,13 +39,20 @@ Route::get('/about', ['as' => 'about', 'uses' => 'ShopController@about']);
 
 Route::get('/contact', ['as' => 'contact', 'uses' => 'ShopController@contact']);
 
-Route::get('/checkout', ['as' => 'checkout', 'uses' => 'ShopController@checkout']);
-
-Route::get('/cart', ['as' => 'cart', 'uses' => 'ShopController@cart']);
-
 Route::get('/category/{slug}', ['as' => 'category', 'uses' => 'ShopController@category']);
 
 Route::get('/product/{slug}', ['as' => 'product', 'uses' => 'ShopController@product']);
+
+//  Giỏ hàng
+Route::get('/add-to-cart/{id}', ['as' => 'add-to-cart', 'uses' => 'ShopController@getAddToCart']);
+
+Route::get('/del-cart/{id}', ['as' => 'del-cart', 'uses' => 'ShopController@getDelCart']);
+//
+//Route::get('/add-to-cart/{id}', ['as' => 'add-to-cart', 'uses' => 'ShopController@getAddToCart']);
+
+Route::get('/cart', ['as' => 'getCart', 'uses' => 'ShopController@getCart']);
+
+Route::get('/checkout', ['as' => 'getCheckout', 'uses' => 'ShopController@getCheckout']);
 
 //=========================================
 //  Back End

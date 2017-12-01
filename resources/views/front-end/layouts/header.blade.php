@@ -1,5 +1,5 @@
 <?php
-  use Shop\Category;
+use Shop\Category;
 ?>
 <div class="list-modal">
     <!-- Modal -->
@@ -100,65 +100,49 @@
                     <div class="dropdown">
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownCart"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <i class="fa fa-shopping-cart"></i> (Trống)</i>
+                            <i class="fa fa-shopping-cart"></i>
+                            @if(Session::has('cart'))
+                                <span class="badge">{{Session::get('cart')->totalQty}}</span>
+                            @else
+                                (Trống)
+                            @endif
                         </button>
-                        <ul class="dropdown-menu dropdown-cart" aria-labelledby="dropdownCart">
-                            <li class="cart-body">
-                                <div class="media">
-                                    <a class="pull-left">
-                                        <img src="bootstrap/images/products/1.jpg" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <span class="title">Sample Woman Top</span>
-                                        <span class="amount">Số lượng: 1</span>
-                                        <span class="price">Giá: 300.000đ</span>
+                        @if(Session::has('cart'))
+                            <ul class="dropdown-menu dropdown-cart" aria-labelledby="dropdownCart">
+                                <li class="clearfix"></li>
+                                <li class="cart-body">
+                                    <?php
+                                    $products = Session::get('cart')->items;
+                                    ?>
+                                    @foreach($products as $product)
+                                        <div class="media">
+                                            <a class="pull-left">
+                                                <img src="{{$product['item']['image']}}" alt="">
+                                            </a>
+                                            <div class="media-body">
+                                                <span class="title">{{$product['item']['name']}}</span>
+                                                <span class="amount">Số lượng: {{$product['qty']}}</span>
+                                                <span class="price">Giá: {{number_format($product['price'])}}đ</span>
+                                            </div>
+                                            <a href="{{route('del-cart', $product['item']['id'])}}" class="cart-item-delete"><i class="fa fa-times"></i></a>
+                                        </div>
+                                    @endforeach
+                                </li>
+                                <li class="cart-bottom">
+                                    <div class="cart-total text-right"><b style="color:#0277b8;">Tổng tiền:</b>
+                                        <span class="cart-total-value">
+                                            {{number_format(Session::get('cart')->totalPrice)}}đ
+                                        </span>
                                     </div>
-                                    <a href="#" class="cart-item-delete"><i class="fa fa-times"></i></a>
-                                </div>
-                                <div class="media">
-                                    <a class="pull-left">
-                                        <img src="bootstrap/images/products/1.jpg" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <span class="title">Sample Woman Top</span>
-                                        <span class="amount">Số lượng: 1</span>
-                                        <span class="price">Giá: 300.000đ</span>
+                                    <div class="center">
+                                        <a href="{{route('getCart')}}" class="btn btn-primary">
+                                            Giỏ hàng <i class="fa fa-shopping-cart"></i></a>
+                                        <a href="{{route('getCheckout')}}" class="btn btn-success">
+                                            Thanh toán <i class="fa fa-chevron-right"></i></a>
                                     </div>
-                                    <a href="#" class="cart-item-delete"><i class="fa fa-times"></i></a>
-                                </div>
-                                <div class="media">
-                                    <a class="pull-left">
-                                        <img src="bootstrap/images/products/1.jpg" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <span class="title">Sample Woman Top</span>
-                                        <span class="amount">Số lượng: 1</span>
-                                        <span class="price">Giá: 300.000đ</span>
-                                    </div>
-                                    <a href="#" class="cart-item-delete"><i class="fa fa-times"></i></a>
-                                </div>
-                                <div class="media">
-                                    <a class="pull-left">
-                                        <img src="bootstrap/images/products/1.jpg" alt="">
-                                    </a>
-                                    <div class="media-body">
-                                        <span class="title">Sample Woman Top</span>
-                                        <span class="amount">Số lượng: 1</span>
-                                        <span class="price">Giá: 300.000đ</span>
-                                    </div>
-                                    <a href="#" class="cart-item-delete"><i class="fa fa-times"></i></a>
-                                </div>
-                            </li>
-                            <li class="cart-bottom">
-                                <div class="cart-total text-right"><b style="color:#0277b8;">Tổng tiền:</b>
-                                    <span class="cart-total-value">1.000.000đ</span>
-                                </div>
-                                <div class="center">
-                                    <a href="checkout.html" class="btn btn-primary text-center">Đặt hàng <i
-                                                class="fa fa-chevron-right"></i></a>
-                                </div>
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -184,18 +168,21 @@
                     <ul class="nav navbar-nav">
                         <li><a href="{{route('index')}}">Trang chủ <span class="sr-only">(current)</span></a></li>
                         @foreach($parentCategories as $parentCategory)
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">{{$parentCategory->name}}<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <?php
-                                $childCategories = Category::where('parent_id', $parentCategory->id)->get();
-                                ?>
-                                @foreach($childCategories as $childCategory)
-                                <li><a href="{{route('category', $childCategory->slug)}}">{{$childCategory->name}}</a></li>
-                                @endforeach
-                            </ul>
-                        </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">{{$parentCategory->name}}<span
+                                            class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <?php
+                                    $childCategories = Category::where('parent_id', $parentCategory->id)->get();
+                                    ?>
+                                    @foreach($childCategories as $childCategory)
+                                        <li>
+                                            <a href="{{route('category', $childCategory->slug)}}">{{$childCategory->name}}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
                         @endforeach
                         <li><a href="{{route('about')}}">Giới thiệu</a>
                         <li><a href="{{route('contact')}}">Liên hệ</a>

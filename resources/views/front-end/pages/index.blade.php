@@ -58,38 +58,38 @@
                 <h3 class="content-title">Sản phẩm mới</h3>
                 <div class="row">
                     @foreach($newProducts as $newProduct)
-                    <div class="col-xs-6 col-sm-3">
-                        <div class="single-item">
-                            @if($newProduct->discount > 0)
-                            <div class="ribbon-wrapper">
-                                <div class="ribbon sale">Sale</div>
-                            </div>
-                            @endif
-                            <div class="single-item-header">
-                                <a href="{{route('product', $newProduct->slug)}}" class="img-product">
-                                    <img src="{{asset($newProduct->image)}}" alt="">
-                                </a>
-                            </div>
-                            <div class="single-item-body">
-                                <p class="single-item-title">{{$newProduct->name}}</p>
-                                <p class="single-item-price">
-                                    @if($newProduct->discount > 0)
-                                    <span class="flash-del">{{number_format($newProduct->price)}}đ</span>
-                                    <span class="flash-sale">{{number_format($newProduct->discount)}}đ</span>
-                                    @else
-                                    <span class="flash-sale">{{number_format($newProduct->price)}}đ</span>
-                                    @endif
-                                </p>
-                            </div>
-                            <div class="single-item-caption">
-                                <a class="add-to-cart pull-left" href="shopping_cart.html"><i
-                                            class="fa fa-shopping-cart"></i></a>
-                                <a class="product-detail" href="{{route('product', $newProduct->slug)}}">Chi tiết <i
-                                            class="fa fa-chevron-right"></i></a>
-                                <div class="clearfix"></div>
+                        <div class="col-xs-6 col-sm-3">
+                            <div class="single-item">
+                                @if($newProduct->discount > 0)
+                                    <div class="ribbon-wrapper">
+                                        <div class="ribbon sale">Sale</div>
+                                    </div>
+                                @endif
+                                <div class="single-item-header">
+                                    <a href="{{route('product', $newProduct->slug)}}" class="img-product">
+                                        <img src="{{asset($newProduct->image)}}" alt="">
+                                    </a>
+                                </div>
+                                <div class="single-item-body">
+                                    <p class="single-item-title">{{$newProduct->name}}</p>
+                                    <p class="single-item-price">
+                                        @if($newProduct->discount > 0)
+                                            <span class="flash-del">{{number_format($newProduct->price)}}đ</span>
+                                            <span class="flash-sale">{{number_format($newProduct->discount)}}đ</span>
+                                        @else
+                                            <span class="flash-sale">{{number_format($newProduct->price)}}đ</span>
+                                        @endif
+                                    </p>
+                                </div>
+                                <div class="single-item-caption">
+                                    <a class="add-to-cart pull-left" href="{{route('add-to-cart', $newProduct->id)}}"><i
+                                                class="fa fa-shopping-cart"></i></a>
+                                    <a class="product-detail" href="{{route('product', $newProduct->slug)}}">Chi tiết <i
+                                                class="fa fa-chevron-right"></i></a>
+                                    <div class="clearfix"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
                 {{$newProducts->links()}}
@@ -118,9 +118,10 @@
                                     </p>
                                 </div>
                                 <div class="single-item-caption">
-                                    <a class="add-to-cart pull-left" href="shopping_cart.html"><i
+                                    <a class="add-to-cart pull-left" href="{{route('add-to-cart', $promotionProduct->id)}}"><i
                                                 class="fa fa-shopping-cart"></i></a>
-                                    <a class="product-detail" href="{{route('product', $promotionProduct->slug)}}">Chi tiết <i
+                                    <a class="product-detail" href="{{route('product', $promotionProduct->slug)}}">Chi
+                                        tiết <i
                                                 class="fa fa-chevron-right"></i></a>
                                     <div class="clearfix"></div>
                                 </div>

@@ -243,7 +243,13 @@ h6 {
     left: auto;
     padding: 20px;
 }
-
+.dropdown .dropdown-cart .cart-top a {
+    padding-right: 0;
+}
+.dropdown-cart .delete-all {
+    float: right;
+    margin-bottom: 20px;
+}
 .dropdown-cart .cart-body {
     margin-bottom: 50px;
 }

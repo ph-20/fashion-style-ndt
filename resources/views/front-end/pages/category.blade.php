@@ -72,15 +72,6 @@
 
             <article class="sidebar-left col-sm-4 col-md-3">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Giới tính</div>
-                    <div class="panel-body">
-                        <ul class="sidebar-menu">
-                            <li><a href="#">Nam</a></li>
-                            <li><a href="#">Nữ</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="panel panel-primary">
                     <div class="panel-heading">Danh mục</div>
                     <div class="panel-body">
                         <?php $i = 1 ?>
@@ -142,7 +133,7 @@
                                 </p>
                             </div>
                             <div class="single-item-caption">
-                                <a class="add-to-cart pull-left" href="shopping_cart.html"><i
+                                <a class="add-to-cart pull-left" href="{{route('add-to-cart', $product->id)}}"><i
                                             class="fa fa-shopping-cart"></i></a>
                                 <a class="product-detail" href="{{route('product', $product->slug)}}">Chi tiết <i
                                             class="fa fa-chevron-right"></i></a>

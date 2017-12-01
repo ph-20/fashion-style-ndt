@@ -2,6 +2,8 @@
 
 namespace Shop\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Shop\Cart;
 use Shop\Category;
 use Shop\Http\Requests\LoginRequest;
 use Shop\Http\Requests\ProfileRequest;
@@ -11,6 +13,7 @@ use Shop\User;
 use Auth;
 use View;
 use DB;
+use Session;
 
 class ShopController extends Controller
 {
@@ -133,16 +136,6 @@ class ShopController extends Controller
         return view('front-end.pages.contact');
     }
 
-    public function checkout()
-    {
-        return view('front-end.pages.checkout');
-    }
-
-    public function cart()
-    {
-        return view('front-end.pages.cart');
-    }
-
     public function category($slug)
     {
         $category = Category::where('slug', $slug)->first();
@@ -170,8 +163,7 @@ class ShopController extends Controller
                 ORDER BY order_details.quantity DESC
                 LIMIT 4';
         $hotProducts = DB::select(DB::raw($sql));
-//        echo $hotProducts[0]['n
-//        dd($hotProducts[0]->name);
+
         return view('front-end.pages.product')
             ->with(
                 [
@@ -181,5 +173,58 @@ class ShopController extends Controller
                     'hotProducts' => $hotProducts
                 ]
             );
+    }
+
+    public function getAddToCart(Request $request, $id)
+    {
+        $product = Product::find($id);
+        $oldCart = Session::has('cart') ? $request->session()->get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+
+        $request->session()->put('cart', $cart);
+        return redirect()->back();
+    }
+
+    public function getDelCart($id)
+    {
+        $oldCart = Session::has('cart') ? session()->get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->reduceByOne($id);
+        if (count($cart->items) > 0) {
+            Session::put('cart', $cart);
+        } else {
+            Session::forget('cart');
+        }
+        return redirect()->back();
+    }
+
+    public function getCart()
+    {
+        if (!Session::has('cart')) {
+            return view('front-end.pages.cart')->with('products', null);
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        return view('front-end.pages.cart')
+            ->with(
+                [
+                    'products' => $cart->items,
+                    'totalPrice' => $cart->totalPrice,
+                    'totalQty' => $cart->totalQty
+                ]
+            );
+    }
+
+    public function getCheckout()
+    {
+        if (!Session::has('cart')) {
+            return view('front-end.pages.checkout');
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        $totalPrice = $cart->totalPrice;
+        return view('front-end.pages.checkout')
+            ->with(['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 }
