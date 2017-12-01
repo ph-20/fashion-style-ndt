@@ -54,7 +54,7 @@ use Shop\Category;
                                 ?>
                                 <tr>
                                     <td class="text-center">{{$i++}}</td>
-                                    <td>{{$order->customer_name}}</td>
+                                    <td><a href="{{route('orders.edit', $order->id)}}">{{$order->customer_name}}</a></td>
                                     <td>{{$order->note}}</td>
                                     <td>{{$order->created_at}}</td>
                                     <td class="text-center">{!! $status !!}</td>

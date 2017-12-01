@@ -5,6 +5,8 @@ namespace Shop\Providers;
 use Illuminate\Support\ServiceProvider;
 use Shop\Category;
 use View;
+use Shop\Cart;
+use Session;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,12 +21,12 @@ class AppServiceProvider extends ServiceProvider
             $parentCategories = Category::where('type', 0)->get();
 
             $childCategories = Category::where('type', 1)->get();
-            view::share(['parentCategories' => $parentCategories, 'childCategories' => $childCategories]);
-        });
-        view()->composer('front-end/pages/category', function () {
-            $categories = Category::where('type', 0)->get();
-            $childCategories = Category::where('type', 1)->get();
-            View::share(['categories' => $categories, 'childCategories' => $childCategories]);
+            view::share(
+                [
+                    'parentCategories' => $parentCategories,
+                    'childCategories' => $childCategories
+                ]
+            );
         });
     }
 

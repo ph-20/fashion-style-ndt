@@ -1,16 +1,22 @@
 <?php
 
 namespace Shop\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Shop\Cart;
 use Shop\Category;
 use Shop\Http\Requests\LoginRequest;
 use Shop\Http\Requests\ProfileRequest;
 use Shop\Http\Requests\UserRequest;
+use Shop\Http\Requests\CheckoutRequest;
+use Shop\Order;
+use Shop\OrderDetail;
 use Shop\Product;
 use Shop\User;
 use Auth;
 use View;
 use DB;
-use Illuminate\Http\Request;
+use Session;
 
 class ShopController extends Controller
 {
@@ -133,16 +139,6 @@ class ShopController extends Controller
         return view('front-end.pages.contact');
     }
 
-    public function checkout()
-    {
-        return view('front-end.pages.checkout');
-    }
-
-    public function cart()
-    {
-        return view('front-end.pages.cart');
-    }
-
     public function category($slug)
     {
         $category = Category::where('slug', $slug)->first();
@@ -170,6 +166,7 @@ class ShopController extends Controller
                 ORDER BY order_details.quantity DESC
                 LIMIT 4';
         $hotProducts = DB::select(DB::raw($sql));
+
         return view('front-end.pages.product')
             ->with(
                 [
@@ -180,8 +177,102 @@ class ShopController extends Controller
                 ]
             );
     }
-    public function search(Request $req){
-        $products = Product::where('name','like','%'.$req->key.'%')->orwhere('price',$req->key)->paginate(PAGE_SIZE_DEFAULT);
-        return view('front-end.pages.search',compact('products'));
+
+    public function search(Request $req)
+    {
+        $products = Product::where('name', 'like', '%' . $req->key . '%')
+            ->orwhere('price', $req->key)->paginate(PAGE_SIZE_DEFAULT);
+
+        return view('front-end.pages.search', compact('products'));
+    }
+
+    public function getAddToCart(Request $request, $id)
+    {
+        $product = Product::find($id);
+        $oldCart = Session::has('cart') ? $request->session()->get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+
+        $request->session()->put('cart', $cart);
+        return redirect()->back();
+    }
+
+    public function getDelCart($id)
+    {
+        $oldCart = Session::has('cart') ? session()->get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->reduceByOne($id);
+        if (count($cart->items) > 0) {
+            Session::put('cart', $cart);
+        } else {
+            Session::forget('cart');
+        }
+        return redirect()->back();
+    }
+
+    public function getCart()
+    {
+        if (!Session::has('cart')) {
+            return view('front-end.pages.cart')->with('products', null);
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        return view('front-end.pages.cart')
+            ->with(
+                [
+                    'products' => $cart->items,
+                    'totalPrice' => $cart->totalPrice,
+                    'totalQty' => $cart->totalQty
+                ]
+            );
+    }
+
+    public function getCheckout()
+    {
+        if (!Session::has('cart')) {
+            return view('front-end.pages.checkout');
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+
+        return view('front-end.pages.checkout')
+            ->with(['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+    }
+
+    public function postCheckout(CheckoutRequest $request)
+    {
+        $cart = Session::get('cart')->items;
+
+        $order = new Order();
+        $order->status = 0;
+        $order->date = date("Y-m-d");
+        $order->note = $request->note;
+        if (isset($request->name)) {
+            $order->customer_name = $request->name;
+            $order->customer_email = $request->email;
+            $order->customer_phone = $request->phone;
+            $order->customer_address = $request->address;
+        } else {
+            $order->customer_name = Auth::user()->fullname;
+            $order->customer_email = Auth::user()->email;
+            $order->customer_phone = Auth::user()->phone;
+            $order->customer_address = Auth::user()->address;
+        }
+        $order->code = str_random(10);
+        $order->save();
+
+        foreach ($cart as $key => $value) {
+            $orderDetail = new OrderDetail();
+            $orderDetail->order_id = $order->id;
+            $orderDetail->product_id = $key;
+            $orderDetail->price = ($value['price'] / $value['qty']);
+            $orderDetail->quantity = $value['qty'];
+            $orderDetail->save();
+        }
+
+        Session::forget('cart');
+
+        return redirect()->route('getCheckout')
+            ->with(['message' => 'Đặt hàng thành công.', 'alert' => 'success']);
     }
 }
