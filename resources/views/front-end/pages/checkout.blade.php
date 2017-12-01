@@ -17,6 +17,11 @@
             <!--End Top Content-->
 
             <div class="row">
+                @if(count($errors) > 0)
+                    @foreach($errors as $error)
+                        {{$error}}
+                    @endforeach
+                @endif
                 @if(Session::has('cart'))
                     <form action="{{route('postCheckout')}}" method="POST">
                         {{csrf_field()}}
@@ -28,36 +33,39 @@
                                 <div class="form-group">
                                     <label>Ghi chú <b style="color:Tomato;">*</b></label>
                                     <textarea name="note" class="form-control" rows="5"
-                                              placeholder="Nhập ghi chú"></textarea>
+                                              placeholder="Nhập ghi chú">{{old('note')}}</textarea>
                                     <span class="label label-danger">{!! $errors->first('note') !!}</span>
                                 </div>
                             @else
                                 <h4>Thông tin khách hàng</h4>
                                 <div class="form-group">
                                     <label>Họ tên <b style="color:Tomato;">*</b></label>
-                                    <input type="text" class="form-control" name="name" placeholder="Nhập họ tên">
+                                    <input type="text" class="form-control" name="name" placeholder="Nhập họ tên"
+                                           value="{{old('name')}}">
                                     <span class="label label-danger">{!! $errors->first('name') !!}</span>
                                 </div>
                                 <div class="form-group">
                                     <label>Email <b style="color:Tomato;">*</b></label>
-                                    <input type="text" class="form-control" name="email" placeholder="Nhập email">
+                                    <input type="text" class="form-control" name="email" placeholder="Nhập email"
+                                           value="{{old('email')}}">
                                     <span class="label label-danger">{!! $errors->first('email') !!}</span>
                                 </div>
                                 <div class="form-group">
                                     <label>Điện thoại <b style="color:Tomato;">*</b></label>
                                     <input type="text" class="form-control" name="phone"
-                                           placeholder="Nhập số điện thoại">
+                                           placeholder="Nhập số điện thoại" value="{{old('phone')}}">
                                     <span class="label label-danger">{!! $errors->first('phone') !!}</span>
                                 </div>
                                 <div class="form-group">
                                     <label>Địa chỉ <b style="color:Tomato;">*</b></label>
-                                    <input type="text" class="form-control" name="address" placeholder="Nhập địa chỉ">
+                                    <input type="text" class="form-control" name="address" placeholder="Nhập địa chỉ"
+                                           value="{{old('address')}}">
                                     <span class="label label-danger">{!! $errors->first('address') !!}</span>
                                 </div>
                                 <div class="form-group">
                                     <label>Ghi chú <b style="color:Tomato;">*</b></label>
                                     <textarea name="note" class="form-control" rows="5"
-                                              placeholder="Nhập ghi chú"></textarea>
+                                              placeholder="Nhập ghi chú">{{old('note')}}</textarea>
                                     <span class="label label-danger">{!! $errors->first('note') !!}</span>
                                 </div>
                             @endif
@@ -89,11 +97,17 @@
                         </div>
                         <div class="clearfix"></div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary pull-right">Đặt hàng</button>
+                            <button type="submit" class="btn btn-success pull-right">Thanh toán</button>
                         </div>
                     </form>
                 @else
-                    <div class="alert alert-danger">Giỏ hàng đang trống.</div>
+                    @if(Session::has('message'))
+                        <div class="alert alert-{{Session::get('alert')}}">{{Session::get('message')}}</div>
+                        <a href="{{route('index')}}" class="btn btn-default text-center">Trở về Trang chủ</a>
+                    @else
+                        <div class="alert alert-danger">Giỏ hàng đang trống.</div>
+                        <a href="{{route('index')}}" class="btn btn-default text-center">Trở về Trang chủ</a>
+                    @endif
                 @endif
             </div>
 

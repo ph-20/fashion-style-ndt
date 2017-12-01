@@ -3,6 +3,7 @@
 namespace Shop\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Auth;
 
 class CheckoutRequest extends FormRequest
 {
@@ -23,7 +24,7 @@ class CheckoutRequest extends FormRequest
      */
     public function rules()
     {
-        if (!isset($request->name)) {
+        if (!Auth::check()) {
             return [
                 'name' => 'required|min:6|max:50',
                 'email' => 'required|email',
