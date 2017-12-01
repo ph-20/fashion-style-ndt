@@ -47,12 +47,12 @@ Route::get('/product/{slug}', ['as' => 'product', 'uses' => 'ShopController@prod
 Route::get('/add-to-cart/{id}', ['as' => 'add-to-cart', 'uses' => 'ShopController@getAddToCart']);
 
 Route::get('/del-cart/{id}', ['as' => 'del-cart', 'uses' => 'ShopController@getDelCart']);
-//
-//Route::get('/add-to-cart/{id}', ['as' => 'add-to-cart', 'uses' => 'ShopController@getAddToCart']);
 
 Route::get('/cart', ['as' => 'getCart', 'uses' => 'ShopController@getCart']);
 
 Route::get('/checkout', ['as' => 'getCheckout', 'uses' => 'ShopController@getCheckout']);
+
+Route::post('/checkout', ['as' => 'postCheckout', 'uses' => 'ShopController@postCheckout']);
 
 //=========================================
 //  Back End

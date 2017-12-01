@@ -8,6 +8,7 @@ use Shop\Category;
 use Shop\Http\Requests\LoginRequest;
 use Shop\Http\Requests\ProfileRequest;
 use Shop\Http\Requests\UserRequest;
+use Shop\Http\Requests\CheckoutRequest;
 use Shop\Product;
 use Shop\User;
 use Auth;
@@ -223,8 +224,13 @@ class ShopController extends Controller
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        $totalPrice = $cart->totalPrice;
+
         return view('front-end.pages.checkout')
             ->with(['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+    }
+
+    public function postCheckout(CheckoutRequest $request)
+    {
+
     }
 }
