@@ -1,7 +1,6 @@
 <?php
 
 namespace Shop\Http\Controllers;
-
 use Shop\Category;
 use Shop\Http\Requests\LoginRequest;
 use Shop\Http\Requests\ProfileRequest;
@@ -182,7 +181,7 @@ class ShopController extends Controller
             );
     }
     public function search(Request $req){
-        $product = Product::where('name','like','%'.$req->key.'%')->orwhere('price',$req->key)->paginate(PAGE_SIZE_DEFAULT);
-        return view('front-end.pages.search',compact('product'));
+        $products = Product::where('name','like','%'.$req->key.'%')->orwhere('price',$req->key)->paginate(PAGE_SIZE_DEFAULT);
+        return view('front-end.pages.search',compact('products'));
     }
 }
