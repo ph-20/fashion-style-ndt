@@ -60,7 +60,7 @@ use Shop\Category;
                             <ul class="dropdown-menu">
                                 <li><a href="{{route('getProfile')}}">Hồ sơ cá nhân</a></li>
                                 @if(Auth::user()->role != 2)
-                                    <li><a href="{{route('dashboard')}}">Quản trị nội dung</a></li>
+                                    <li><a href="{{route('dashboard')}}" target="_blank">Quản trị nội dung</a></li>
                                 @endif
                                 <li><a href="{{route('logout')}}">Đăng xuất</a></li>
                             </ul>
