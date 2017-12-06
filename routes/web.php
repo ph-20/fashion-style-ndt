@@ -43,6 +43,8 @@ Route::get('/category/{slug}', ['as' => 'category', 'uses' => 'ShopController@ca
 
 Route::get('/product/{slug}', ['as' => 'product', 'uses' => 'ShopController@product']);
 
+Route::get('search', ['as' => 'search', 'uses' => 'ShopController@search']);
+
 //  Giỏ hàng
 Route::get('/add-to-cart/{id}', ['as' => 'add-to-cart', 'uses' => 'ShopController@getAddToCart']);
 

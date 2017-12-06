@@ -178,6 +178,12 @@ class ShopController extends Controller
             );
     }
 
+    public function search(Request $request)
+    {
+        $products = Product::where('name', 'like', '%' . $request->keyword . '%')->paginate(LINKS);
+        return view('front-end.pages.search', compact('products'));
+    }
+
     public function getAddToCart(Request $request, $id)
     {
         $product = Product::find($id);

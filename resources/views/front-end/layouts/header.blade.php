@@ -1,6 +1,7 @@
 <?php
 use Shop\Category;
 ?>
+
 <div class="list-modal">
     <!-- Modal -->
     <div class="modal fade" id="modalProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -85,14 +86,13 @@ use Shop\Category;
             </div>
             <div class="pull-right">
                 <div class="search">
-                    <form action="">
+                    <form action="{{route('search')}}" method="get">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Nhập từ khóa...">
+                            <input type="text" class="form-control" name="keyword" placeholder="Nhập từ khóa...">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
-                                    <span class="fa fa-search"></span>
-                                </button>
-                            </span>
+                                    <button class="btn btn-default" type="submit"><span
+                                                class="fa fa-search"></span></button>
+                                </span>
                         </div>
                     </form>
                 </div>
@@ -124,7 +124,8 @@ use Shop\Category;
                                                 <span class="amount">Số lượng: {{$product['qty']}}</span>
                                                 <span class="price">Giá: {{number_format($product['price'])}}đ</span>
                                             </div>
-                                            <a href="{{route('del-cart', $product['item']['id'])}}" class="cart-item-delete"><i class="fa fa-times"></i></a>
+                                            <a href="{{route('del-cart', $product['item']['id'])}}"
+                                               class="cart-item-delete"><i class="fa fa-times"></i></a>
                                         </div>
                                     @endforeach
                                 </li>
