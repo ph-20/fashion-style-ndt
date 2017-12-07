@@ -89,7 +89,7 @@
                         <div class="single-item-desc">
                             <p><b>Mô tả:</b> {{$product->description}}</p>
                         </div>
-                        <a href="" class="btn btn-default">Thêm vào giỏ</a>
+                        <a href="{{route('add-to-cart', $product->id)}}" class="btn btn-default">Thêm vào giỏ</a>
                     </div>
                 </div>
 
