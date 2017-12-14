@@ -17,18 +17,38 @@
             <!--End Top Content-->
 
             <div class="row">
-                @if(count($errors) > 0)
-                    @foreach($errors as $error)
-                        {{$error}}
-                    @endforeach
-                @endif
-                @if(Session::has('cart'))
+                @if(Cart::count() > 0)
                     <form action="{{route('postCheckout')}}" method="POST">
                         {{csrf_field()}}
+                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                         <div class="col-sm-6">
                             @if(Auth::check())
                                 <div class="alert alert-info">
                                     Đơn hàng của <b>{{Auth::user()->fullname}}</b>
+                                </div>
+                                <div class="form-group">
+                                    <label>Họ tên <b style="color:Tomato;">*</b></label>
+                                    <input type="text" class="form-control" name="name"
+                                           value="{{Auth::user()->fullname}}">
+                                    <span class="label label-danger">{!! $errors->first('name') !!}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email <b style="color:Tomato;">*</b></label>
+                                    <input type="text" class="form-control" name="email"
+                                           value="{{Auth::user()->email}}">
+                                    <span class="label label-danger">{!! $errors->first('email') !!}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Điện thoại <b style="color:Tomato;">*</b></label>
+                                    <input type="text" class="form-control" name="phone"
+                                           value="{{Auth::user()->phone}}">
+                                    <span class="label label-danger">{!! $errors->first('phone') !!}</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Địa chỉ <b style="color:Tomato;">*</b></label>
+                                    <input type="text" class="form-control" name="address"
+                                           value="{{Auth::user()->address}}">
+                                    <span class="label label-danger">{!! $errors->first('address') !!}</span>
                                 </div>
                                 <div class="form-group">
                                     <label>Ghi chú <b style="color:Tomato;">*</b></label>
@@ -77,12 +97,12 @@
                                     @foreach($products as $product)
                                         <div class="media">
                                             <div class="pull-left">
-                                                <img src="{{$product['item']['image']}}" alt="">
+                                                <img src="{{$product->options->image}}" alt="">
                                             </div>
                                             <div class="media-body">
-                                                <span class="title">{{$product['item']['name']}}</span>
-                                                <span class="amount">Số lượng: {{$product['qty']}}</span>
-                                                <span class="price">Thành tiền: {{number_format($product['price'])}}
+                                                <span class="title">{{$product->name}}</span>
+                                                <span class="amount">Số lượng: {{$product->qty}}</span>
+                                                <span class="price">Thành tiền: {{number_format($product->price)}}
                                                     đ</span>
                                             </div>
                                         </div>
@@ -91,7 +111,7 @@
 
                                 <div class="your-order-total">
                                     <div class="pull-left">Tổng tiền:</div>
-                                    <div class="pull-right">{{number_format($totalPrice)}}đ</div>
+                                    <div class="pull-right">{{Cart::subtotal(0, '.', ',')}}đ</div>
                                 </div>
                             </div>
                         </div>

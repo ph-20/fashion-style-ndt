@@ -2,43 +2,6 @@
 use Shop\Category;
 ?>
 
-<div class="list-modal">
-    <!-- Modal -->
-    <div class="modal fade" id="modalProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form action="">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="modalProductLabel">Thông tin sản phẩm</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-sm-4">
-                            <img src="bootstrap/images/products/1.jpg" alt="">
-                        </div>
-                        <div class="col-sm-8">
-                            <h5 class="title-product">Áo khoác len K201</h5>
-                            <p class="category-product">Thời Trang Áo <span class="fa fa-angle-double-right"></span> Áo
-                                khoác</p>
-                            <p class="price-product"><b>Giá:</b> 200.000đ</p>
-                            <p class="description">Áo Khoác Da Đen AK209 cách điệu với túi cá tính ở ngực, màu đen nam
-                                tính, mạnh mẽ tạo nên phong cách cực chất cho chàng. Kiểu dáng bắt mắt, tay dài phối
-                                khóa kéo cách điệu, dáng cổ tròn cùng các đường cắt may tinh tế. Hai chiếc túi hông sâu
-                                rộng được kết hợp khóa kéo linh hoạt, rất tiện lợi.</p>
-                            <button type="submit" class="btn btn-default">Thêm vào giỏ</button>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!--Modal Product-->
-</div>
-<!--End List Model-->
-
 <header>
     <div class="header-top">
         <div class="container">
@@ -101,30 +64,27 @@ use Shop\Category;
                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownCart"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <i class="fa fa-shopping-cart"></i>
-                            @if(Session::has('cart'))
-                                <span class="badge">{{Session::get('cart')->totalQty}}</span>
+                            @if(Cart::count() > 0)
+                                <span class="badge">{{Cart::count()}}</span>
                             @else
                                 (Trống)
                             @endif
                         </button>
-                        @if(Session::has('cart'))
+                        @if(Cart::count() > 0)
                             <ul class="dropdown-menu dropdown-cart" aria-labelledby="dropdownCart">
                                 <li class="clearfix"></li>
                                 <li class="cart-body">
-                                    <?php
-                                    $products = Session::get('cart')->items;
-                                    ?>
-                                    @foreach($products as $product)
+                                    @foreach(Cart::content() as $product)
                                         <div class="media">
                                             <a class="pull-left">
-                                                <img src="{{$product['item']['image']}}" alt="">
+                                                <img src="{{$product->options->image}}" alt="">
                                             </a>
                                             <div class="media-body">
-                                                <span class="title">{{$product['item']['name']}}</span>
-                                                <span class="amount">Số lượng: {{$product['qty']}}</span>
-                                                <span class="price">Giá: {{number_format($product['price'])}}đ</span>
+                                                <span class="title">{{$product->name}}</span>
+                                                <span class="amount">Số lượng: {{$product->qty}}</span>
+                                                <span class="price">Giá: {{number_format($product->price)}}đ</span>
                                             </div>
-                                            <a href="{{route('del-cart', $product['item']['id'])}}"
+                                            <a href="{{route('del-cart', ['id'=>$product->rowId])}}"
                                                class="cart-item-delete"><i class="fa fa-times"></i></a>
                                         </div>
                                     @endforeach
@@ -132,10 +92,12 @@ use Shop\Category;
                                 <li class="cart-bottom">
                                     <div class="cart-total text-right"><b style="color:#0277b8;">Tổng tiền:</b>
                                         <span class="cart-total-value">
-                                            {{number_format(Session::get('cart')->totalPrice)}}đ
+                                            {{Cart::subtotal(0, '.', ',')}}đ
                                         </span>
                                     </div>
                                     <div class="center">
+                                        <a href="{{route('destroyCart')}}" class="btn btn-danger">
+                                            Xóa hết <i class="fa fa-trash"></i></a>
                                         <a href="{{route('getCart')}}" class="btn btn-primary">
                                             Giỏ hàng <i class="fa fa-shopping-cart"></i></a>
                                         <a href="{{route('getCheckout')}}" class="btn btn-success">
