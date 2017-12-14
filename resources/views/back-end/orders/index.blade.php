@@ -54,7 +54,7 @@ use Shop\Category;
                                 ?>
                                 <tr>
                                     <td class="text-center">{{$i++}}</td>
-                                    <td><a href="{{route('orders.edit', $order->id)}}">{{$order->customer_name}}</a></td>
+                                    <td><a href="{{route('orders.show', $order->id)}}">{{$order->customer_name}}</a></td>
                                     <td>{{$order->note}}</td>
                                     <td>{{$order->created_at}}</td>
                                     <td class="text-center">{!! $status !!}</td>
@@ -63,7 +63,7 @@ use Shop\Category;
                                             <a href="{{route('orders.edit', $order->id)}}" class="btn btn-success">Xử
                                                 lý</a>
                                         @else
-                                            <a href="{{route('orders.edit', $order->id)}}" class="btn btn-success"
+                                            <a href="javascript:void(0);" class="btn btn-success"
                                                disabled>Xử lý</a>
                                         @endif
                                     </td>
@@ -72,13 +72,13 @@ use Shop\Category;
                                             <form action="{{route('orders.destroy', $order->id)}}" method="POST">
                                                 {{method_field('DELETE')}}
                                                 {{csrf_field()}}
-                                                <button class="btn btn-danger">Hủy</button>
+                                                <button class="btn btn-danger order">Hủy</button>
                                             </form>
                                         @else
                                             <form action="{{route('orders.destroy', $order->id)}}" method="POST">
                                                 {{method_field('DELETE')}}
                                                 {{csrf_field()}}
-                                                <button class="btn btn-danger" disabled>Hủy</button>
+                                                <button class="btn btn-danger order" disabled>Hủy</button>
                                             </form>
                                         @endif
                                     </td>

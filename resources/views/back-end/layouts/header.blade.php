@@ -5,9 +5,11 @@
         </div>
         <div class="pull-right">
             <ul class="nav navbar-nav">
-                <li><a href="{{route('index')}}">
-                        <sapn class="fa fa-home"></sapn>
-                        View Shop</a></li>
+                <li>
+                    <a href="{{route('index')}}" target="_blank">
+                        <sapn class="fa fa-home"></sapn> View Shop
+                    </a>
+                </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                        aria-expanded="false">

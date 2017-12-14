@@ -50,6 +50,10 @@ Route::get('/add-to-cart/{id}', ['as' => 'add-to-cart', 'uses' => 'ShopControlle
 
 Route::get('/del-cart/{id}', ['as' => 'del-cart', 'uses' => 'ShopController@getDelCart']);
 
+Route::get('/destroy', ['as' => 'destroyCart', 'uses' => 'ShopController@destroyCart']);
+
+Route::post('/update-cart/{id}', ['as' => 'update-cart', 'uses' => 'ShopController@getUpdateCart']);
+
 Route::get('/cart', ['as' => 'getCart', 'uses' => 'ShopController@getCart']);
 
 Route::get('/checkout', ['as' => 'getCheckout', 'uses' => 'ShopController@getCheckout']);

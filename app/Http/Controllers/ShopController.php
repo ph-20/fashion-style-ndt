@@ -3,7 +3,6 @@
 namespace Shop\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Shop\Cart;
 use Shop\Category;
 use Shop\Http\Requests\LoginRequest;
 use Shop\Http\Requests\ProfileRequest;
@@ -17,6 +16,7 @@ use Auth;
 use View;
 use DB;
 use Session;
+use Cart;
 
 class ShopController extends Controller
 {
@@ -184,91 +184,84 @@ class ShopController extends Controller
         return view('front-end.pages.search', compact('products'));
     }
 
-    public function getAddToCart(Request $request, $id)
+    public function getAddToCart($id)
     {
         $product = Product::find($id);
-        $oldCart = Session::has('cart') ? $request->session()->get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->add($product, $product->id);
-
-        $request->session()->put('cart', $cart);
+        if ($product->discount > 0) {
+            $price = $product->discount;
+        } else {
+            $price = $product->price;
+        }
+        Cart::add(
+            [
+                'id' => $product->id,
+                'name' => $product->name,
+                'qty' => 1,
+                'price' => $price,
+                'options' => ['image' => $product->image],
+            ]
+        );
         return redirect()->back();
     }
 
     public function getDelCart($id)
     {
-        $oldCart = Session::has('cart') ? session()->get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->reduceByOne($id);
-        if (count($cart->items) > 0) {
-            Session::put('cart', $cart);
-        } else {
-            Session::forget('cart');
-        }
+        Cart::remove($id);
+        return redirect()->back();
+    }
+
+    public function getUpdateCart(Request $request, $id)
+    {
+        $qty = $request->qty;
+
+        Cart::update($id, $qty);
+        return redirect()->back();
+    }
+
+    public function destroyCart()
+    {
+        Cart::destroy();
         return redirect()->back();
     }
 
     public function getCart()
     {
-        if (!Session::has('cart')) {
-            return view('front-end.pages.cart')->with('products', null);
-        }
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
-        return view('front-end.pages.cart')
-            ->with(
-                [
-                    'products' => $cart->items,
-                    'totalPrice' => $cart->totalPrice,
-                    'totalQty' => $cart->totalQty
-                ]
-            );
+        $products = Cart::content();
+        return view('front-end.pages.cart')->with(['products' => $products]);
     }
 
     public function getCheckout()
     {
-        if (!Session::has('cart')) {
-            return view('front-end.pages.checkout');
-        }
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
-
-        return view('front-end.pages.checkout')
-            ->with(['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+        $products = Cart::content();
+        return view('front-end.pages.checkout')->with(['products' => $products]);
     }
 
     public function postCheckout(CheckoutRequest $request)
     {
-        $cart = Session::get('cart')->items;
+        $products = Cart::content();
 
         $order = new Order();
         $order->status = 0;
-        $order->date = date("Y-m-d");
+        $order->user_id = $request->user_id;
+        $order->date = date("Y-m-d H:i:s");
         $order->note = $request->note;
-        if (isset($request->name)) {
-            $order->customer_name = $request->name;
-            $order->customer_email = $request->email;
-            $order->customer_phone = $request->phone;
-            $order->customer_address = $request->address;
-        } else {
-            $order->customer_name = Auth::user()->fullname;
-            $order->customer_email = Auth::user()->email;
-            $order->customer_phone = Auth::user()->phone;
-            $order->customer_address = Auth::user()->address;
-        }
+        $order->customer_name = $request->name;
+        $order->customer_email = $request->email;
+        $order->customer_phone = $request->phone;
+        $order->customer_address = $request->address;
         $order->code = str_random(10);
         $order->save();
 
-        foreach ($cart as $key => $value) {
+        foreach ($products as $product) {
             $orderDetail = new OrderDetail();
             $orderDetail->order_id = $order->id;
-            $orderDetail->product_id = $key;
-            $orderDetail->price = ($value['price'] / $value['qty']);
-            $orderDetail->quantity = $value['qty'];
+            $orderDetail->product_id = $product->id;
+            $orderDetail->price = $product->price;
+            $orderDetail->quantity = $product->qty;
             $orderDetail->save();
         }
 
-        Session::forget('cart');
+        Cart::destroy();
 
         return redirect()->route('getCheckout')
             ->with(['message' => 'Đặt hàng thành công.', 'alert' => 'success']);
