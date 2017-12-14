@@ -18,7 +18,6 @@ class CreateSlidersTable extends Migration
             $table->text('path');
             $table->string('title');
             $table->text('link');
-            $table->boolean('status');
             $table->timestamps();
         });
     }
