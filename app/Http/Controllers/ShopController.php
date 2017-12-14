@@ -155,6 +155,7 @@ class ShopController extends Controller
             ->where('id', '<>', $product->id)->paginate(4);
         $newProducts = Product::orderBy('id', 'DESC')->paginate(4);
         $sql = 'SELECT  products.name,
+                        products.slug,
                         products.price,
                         products.discount,
                         products.image,

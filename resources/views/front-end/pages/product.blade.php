@@ -143,7 +143,7 @@
                     <div class="panel-body">
                         @foreach($hotProducts as $hotProduct)
                             <div class="media">
-                                <a class="pull-left" href="#">
+                                <a class="pull-left" href="{{route('product', $hotProduct->slug)}}">
                                     <img src="{{$hotProduct->image}}" alt="">
                                 </a>
                                 <div class="media-body">
@@ -163,7 +163,7 @@
                     <div class="panel-body">
                         @foreach($newProducts as $newProduct)
                             <div class="media">
-                                <a class="pull-left" href="#">
+                                <a class="pull-left" href="{{route('product', $newProduct->slug)}}">
                                     <img src="{{$newProduct->image}}" alt="">
                                 </a>
                                 <div class="media-body">
