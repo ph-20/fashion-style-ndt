@@ -20,7 +20,13 @@
                 @if(Cart::count() > 0)
                     <form action="{{route('postCheckout')}}" method="POST">
                         {{csrf_field()}}
+                        <?php
+                          if (Auth::check()){
+                        ?>
                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                        <?php
+                        }
+                        ?>
                         <div class="col-sm-6">
                             @if(Auth::check())
                                 <div class="alert alert-info">
