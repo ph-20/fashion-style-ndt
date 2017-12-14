@@ -11,7 +11,7 @@
                         <i class="fa fa-angle-double-right"></i>
                     </span>
                 </li>
-                <li class="active">Người dùng</li>
+                <li class="active">Đặt hàng</li>
             </ul><!--.breadcrumb-->
         </div>
         <!--End Breadcrumbs-->
@@ -20,69 +20,63 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3>
-                        <span class="title-page">Thông tin người dùng</span>
-                        <a href="{{route('users.index')}}" class="btn btn-default pull-right"><span
-                                    class="fa fa-arrow-left"></span> Trở về</a>
+                        <span class="title-page">Chi tiết đơn hàng</span>
+                        <a href="{{route('orders.index')}}" class="btn btn-default pull-right" style="margin-right: 10px;">
+                            <i class="fa fa-arrow-left"></i> Trở lại
+                        </a>
                     </h3>
                 </div>
-                <?php
-                if ($user->role == 0) {
-                    $role = "<span class='label label-success'>Admin</span>";
-                } elseif ($user->role == 1) {
-                    $role = "<span class='label label-info'>Bán hàng</span>";
-                } elseif ($user->role == 2) {
-                    $role = "<span class='label label-warning'>Khách hàng</span>";
-                }
-
-                if ($user->status == 1) {
-                    $status = "<span class='label label-success'>Hoạt động</span>";
-                } else {
-                    $status = "<span class='label label-danger'>Khóa</span>";
-                }
-
-                if ($user->gender == 0) {
-                    $gender = "Nam";
-                } else {
-                    $gender = "Nữ";
-                }
-                ?>
                 <div class="panel-body">
-                    <div class="col-md-offset-2 col-md-6">
+                    @if(Session::has('message'))
+                        <div class="alert alert-{{Session::get('alert')}}">{{Session::get('message')}}</div>
+                    @endif
+                    <div class="table-responsive">
+                        <div class="col-sm-6">
+                            <div class="col-sm-3 text-right"><b>Tên khách hàng:</b></div>
+                            <div class="col-sm-9"><p>{{$order->customer_name}}</p></div>
+                            <div class="col-sm-3 text-right"><b>Email:</b></div>
+                            <div class="col-sm-9"><p>{{$order->customer_email}}</p></div>
+                            <div class="col-sm-3 text-right"><b>Địa chỉ:</b></div>
+                            <div class="col-sm-9"><p>{{$order->customer_address}}</p></div>
+                            <div class="col-sm-3 text-right"><b>Điện thoại:</b></div>
+                            <div class="col-sm-9"><p>{{$order->customer_phone}}</p></div>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <p><b>Ngày đặt hàng:</b> {{$order->created_at}}</p>
+                        </div>
                         <table class="table table-bordered">
                             <tr>
-                                <th>Ẹmail</th>
-                                <td>{{$user->email}}</td>
+                                <th class="text-center">#</th>
+                                <th class="text-center">Tên sản phẩm</th>
+                                <th class="text-center">Số lượng</th>
+                                <th class="text-center">Đơn giá</th>
+                                <th class="text-center">Thành tiền</th>
                             </tr>
-                            <tr>
-                                <th>Quyền</th>
-                                <td>{!! $role  !!}</td>
-                            </tr>
-                            <tr>
-                                <th>Trạng thái</th>
-                                <td>{!! $status !!}</td>
-                            </tr>
-                            <tr>
-                                <th class="col-md-4">Họ tên</th>
-                                <td>{{$user->fullname}}</td>
-                            </tr>
-                            <tr>
-                                <th>Ngày sinh</th>
-                                <td>{{$user->birthday}}</td>
-                            </tr>
-                            <tr>
-                                <th>Giới tính</th>
-                                <td>{{$gender}}</td>
-                            </tr>
-                            <tr>
-                                <th>Điện thoại</th>
-                                <td>{{$user->phone}}</td>
-                            </tr>
-                            <tr>
-                                <th>Địa chỉ</th>
-                                <td>{{$user->address}}</td>
-                            </tr>
+                            <?php
+                            $i = 1;
+                            $total = 0;
+                            ?>
+                            @foreach($products as $product)
+                                <?php
+                                if ($product->product->discount > 0) {
+                                    $price = $product->product->discount;
+                                } else {
+                                    $price = $product->product->price;
+                                }
+                                $sum = $price * $product->quantity;
+                                $total += $sum;
+                                ?>
+                                <tr>
+                                    <td class="text-center">{{$i++}}</td>
+                                    <td>{{$product->product->name}}</td>
+                                    <td class="text-center">{{$product->quantity}}</td>
+                                    <td class="text-center">{{number_format($price)}}đ</td>
+                                    <td class="text-center">{{number_format($sum)}}đ</td>
+                                </tr>
+                            @endforeach
                         </table>
                     </div>
+                    <div class="pull-right"><p><b>Tổng tiền:</b> {{number_format($total)}}đ</p></div>
                 </div>
             </div>
         </div>

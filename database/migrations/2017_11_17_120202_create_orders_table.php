@@ -17,7 +17,8 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('status');
             $table->dateTime('date');
-            $table->text('note');
+            $table->text('note')->nullable();
+            $table->text('user_id')->nullable();
             $table->string('customer_name');
             $table->string('customer_email');
             $table->string('customer_phone');

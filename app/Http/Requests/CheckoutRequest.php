@@ -30,7 +30,6 @@ class CheckoutRequest extends FormRequest
                 'email' => 'required|email',
                 'phone' => 'required|min:10|max:12',
                 'address' => 'required',
-                'note' => 'required'
             ];
         } else {
             return [
@@ -50,8 +49,7 @@ class CheckoutRequest extends FormRequest
             'phone.required' => 'Trường điện thoại bắt buộc nhập.',
             'phone.min' => 'Điện thoại phải có ít nhấ 10 số.',
             'phone.max' => 'Điện thoại không quá 11 số.',
-            'address.required' => 'Trường địa chỉ bắt buộc nhập.',
-            'note.required' => 'Trường ghi chú bắt buộc nhập.'
+            'address.required' => 'Trường địa chỉ bắt buộc nhập.'
         ];
     }
 }

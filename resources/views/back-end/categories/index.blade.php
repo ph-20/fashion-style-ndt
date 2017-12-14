@@ -69,7 +69,7 @@ use Shop\Category;
                                         <form action="{{route('categories.destroy', $category->id)}}" method="POST">
                                             {{method_field('DELETE')}}
                                             {{csrf_field()}}
-                                            <button class="btn btn-danger"><span class="fa fa-trash"></span></button>
+                                            <button class="btn btn-danger category"><span class="fa fa-trash"></span></button>
                                         </form>
                                     </td>
                                 </tr>

@@ -258,6 +258,10 @@ h6 {
     position: relative;
 }
 
+.dropdown-cart .media .fa-times {
+    color: red;
+}
+
 .dropdown-cart .media .media-body .title {
     font-size: 16px;
     font-weight: 500;

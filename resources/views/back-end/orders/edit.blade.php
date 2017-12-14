@@ -20,7 +20,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3>
-                        <span class="title-page">Chi tiết đặt hàng</span>
+                        <span class="title-page">Xử lý đơn hàng</span>
                         <form action="{{route('orders.update', $order->id)}}" method="POST">
                             {{csrf_field()}}
                             {{method_field('PUT')}}
@@ -49,7 +49,7 @@
                             <div class="col-sm-9"><p>{{$order->customer_phone}}</p></div>
                         </div>
                         <div class="col-sm-6 text-right">
-                            <p><b>Ngày đặt hàng:</b> 27/10/2017</p>
+                            <p><b>Ngày đặt hàng:</b> {{$order->created_at}}</p>
                         </div>
                         <table class="table table-bordered">
                             <tr>

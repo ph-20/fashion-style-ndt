@@ -20,46 +20,51 @@
                         <div class="table-reponsive shop-cart">
                             <table class="table table-striped">
                                 <tr>
+                                    <th>#</th>
                                     <th>Sản phẩm</th>
                                     <th>Giá</th>
                                     <th>Số lượng</th>
                                     <th>Thành tiền</th>
                                     <th>Xóa</th>
                                 </tr>
+                                <?php $i = 1; ?>
                                 @foreach($products as $product)
-                                    <tr>
-                                        <td class="title">
-                                            <div class="media">
-                                                <img src="{{$product['item']['image']}}" class="pull-left" alt="">
-                                                <div class="media-body">
-                                                    <p>{{$product['item']['name']}}</p>
+                                    <form action="{{route('update-cart', ['id'=>$product->rowId])}}" method="POST">
+                                        {{csrf_field()}}
+                                        <tr>
+                                            <td>{{$i}}</td>
+                                            <td class="title">
+                                                <div class="media">
+                                                    <img src="{{$product->options->image}}" class="pull-left" alt="">
+                                                    <div class="media-body">
+                                                        <p>{{$product->name}}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td class="price">
-                                            <span>
-                                                @if($product['item']['discount'] > 0)
-                                                    {{number_format($product['item']['discount'])}}đ
-                                                @else
-                                                    {{number_format($product['item']['price'])}}đ
-                                                @endif
-                                            </span>
-                                        </td>
-                                        <td class="quantity">
-                                            <span>
-                                                {{$product['qty']}}
-                                            </span>
-                                        </td>
-                                        <td class="total">
-                                            <span>
-                                                {!! number_format($product['price']) !!}đ
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <a href="{{route('del-cart', $product['item']['id'])}}"
-                                               class="btn btn-danger">Xóa</a>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td class="price">
+                                                <span>
+                                                    {{number_format($product->price)}}đ
+                                                </span>
+                                            </td>
+                                            <td class="quantity">
+                                                <span>
+                                                    <input type="number" name="qty" value="{{$product->qty}}"
+                                                           class="form-control" required>
+                                                </span>
+                                            </td>
+                                            <td class="total">
+                                                <span>
+                                                    {!! number_format(($product->qty*$product->price)) !!}đ
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <button type="submit" class="btn btn-success">Cập nhật</button>
+                                                <a href="{{route('del-cart', ['id'=>$product->rowId])}}"
+                                                   class="btn btn-danger">Xóa</a>
+                                            </td>
+                                        </tr>
+                                    </form>
+                                    {{$i++}}
                                 @endforeach
                             </table>
                         </div>
@@ -71,11 +76,11 @@
                         </div>
                         <div class="cart-totals-row">
                             <span class="title">Số lượng:</span>
-                            <span class="quantity">{{$totalQty}}</span>
+                            <span class="quantity">{{Cart::count()}}</span>
                         </div>
                         <div class="cart-totals-row">
                             <span class="title">Tổng tiền:</span>
-                            <span class="total">{{number_format($totalPrice)}}đ</span>
+                            <span class="total">{{Cart::subtotal(0, '.', ',')}}đ</span>
                         </div>
                         <a href="{{route('getCheckout')}}" class="btn btn-primary">Thanh toán</a>
                     </div>

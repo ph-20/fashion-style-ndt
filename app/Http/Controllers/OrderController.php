@@ -30,6 +30,14 @@ class OrderController extends Controller
         //
     }
 
+    public function show($id)
+    {
+        $order = Order::find($id);
+        $products = OrderDetail::where('order_id', $id)->get();
+        return view('back-end.orders.show')
+            ->with(['order' => $order, 'products' => $products]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

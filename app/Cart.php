@@ -34,8 +34,31 @@ class Cart
         $store['qty']++;
         $store['price'] = $price * $store['qty'];
         $this->items[$id] = $store;
-        $this->totalQty++;
-        $this->totalPrice += $price;
+        $this->totalQty = $this->totalQty + $store['qty'];
+        $this->totalPrice = $this->totalPrice + $store['price'];
+    }
+
+    //  Cập nhật giỏ hàng
+    public function update($item, $id, $qty)
+    {
+        if ($item->discount > 0) {
+            $price = $item->discount;
+        } else {
+            $price = $item->price;
+        }
+
+        $store = ['qty' => 0, 'price' => $price, 'item' => $item];
+        if ($this->items) {
+            if (array_key_exists($id, $this->items)) {
+                $store = $this->items[$id];
+            }
+        }
+        $store['qty'] = $qty;
+        $store['price'] = $price * $store['qty'];
+        $this->items[$id] = $store;
+
+        $this->totalQty = $this->totalQty + ($store['qty_new'] - $store['qty_old']);
+        $this->totalPrice = $this->totalPrice + $store['price'];
     }
 
     //  Xóa 1 sản phẩm
@@ -46,13 +69,10 @@ class Cart
         } else {
             $price = $this->items[$id]['item']['price'];
         }
-        $this->items[$id]['qty']--;
-        $this->items[$id]['price'] -= $price;
-        $this->totalQty--;
-        $this->totalPrice -= $price;
-        if ($this->items[$id]['qty'] <= 0) {
-            unset($this->items[$id]);
-        }
+        $sumPrice = $this->items[$id]['qty'] * $price;
+        $this->totalQty = $this->items[$id]['qty'];
+        $this->totalPrice -= $sumPrice;
+        unset($this->items[$id]);
     }
 
     //  Xóa nhiều sản phẩm
