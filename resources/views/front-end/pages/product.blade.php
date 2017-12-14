@@ -14,25 +14,25 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img src="bootstrap/images/slides/1.jpg" alt="...">
+                    <img src="storage/products/slide_1.jpg" alt="...">
                     <div class="carousel-caption">
                         <h3>Hello</h3>
                     </div>
                 </div>
                 <div class="item">
-                    <img src="bootstrap/images/slides/1.jpg" alt="...">
+                    <img src="storage/products/slide_2.jpg" alt="...">
                     <div class="carousel-caption">
                         <h3>Welcome to Website</h3>
                     </div>
                 </div>
                 <div class="item">
-                    <img src="bootstrap/images/slides/1.jpg" alt="...">
+                    <img src="storage/products/slide_3.jpg" alt="...">
                     <div class="carousel-caption">
                         <h3>Fashion Style NDT</h3>
                     </div>
                 </div>
                 <div class="item">
-                    <img src="bootstrap/images/slides/1.jpg" alt="...">
+                    <img src="storage/products/slide_4.jpg" alt="...">
                     <div class="carousel-caption">
                         <h3>Hello Today</h3>
                     </div>
@@ -143,9 +143,11 @@
                     <div class="panel-body">
                         @foreach($hotProducts as $hotProduct)
                             <div class="media">
-                                <a class="pull-left" href="#">
+
+                                <a class="pull-left" href="">
                                     <img src="{{$hotProduct->image}}" alt="">
                                 </a>
+
                                 <div class="media-body">
                                     <span class="title">{{$hotProduct->name}}</span>
                                     @if($hotProduct->discount > 0)
@@ -163,7 +165,7 @@
                     <div class="panel-body">
                         @foreach($newProducts as $newProduct)
                             <div class="media">
-                                <a class="pull-left" href="#">
+                                <a class="pull-left" href="{{route('product', $newProduct->slug)}}">
                                     <img src="{{$newProduct->image}}" alt="">
                                 </a>
                                 <div class="media-body">

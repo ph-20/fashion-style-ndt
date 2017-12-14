@@ -36,7 +36,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="{{route('email.index')}}">
                 <span class="fa fa-envelope"></span> Thư liên hệ
             </a>
         </li>
