@@ -38,7 +38,7 @@
                                 <th class="text-center">Quyền</th>
                                 <th class="text-center">Trạng thái</th>
                                 <th class="text-center">Sửa</th>
-                                <th class="text-center">Xóa</th>
+                                <th class="text-center">Khóa</th>
                             </tr>
                             <?php $i = 1 ?>
                             @foreach($users as $user)
@@ -63,15 +63,29 @@
                                     <td>{{$user->email}}</td>
                                     <td class="text-center">{!! $role !!}</td>
                                     <td class="text-center">{!! $status !!}</td>
-                                    <td class="text-center"><a href="{{route('users.edit', $user->id)}}"
-                                                               class="btn btn-warning"><span
-                                                    class="fa fa-pencil"></span></a></td>
                                     <td class="text-center">
-                                        <form action="{{route('users.destroy', $user->id)}}" method="POST">
-                                            {{method_field('DELETE')}}
-                                            {{csrf_field()}}
-                                            <button class="btn btn-danger user"><span class="fa fa-trash"></span></button>
-                                        </form>
+                                        <a href="{{route('users.edit', $user->id)}}" class="btn btn-warning">
+                                            <span class="fa fa-pencil"></span>
+                                        </a>
+                                    </td>
+                                    <td class="text-center">
+                                        @if($user->status == 0)
+                                            <form action="{{route('users.destroy', $user->id)}}" method="POST">
+                                                {{method_field('DELETE')}}
+                                                {{csrf_field()}}
+                                                <button class="btn btn-warning user">
+                                                    <span class="fa fa-unlock"></span>
+                                                </button>
+                                            </form>
+                                        @else
+                                            <form action="{{route('users.destroy', $user->id)}}" method="POST">
+                                                {{method_field('DELETE')}}
+                                                {{csrf_field()}}
+                                                <button class="btn btn-danger user">
+                                                    <span class="fa fa-lock"></span>
+                                                </button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

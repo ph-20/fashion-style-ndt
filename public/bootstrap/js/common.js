@@ -13,7 +13,18 @@ $(document).ready(function () {
 
     $('.btn.btn-danger.user').on('click', function (event) {
         var id = $(this).closest('tr').find('td:first').text();
-        var x = confirm('Bạn có chắc muốn xóa người dùng #' + id + ' này không?');
+        var x = confirm('Bạn có chắc muốn khóa người dùng #' + id + ' này không?');
+        if (x) {
+            return true;
+        } else {
+            event.preventDefault();
+            return false;
+        }
+    });
+
+    $('.btn.btn-warning.user').on('click', function (event) {
+        var id = $(this).closest('tr').find('td:first').text();
+        var x = confirm('Bạn có muốn mở khóa người dùng #' + id + ' này không?');
         if (x) {
             return true;
         } else {

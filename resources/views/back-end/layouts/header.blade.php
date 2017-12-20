@@ -13,7 +13,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                        aria-expanded="false">
-                        <b>Xin chào: </b>Admin <span class="caret"></span>
+                        <b>Xin chào: </b>{{Auth::user()->fullname}} <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{{route('users.show', Auth::user()->id)}}"><span class="fa fa-user"></span> Thông tin tài khoản</a></li>

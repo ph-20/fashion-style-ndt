@@ -24,18 +24,12 @@ class CheckoutRequest extends FormRequest
      */
     public function rules()
     {
-        if (!Auth::check()) {
-            return [
-                'name' => 'required|min:6|max:50',
-                'email' => 'required|email',
-                'phone' => 'required|min:10|max:12',
-                'address' => 'required',
-            ];
-        } else {
-            return [
-                'note' => 'required'
-            ];
-        }
+        return [
+            'name' => 'required|min:6|max:50',
+            'email' => 'required|email',
+            'phone' => 'required|min:10|max:12',
+            'address' => 'required',
+        ];
     }
 
     public function messages()

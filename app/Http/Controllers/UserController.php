@@ -16,7 +16,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::paginate(5);
+        $users = User::orderBy('id', 'DESC')->paginate(5);
         return view('back-end.users.index')->with('users', $users);
     }
 
@@ -105,17 +105,25 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        $products = $user->products;
-        if (count($products) > 0) {
+        if ($user->role == 0) {
             return redirect()->route('users.index')
                 ->with([
-                    'message' => 'Không thể xóa tài khoản này! Tài khoản này đang có sản phẩm.',
+                    'message' => 'Không thể khóa tài khoản này! Tài khoản này là Admin.',
                     'alert' => 'danger'
                 ]);
         }
-        $user->delete();
+        if ($user->status == 0){
+            $user->status = 1;
+            $user->save();
 
-        return redirect()->route('users.index')
-            ->with(['message' => 'Xóa thành công', 'alert' => 'success']);
+            return redirect()->route('users.index')
+                ->with(['message' => 'Khóa thành công', 'alert' => 'success']);
+        } else {
+            $user->status = 0;
+            $user->save();
+
+            return redirect()->route('users.index')
+                ->with(['message' => 'Mở khóa thành công', 'alert' => 'success']);
+        }
     }
 }

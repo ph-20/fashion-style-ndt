@@ -20,15 +20,9 @@
                 @if(Cart::count() > 0)
                     <form action="{{route('postCheckout')}}" method="POST">
                         {{csrf_field()}}
-                        <?php
-                          if (Auth::check()){
-                        ?>
-                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                        <?php
-                        }
-                        ?>
                         <div class="col-sm-6">
                             @if(Auth::check())
+                                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                 <div class="alert alert-info">
                                     Đơn hàng của <b>{{Auth::user()->fullname}}</b>
                                 </div>
@@ -57,7 +51,7 @@
                                     <span class="label label-danger">{!! $errors->first('address') !!}</span>
                                 </div>
                                 <div class="form-group">
-                                    <label>Ghi chú <b style="color:Tomato;">*</b></label>
+                                    <label>Ghi chú</label>
                                     <textarea name="note" class="form-control" rows="5"
                                               placeholder="Nhập ghi chú">{{old('note')}}</textarea>
                                     <span class="label label-danger">{!! $errors->first('note') !!}</span>
@@ -89,7 +83,7 @@
                                     <span class="label label-danger">{!! $errors->first('address') !!}</span>
                                 </div>
                                 <div class="form-group">
-                                    <label>Ghi chú <b style="color:Tomato;">*</b></label>
+                                    <label>Ghi chú</label>
                                     <textarea name="note" class="form-control" rows="5"
                                               placeholder="Nhập ghi chú">{{old('note')}}</textarea>
                                     <span class="label label-danger">{!! $errors->first('note') !!}</span>
